@@ -1,60 +1,113 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { Menu, X } from "lucide-react";
 
 export default function Navbar() {
-  const pathname = usePathname();
-
-  const navLinks = [
-    { name: "Home", href: "/" },
-    { name: "About", href: "/about" },
-    { name: "Services", href: "/services" },
-    { name: "Process", href: "/process" },
-    { name: "Contact", href: "/contact" },
-  ];
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-        
+    <nav className="fixed top-0 left-0 right-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur shadow-sm">
+      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
         {/* Logo */}
         <Link
-  href="/"
-  className="text-3xl font-bold text-[#0176D3] transition duration-300 hover:scale-105 hover:text-[#032D60]"
->
-  SalesFluance
-</Link>
+          href="/"
+          className="text-2xl font-bold text-[#0A1F3F] lg:text-3xl"
+        >
+          SalesFluance
+        </Link>
 
-        {navLinks.map((link) => (
-  <Link
-    key={link.name}
-    href={link.href}
-    className={`relative group font-medium transition duration-300 ${
-      pathname === link.href
-        ? "text-[#0176D3]"
-        : "text-gray-700 hover:text-[#0176D3]"
-    }`}
-  >
-    {link.name}
+        {/* Desktop Menu */}
+        <div className="hidden items-center gap-8 md:flex">
+          <Link href="/" className="text-slate-700 hover:text-[#0A1F3F] transition">
+            Home
+          </Link>
 
-    <span
-      className={`absolute -bottom-1 left-0 h-0.5 bg-[#0176D3] transition-all duration-300 ${
-        pathname === link.href
-          ? "w-full"
-          : "w-0 group-hover:w-full"
-      }`}
-    />
-  </Link>
-))}
+          <Link href="/about" className="text-slate-700 hover:text-[#0A1F3F] transition">
+            About
+          </Link>
 
-        {/* CTA Button */}
-        <div className="hidden md:block">
-          <button className="rounded-xl bg-[#0176D3] px-5 py-2.5 text-white font-medium shadow-md transition hover:bg-[#032D60]">
+          <Link href="/services" className="text-slate-700 hover:text-[#0A1F3F] transition">
+            Services
+          </Link>
+
+          <Link href="/process" className="text-slate-700 hover:text-[#0A1F3F] transition">
+            Process
+          </Link>
+
+          <Link
+            href="/contact"
+            className="rounded-lg bg-[#E85D26] px-6 py-3 font-semibold text-white transition hover:bg-[#F2783F]"
+          >
             Book a Call
-          </button>
+          </Link>
         </div>
+
+        {/* Mobile Button */}
+        <button
+  onClick={() => {
+    alert("Button Clicked");
+    setIsOpen(!isOpen);
+  }}
+  className="md:hidden"
+>
+          {isOpen ? (
+            <X className="h-8 w-8 text-[#0A1F3F]" />
+          ) : (
+            <Menu className="h-8 w-8 text-[#0A1F3F]" />
+          )}
+        </button>
       </div>
+
+      {/* Mobile Menu */}
+      {isOpen && (
+        <div className="border-t border-slate-200 bg-white md:hidden">
+          <div className="flex flex-col px-6 py-6">
+
+            <Link
+              href="/"
+              onClick={() => setIsOpen(false)}
+              className="py-3 text-lg text-slate-700"
+            >
+              Home
+            </Link>
+
+            <Link
+              href="/about"
+              onClick={() => setIsOpen(false)}
+              className="py-3 text-lg text-slate-700"
+            >
+              About
+            </Link>
+
+            <Link
+              href="/services"
+              onClick={() => setIsOpen(false)}
+              className="py-3 text-lg text-slate-700"
+            >
+              Services
+            </Link>
+
+            <Link
+              href="/process"
+              onClick={() => setIsOpen(false)}
+              className="py-3 text-lg text-slate-700"
+            >
+              Process
+            </Link>
+
+            <Link
+              href="/contact"
+              onClick={() => setIsOpen(false)}
+              className="mt-4 rounded-lg bg-[#E85D26] py-3 text-center font-semibold text-white"
+            >
+              Book a Call
+            </Link>
+
+          </div>
+        </div>
+      )}
     </nav>
   );
 }

@@ -1,26 +1,129 @@
 @import "tailwindcss";
 
+/* ==========================================
+   SalesFluance V2 Design System
+========================================== */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Brand Colors */
+  --navy: #0A2540;
+  --navy-light: #1E3A5F;
+
+  --blue: #0176D3;
+  --blue-light: #EAF5FF;
+
+  --orange: #EA580C;
+  --orange-hover: #C2410C;
+
+  /* Neutral Colors */
+  --background: #FFFFFF;
+  --section: #F8FAFC;
+
+  --foreground: #0F172A;
+  --text: #475569;
+
+  --border: #E2E8F0;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+/* ==========================================
+   Global Styles
+========================================== */
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+
+/* ==========================================
+   Reusable Container
+========================================== */
+
+.container-custom {
+  max-width: 1280px;
+  margin: auto;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+/* ==========================================
+   Sections
+========================================== */
+
+.section {
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+
+.section-light {
+  background: var(--section);
+}
+
+.section-dark {
+  background: var(--navy);
+  color: white;
+}
+
+/* ==========================================
+   Buttons
+========================================== */
+
+.btn-primary {
+  background: var(--orange);
+  color: white;
+  border-radius: 14px;
+  padding: 14px 28px;
+  font-weight: 600;
+  transition: .3s;
+}
+
+.btn-primary:hover {
+  background: var(--orange-hover);
+}
+
+.btn-secondary {
+  border: 1px solid var(--border);
+  color: var(--navy);
+  background: white;
+  border-radius: 14px;
+  padding: 14px 28px;
+  transition: .3s;
+}
+
+.btn-secondary:hover {
+  background: var(--blue-light);
+}
+
+/* ==========================================
+   Cards
+========================================== */
+
+.card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 32px;
+  transition: .3s;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(0,0,0,.08);
+}
+
+/* ==========================================
+   Text
+========================================== */
+
+.heading {
+  color: var(--foreground);
+}
+
+.paragraph {
+  color: var(--text);
 }
