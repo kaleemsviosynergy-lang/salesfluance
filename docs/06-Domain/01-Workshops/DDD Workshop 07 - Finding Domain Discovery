@@ -1,0 +1,361 @@
+# DDD Workshop 07
+
+# Finding Domain Discovery
+
+Status:
+Discovery Workshop
+
+Purpose:
+Discover the true business meaning of a Finding before defining AI reasoning, dashboards, scoring engines, executive summaries, or implementation.
+
+This workshop intentionally avoids software design.
+
+The objective is to discover how trustworthy Evidence becomes business knowledge.
+
+---
+
+# Workshop Question
+
+What transforms trustworthy Evidence into a Finding?
+
+---
+
+# Historical Thought Experiment
+
+Imagine an experienced corporate auditor presents a report to the Board.
+
+The report contains multiple Evidence packages.
+
+Evidence Package A
+
+- Email authentication incomplete.
+- SPF invalid.
+- DMARC missing.
+- DKIM missing.
+
+Evidence Package B
+
+- Response time averages 6 hours.
+- No lead routing.
+- 38% of inbound leads receive no follow-up.
+
+The Board does not read these as isolated facts.
+
+Instead they hear:
+
+"Our outbound communication infrastructure presents a significant commercial risk."
+
+"Our lead management process contains operational friction."
+
+Those statements are Findings.
+
+The auditor has interpreted Evidence into business understanding.
+
+---
+
+# Candidate Definition
+
+A Finding is a defensible business conclusion derived from one or more Evidence packages.
+
+Findings explain reality.
+
+They do not prescribe action.
+
+---
+
+# Constitutional Test
+
+Every Finding must:
+
+- Be supported by Evidence.
+- Be explainable.
+- Be traceable.
+- Reduce executive uncertainty.
+- Describe commercial reality.
+
+If a Finding cannot be defended using Evidence, it is not a Finding.
+
+---
+
+# Examples
+
+## Example 1
+
+Evidence
+
+- Missing DMARC
+- Invalid SPF
+- Missing DKIM
+
+Finding
+
+"Email infrastructure presents elevated deliverability risk."
+
+---
+
+## Example 2
+
+Evidence
+
+- Average response time = 7 hours
+- No routing automation
+- 42% unanswered leads
+
+Finding
+
+"Lead response operations are creating preventable revenue leakage."
+
+---
+
+## Example 3
+
+Evidence
+
+- CRM completeness = 39%
+- Duplicate accounts
+- Missing industries
+
+Finding
+
+"CRM data quality is insufficient to support reliable commercial decision-making."
+
+---
+
+# First Principles
+
+A Finding:
+
+- Explains.
+- Summarizes.
+- Interprets.
+- Is defensible.
+- Exists independently of Recommendations.
+
+A Finding does not:
+
+- Recommend.
+- Predict.
+- Execute.
+- Decide.
+
+---
+
+# Relationship to Evidence
+
+Evidence supports Findings.
+
+Findings cannot exist without Evidence.
+
+One Evidence package may contribute to multiple Findings.
+
+Multiple Evidence packages may support one Finding.
+
+---
+
+# Relationship to Recommendations
+
+Findings identify reality.
+
+Recommendations propose change.
+
+Finding
+
+↓
+
+Recommendation
+
+Reality is understood before improvement is proposed.
+
+---
+
+# Relationship to Executive Decisions
+
+Executives do not decide directly from Evidence.
+
+Executives reason through Findings.
+
+Findings translate structured Evidence into business language.
+
+---
+
+# Candidate Characteristics
+
+Every Finding is:
+
+- Explainable
+- Evidence-backed
+- Organization-scoped
+- Assessment-scoped
+- Traceable
+- Defensible
+- Immutable once Assessment closes
+
+---
+
+# Candidate Lifecycle
+
+Evidence Forged
+
+↓
+
+Evidence Evaluated
+
+↓
+
+Finding Produced
+
+↓
+
+Finding Reviewed
+
+↓
+
+Finding Approved
+
+↓
+
+Available for Recommendation Generation
+
+↓
+
+Archived with Assessment
+
+---
+
+# Constitutional Invariants
+
+Every Finding:
+
+- References one or more Evidence packages.
+- Belongs to one Assessment.
+- Belongs to one Organization.
+- Can be independently audited.
+- Cannot exist without Evidence.
+- Exists before Recommendations.
+
+---
+
+# Relationship to Trust
+
+Executives trust Findings because every Finding can be traced back to Evidence, and every Evidence package can be traced back to Observations.
+
+Observation
+
+↓
+
+Evidence
+
+↓
+
+Finding
+
+Trust increases through complete explainability.
+
+---
+
+# Architectural Discovery
+
+A Finding is the first explicit statement of business knowledge produced by FLUANZ.
+
+Reality
+
+↓
+
+Observation
+
+↓
+
+Evidence
+
+↓
+
+Finding
+
+↓
+
+Recommendation
+
+↓
+
+Executive Decision
+
+Findings convert verified business proof into executive understanding.
+
+---
+
+# Constitutional Laws
+
+## Constitutional Law 07.1
+
+Findings are derived from Evidence.
+
+---
+
+## Constitutional Law 07.2
+
+Every Finding must be completely traceable to supporting Evidence.
+
+---
+
+## Constitutional Law 07.3
+
+A Finding explains commercial reality without prescribing action.
+
+---
+
+## Constitutional Law 07.4
+
+Recommendations cannot exist before Findings.
+
+---
+
+## Constitutional Law 07.5
+
+Findings reduce uncertainty by transforming Evidence into business understanding.
+
+---
+
+# Open Questions
+
+- Can one Finding reference multiple Evidence packages?
+- Can Findings contradict one another?
+- Should Findings include confidence?
+- Can Findings evolve during an Assessment?
+- Who approves Findings before Recommendations are produced?
+- Can human Concierge review modify Findings?
+
+---
+
+# Workshop Outcome
+
+Findings represent the first business conclusions generated within FLUANZ.
+
+They transform structured Evidence into executive understanding while preserving complete traceability.
+
+Findings describe reality.
+
+Recommendations improve reality.
+
+This distinction preserves the Executive Sovereign Rule by ensuring that understanding always precedes action.
+
+Reality
+
+↓
+
+Observation
+
+↓
+
+Evidence
+
+↓
+
+Finding
+
+↓
+
+Recommendation
+
+↓
+
+Executive Decision

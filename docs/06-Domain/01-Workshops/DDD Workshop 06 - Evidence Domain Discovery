@@ -1,0 +1,374 @@
+# DDD Workshop 06
+
+# Evidence Domain Discovery
+
+Status:
+Discovery Workshop
+
+Purpose:
+Discover the true business meaning of Evidence before defining scoring models, findings, AI reasoning, confidence calculations, or implementation.
+
+This workshop intentionally avoids software design.
+
+The objective is to discover how objective commercial facts become trustworthy business proof.
+
+---
+
+# Workshop Question
+
+What transforms objective Observations into trustworthy Evidence?
+
+---
+
+# Historical Thought Experiment
+
+Imagine it is 1978.
+
+An experienced corporate auditor has completed two weeks inside a manufacturing company.
+
+His notebook contains hundreds of Observations.
+
+Some examples:
+
+- Customer complaints increased 18%.
+- Average response time is 6.4 hours.
+- CRM contains duplicate accounts.
+- Website lacks pricing information.
+- Email authentication records are incomplete.
+
+The notebook itself is not evidence.
+
+It is merely a collection of observations.
+
+Before presenting conclusions to the Board of Directors, the auditor organizes, validates, cross-checks, and connects those observations.
+
+Only then can he defend his conclusions.
+
+At that moment, the notebook becomes something fundamentally different.
+
+It becomes Evidence.
+
+---
+
+# Candidate Definition
+
+Evidence is a structured, validated collection of related Observations that together support or refute a specific commercial proposition.
+
+Evidence reduces uncertainty.
+
+Evidence is not raw information.
+
+Evidence is organized truth.
+
+---
+
+# Constitutional Test
+
+Evidence must satisfy all of the following:
+
+- Derived from Observations.
+- Traceable to every Observation.
+- Supports or refutes one proposition.
+- Defensible.
+- Repeatable.
+- Explainable.
+- Organization-scoped.
+
+If the reasoning cannot be reconstructed from the underlying Observations, it is not Evidence.
+
+---
+
+# Examples
+
+## Example 1
+
+Observations
+
+- DMARC policy missing.
+- SPF configuration invalid.
+- DKIM not configured.
+
+Together they support:
+
+Evidence
+
+"Email authentication infrastructure is incomplete."
+
+---
+
+## Example 2
+
+Observations
+
+- Average response time = 7 hours.
+- 42% of inbound leads receive no reply.
+- Sales queue has no routing rules.
+
+Evidence
+
+"Lead response workflow contains operational friction."
+
+---
+
+## Example 3
+
+Observations
+
+- Five executives visited pricing pages.
+- Three executives opened proposal emails.
+- Two meetings requested within 24 hours.
+
+Evidence
+
+"Buying intent has significantly increased."
+
+Notice:
+
+None of these are individual Observations.
+
+Each is Evidence forged from multiple Observations.
+
+---
+
+# First Principles
+
+Evidence:
+
+- Is constructed.
+- Is explainable.
+- Is traceable.
+- Exists to reduce uncertainty.
+- Exists independently of Findings.
+- May support multiple Findings.
+
+Evidence does not:
+
+- Recommend actions.
+- Assign blame.
+- Predict outcomes.
+- Make decisions.
+
+---
+
+# Relationship to Observation
+
+Observations are atomic.
+
+Evidence is composite.
+
+Observations describe reality.
+
+Evidence organizes reality into defensible propositions.
+
+One Observation does not automatically become Evidence.
+
+Evidence emerges through:
+
+- Validation
+- Aggregation
+- Correlation
+- Contextualization
+
+---
+
+# Relationship to Assessment
+
+Assessments forge Evidence.
+
+An Assessment consumes Observations and produces Evidence.
+
+Evidence cannot exist without an Assessment process.
+
+---
+
+# Relationship to Findings
+
+Evidence does not explain itself.
+
+Findings interpret Evidence.
+
+Evidence answers:
+
+"What do we know?"
+
+Findings answer:
+
+"What does it mean?"
+
+---
+
+# Candidate Characteristics
+
+Every Evidence package is:
+
+- Organization-scoped
+- Assessment-scoped
+- Traceable
+- Explainable
+- Reproducible
+- Versioned
+- Immutable once Assessment closes
+
+---
+
+# Candidate Lifecycle
+
+Observations Collected
+
+↓
+
+Observations Validated
+
+↓
+
+Observations Correlated
+
+↓
+
+Evidence Forged
+
+↓
+
+Evidence Reviewed
+
+↓
+
+Evidence Available for Findings
+
+↓
+
+Archived with Assessment
+
+---
+
+# Constitutional Invariants
+
+Every Evidence package:
+
+- Belongs to exactly one Organization.
+- Belongs to exactly one Assessment.
+- References one or more Observations.
+- Supports one commercial proposition.
+- Can be independently audited.
+- Cannot exist without traceability.
+
+---
+
+# Relationship to Trust
+
+Trust is not created by AI.
+
+Trust is created by explainable Evidence.
+
+Executives trust conclusions because every Finding can be traced back to the Evidence that supports it, and every Evidence package can be traced back to the original Observations.
+
+Traceability creates trust.
+
+---
+
+# Architectural Discovery
+
+Evidence is the first reasoning artifact produced by FLUANZ.
+
+Reality
+
+↓
+
+Observation
+
+↓
+
+Evidence
+
+↓
+
+Finding
+
+↓
+
+Recommendation
+
+↓
+
+Executive Decision
+
+Evidence represents the transition from recorded facts to structured business knowledge.
+
+---
+
+# Constitutional Laws
+
+## Constitutional Law 06.1
+
+Evidence is forged from validated Observations.
+
+---
+
+## Constitutional Law 06.2
+
+Every Evidence package must support or refute exactly one commercial proposition.
+
+---
+
+## Constitutional Law 06.3
+
+Evidence is explainable through complete traceability.
+
+---
+
+## Constitutional Law 06.4
+
+Evidence reduces uncertainty before Findings are produced.
+
+---
+
+## Constitutional Law 06.5
+
+Evidence is the foundation of organizational trust.
+
+---
+
+# Open Questions
+
+- Can one Observation participate in multiple Evidence packages?
+- Can Evidence weaken over time?
+- Can Evidence become obsolete?
+- Should Evidence possess a confidence level?
+- Can Evidence exist without human validation?
+- Can two Evidence packages support conflicting Findings?
+
+---
+
+# Workshop Outcome
+
+Evidence is the first structured reasoning artifact within FLUANZ.
+
+It transforms isolated Observations into trustworthy commercial proof through validation, aggregation, correlation, and contextualization.
+
+Evidence does not make decisions.
+
+Evidence makes decisions defensible.
+
+This workshop establishes Evidence as the bridge between objective business reality and executive reasoning.
+
+Reality
+
+↓
+
+Observation
+
+↓
+
+Evidence
+
+↓
+
+Finding
+
+↓
+
+Recommendation
+
+↓
+
+Executive Decision

@@ -1,0 +1,376 @@
+# DDD Workshop 09
+
+# Executive Decision Domain Discovery
+
+Status:
+Discovery Workshop
+
+Purpose:
+Discover the true business meaning of an Executive Decision before defining workflow engines, approvals, automation, task management, or implementation.
+
+This workshop intentionally avoids software design.
+
+The objective is to discover how organizations transform trusted recommendations into accountable commercial action.
+
+---
+
+# Workshop Question
+
+What transforms a Recommendation into an Executive Decision?
+
+---
+
+# Historical Thought Experiment
+
+Imagine a Board of Directors meeting.
+
+The executive team has received:
+
+- Verified Observations
+- Evidence
+- Findings
+- Recommendations
+
+Everyone in the room understands the commercial reality.
+
+Yet nothing changes.
+
+Why?
+
+Because knowledge alone does not change organizations.
+
+A human being with authority must deliberately choose a direction.
+
+Only then does the organization commit itself to a future.
+
+That deliberate commitment is an Executive Decision.
+
+---
+
+# Candidate Definition
+
+An Executive Decision is an accountable organizational commitment made by an authorized decision-maker in response to one or more Recommendations.
+
+Decisions create responsibility.
+
+Recommendations do not.
+
+---
+
+# Constitutional Test
+
+Every Executive Decision must:
+
+- Be made by an authorized decision-maker.
+- Reference one or more Recommendations.
+- Create organizational accountability.
+- Commit the Organization toward a future course of action.
+- Become part of permanent organizational history.
+
+Without accountability, there is no Executive Decision.
+
+There is only discussion.
+
+---
+
+# Examples
+
+## Example 1
+
+Recommendation
+
+Implement centralized lead routing.
+
+Executive Decision
+
+Approved.
+
+Implementation begins next quarter.
+
+---
+
+## Example 2
+
+Recommendation
+
+Deploy DMARC enforcement.
+
+Executive Decision
+
+Deferred until infrastructure modernization project completes.
+
+---
+
+## Example 3
+
+Recommendation
+
+Standardize CRM validation.
+
+Executive Decision
+
+Rejected.
+
+Current business priorities outweigh expected improvement.
+
+---
+
+Notice:
+
+Every Recommendation may receive a different Executive Decision.
+
+FLUANZ does not determine which one.
+
+---
+
+# First Principles
+
+An Executive Decision:
+
+- Commits.
+- Accepts accountability.
+- Creates organizational intent.
+- Determines future action.
+
+An Executive Decision does not:
+
+- Discover Evidence.
+- Produce Findings.
+- Generate Recommendations.
+- Guarantee successful outcomes.
+
+---
+
+# Relationship to Recommendations
+
+Recommendations advise.
+
+Executive Decisions choose.
+
+Recommendation
+
+↓
+
+Executive Decision
+
+This transition preserves executive sovereignty.
+
+---
+
+# Relationship to Organization
+
+Every Executive Decision belongs to exactly one Organization.
+
+Only the Organization possesses the authority to commit itself to change.
+
+This reinforces Organization as the supreme Aggregate Root.
+
+---
+
+# Relationship to Assessments
+
+Assessments produce Recommendations.
+
+Executive Decisions occur after the Assessment has completed.
+
+An Assessment informs.
+
+An Executive Decision commits.
+
+---
+
+# Candidate Characteristics
+
+Every Executive Decision is:
+
+- Organization-scoped
+- Assessment-scoped
+- Recommendation-backed
+- Accountable
+- Traceable
+- Historical
+- Immutable once recorded
+
+---
+
+# Candidate Lifecycle
+
+Recommendation Presented
+
+↓
+
+Executive Review
+
+↓
+
+Decision Made
+
+↓
+
+Decision Recorded
+
+↓
+
+Organization Commits
+
+↓
+
+Historical Record
+
+---
+
+# Constitutional Invariants
+
+Every Executive Decision:
+
+- References one or more Recommendations.
+- Belongs to one Organization.
+- Belongs to one Assessment.
+- Has an accountable decision-maker.
+- Creates organizational commitment.
+- Cannot exist without Recommendations.
+
+---
+
+# Relationship to Accountability
+
+Accountability begins at the Decision.
+
+Reality creates Observations.
+
+Observations create Evidence.
+
+Evidence produces Findings.
+
+Findings produce Recommendations.
+
+Only Executive Decisions create organizational accountability.
+
+---
+
+# Relationship to Trust
+
+FLUANZ never replaces executive judgment.
+
+Its purpose is to maximize decision quality by ensuring every Decision is supported by complete traceability.
+
+Observation
+
+↓
+
+Evidence
+
+↓
+
+Finding
+
+↓
+
+Recommendation
+
+↓
+
+Executive Decision
+
+Trust culminates in accountable human choice.
+
+---
+
+# Architectural Discovery
+
+Executive Decisions represent the transition from business understanding to organizational commitment.
+
+This is the final responsibility of the Organization.
+
+No AI system can own this responsibility.
+
+No automation engine can inherit this accountability.
+
+The Organization alone decides.
+
+---
+
+# Constitutional Laws
+
+## Constitutional Law 09.1
+
+Executive Decisions are derived from Recommendations.
+
+---
+
+## Constitutional Law 09.2
+
+Only authorized decision-makers may create Executive Decisions.
+
+---
+
+## Constitutional Law 09.3
+
+Executive Decisions establish organizational accountability.
+
+---
+
+## Constitutional Law 09.4
+
+FLUANZ informs decisions but never replaces them.
+
+---
+
+## Constitutional Law 09.5
+
+Accountability begins at the moment an Executive Decision is made.
+
+---
+
+# Open Questions
+
+- Can one Executive Decision approve multiple Recommendations?
+- Can Recommendations be partially approved?
+- Can Executive Decisions be reversed?
+- Should rationale be part of the Decision?
+- Should expected business outcomes be recorded?
+- How should historical Decisions influence future Assessments?
+
+---
+
+# Workshop Outcome
+
+Executive Decisions complete the advisory lifecycle of FLUANZ.
+
+Observations establish facts.
+
+Evidence establishes proof.
+
+Findings establish understanding.
+
+Recommendations establish guidance.
+
+Executive Decisions establish organizational commitment.
+
+The platform exists to improve the quality of Executive Decisions—not to replace them.
+
+Reality
+
+↓
+
+Observation
+
+↓
+
+Evidence
+
+↓
+
+Finding
+
+↓
+
+Recommendation
+
+↓
+
+Executive Decision
+
+↓
+
+Organizational Outcome

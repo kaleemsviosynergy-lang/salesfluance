@@ -1,0 +1,408 @@
+# DDD Workshop 10
+
+# Domain Events Discovery
+
+Status:
+Discovery Workshop
+
+Purpose:
+Discover the true business meaning of Domain Events before defining event buses, message brokers, notifications, integrations, workflows, or implementation.
+
+This workshop intentionally avoids software design.
+
+The objective is to discover the significant business occurrences that change the commercial state of an Organization.
+
+---
+
+# Workshop Question
+
+What business occurrences are so important that the Organization must permanently remember they happened?
+
+---
+
+# Historical Thought Experiment
+
+Imagine FLUANZ never existed.
+
+It is 1984.
+
+A multinational company keeps a leather-bound corporate journal.
+
+The journal does not record every conversation.
+
+It does not record every email.
+
+It records only moments that permanently changed the organization.
+
+Examples:
+
+- Annual commercial assessment completed.
+- New regional sales strategy approved.
+- CRM migration completed.
+- Revenue recovery initiative launched.
+- Compliance audit passed.
+
+Years later these moments still matter.
+
+They changed organizational reality.
+
+Those moments are Domain Events.
+
+---
+
+# Candidate Definition
+
+A Domain Event is a permanent record of a significant business occurrence that changes the commercial state of an Organization.
+
+Events describe something that happened.
+
+They do not describe something that might happen.
+
+---
+
+# Constitutional Test
+
+Every Domain Event must:
+
+- Have happened.
+- Be historically true.
+- Represent a business occurrence.
+- Change organizational state.
+- Be immutable.
+- Belong to exactly one Organization.
+
+If deleting the occurrence would alter the historical understanding of the Organization, it qualifies as a Domain Event.
+
+---
+
+# Examples
+
+## Example 1
+
+Assessment Completed
+
+The Organization's commercial reality has been formally evaluated.
+
+---
+
+## Example 2
+
+Evidence Approved
+
+A body of commercial proof has been accepted for executive reasoning.
+
+---
+
+## Example 3
+
+Executive Decision Recorded
+
+The Organization has committed itself to a future course of action.
+
+---
+
+## Example 4
+
+Recommendation Accepted
+
+An approved improvement initiative now enters organizational execution.
+
+---
+
+## Example 5
+
+Revenue Readiness Reassessed
+
+The Organization's readiness baseline has officially changed.
+
+---
+
+# First Principles
+
+A Domain Event:
+
+- Represents something that already happened.
+- Is immutable.
+- Becomes permanent organizational history.
+- May trigger future business behavior.
+
+A Domain Event does not:
+
+- Predict.
+- Recommend.
+- Interpret.
+- Execute.
+
+---
+
+# Relationship to Organization
+
+Every Domain Event belongs to exactly one Organization.
+
+Organizations accumulate history through Domain Events.
+
+History defines organizational evolution.
+
+---
+
+# Relationship to Assessment
+
+Assessments produce multiple Domain Events during their lifecycle.
+
+Examples:
+
+Assessment Initiated
+
+↓
+
+Evidence Forged
+
+↓
+
+Finding Produced
+
+↓
+
+Recommendation Generated
+
+↓
+
+Assessment Closed
+
+Each event records a meaningful transition.
+
+---
+
+# Relationship to Executive Decisions
+
+Executive Decisions create some of the most significant Domain Events.
+
+The decision itself changes organizational direction.
+
+Examples:
+
+Decision Approved
+
+Decision Deferred
+
+Decision Rejected
+
+Decision Reversed
+
+---
+
+# Relationship to Accountability
+
+Accountability is observable through Domain Events.
+
+Organizations become explainable because every major commercial transition leaves a permanent historical record.
+
+---
+
+# Candidate Characteristics
+
+Every Domain Event is:
+
+- Organization-scoped
+- Historically true
+- Immutable
+- Timestamped
+- Traceable
+- Explainable
+
+---
+
+# Candidate Lifecycle
+
+Business State Changes
+
+↓
+
+Domain Event Occurs
+
+↓
+
+Domain Event Recorded
+
+↓
+
+Organizational History Updated
+
+↓
+
+Available for Future Assessments
+
+↓
+
+Permanent Historical Record
+
+Domain Events never expire.
+
+---
+
+# Constitutional Invariants
+
+Every Domain Event:
+
+- Belongs to one Organization.
+- Represents one completed business occurrence.
+- Cannot be modified after recording.
+- Exists permanently.
+- May influence future Assessments.
+- Preserves historical accountability.
+
+---
+
+# Relationship to Learning
+
+Organizations improve because future Assessments may examine historical Domain Events.
+
+Past Executive Decisions
+
+↓
+
+Historical Outcomes
+
+↓
+
+New Observations
+
+↓
+
+New Evidence
+
+↓
+
+Future Decisions
+
+Learning emerges from history.
+
+---
+
+# Architectural Discovery
+
+The FLUANZ reasoning cycle is complete.
+
+Reality
+
+↓
+
+Observation
+
+↓
+
+Evidence
+
+↓
+
+Finding
+
+↓
+
+Recommendation
+
+↓
+
+Executive Decision
+
+↓
+
+Domain Event
+
+↓
+
+Organizational Outcome
+
+↓
+
+New Reality
+
+The platform continuously learns by observing the consequences of previous Executive Decisions.
+
+---
+
+# Constitutional Laws
+
+## Constitutional Law 10.1
+
+Every Domain Event represents a completed business occurrence.
+
+---
+
+## Constitutional Law 10.2
+
+Domain Events are immutable.
+
+---
+
+## Constitutional Law 10.3
+
+Organizations preserve accountability through historical Domain Events.
+
+---
+
+## Constitutional Law 10.4
+
+Future Assessments may reason over historical Domain Events.
+
+---
+
+## Constitutional Law 10.5
+
+Domain Events complete the organizational learning cycle.
+
+---
+
+# Open Questions
+
+- Which business occurrences deserve Domain Events?
+- Should every Executive Decision create a Domain Event?
+- Can one business occurrence generate multiple Domain Events?
+- How should historical Events influence future Recommendations?
+- What distinguishes a Domain Event from a technical system event?
+
+---
+
+# Workshop Outcome
+
+Domain Events establish the permanent historical memory of an Organization.
+
+They preserve the evolution of commercial reality, enabling future Assessments to reason not only about the present, but about the accumulated consequences of past decisions.
+
+The FLUANZ reasoning engine is now complete.
+
+Reality
+
+↓
+
+Observation
+
+↓
+
+Evidence
+
+↓
+
+Finding
+
+↓
+
+Recommendation
+
+↓
+
+Executive Decision
+
+↓
+
+Domain Event
+
+↓
+
+Organizational Outcome
+
+↓
+
+New Reality
+
+This closed-loop model transforms FLUANZ from a static assessment platform into a continuously learning Revenue Readiness Intelligence System.

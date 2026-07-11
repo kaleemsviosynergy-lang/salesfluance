@@ -1,0 +1,356 @@
+# DDD Workshop 08
+
+# Recommendation Domain Discovery
+
+Status:
+Discovery Workshop
+
+Purpose:
+Discover the true business meaning of a Recommendation before defining workflows, automation, AI agents, task generation, or implementation.
+
+This workshop intentionally avoids software design.
+
+The objective is to discover how business understanding becomes actionable executive guidance while preserving human authority.
+
+---
+
+# Workshop Question
+
+What transforms a Finding into a Recommendation?
+
+---
+
+# Historical Thought Experiment
+
+Imagine it is 1986.
+
+A consulting team has completed a comprehensive commercial assessment.
+
+The Board receives a report containing several Findings.
+
+Finding
+
+"The organization's lead response process is causing measurable revenue leakage."
+
+The report does not end there.
+
+The consultants continue:
+
+"We recommend implementing centralized lead routing and reducing first response time below one hour."
+
+Notice what happened.
+
+The consultants did not execute the change.
+
+They advised.
+
+The executive team remained responsible for deciding whether to accept, reject, postpone, or modify the proposal.
+
+That proposal is a Recommendation.
+
+---
+
+# Candidate Definition
+
+A Recommendation is an explainable proposed course of action derived from one or more Findings and intended to improve an Organization's commercial readiness.
+
+Recommendations advise.
+
+They never decide.
+
+---
+
+# Constitutional Test
+
+Every Recommendation must:
+
+- Be supported by Findings.
+- Be explainable.
+- Improve commercial readiness.
+- Preserve executive authority.
+- Be traceable.
+
+If a Recommendation cannot justify itself through Findings, it is not a Recommendation.
+
+---
+
+# Examples
+
+## Example 1
+
+Finding
+
+Lead response operations create preventable revenue leakage.
+
+Recommendation
+
+Implement centralized lead routing and reduce first response time to under one hour.
+
+---
+
+## Example 2
+
+Finding
+
+Email authentication infrastructure presents elevated deliverability risk.
+
+Recommendation
+
+Deploy SPF, DKIM, and DMARC with enforcement enabled.
+
+---
+
+## Example 3
+
+Finding
+
+CRM data quality is insufficient for reliable forecasting.
+
+Recommendation
+
+Establish mandatory CRM validation rules and quarterly data quality audits.
+
+---
+
+# First Principles
+
+A Recommendation:
+
+- Advises.
+- Prioritizes.
+- Explains expected improvement.
+- Exists independently of execution.
+
+A Recommendation does not:
+
+- Execute.
+- Enforce.
+- Replace executive judgment.
+- Guarantee outcomes.
+
+---
+
+# Relationship to Findings
+
+Recommendations originate from Findings.
+
+Findings explain reality.
+
+Recommendations propose improvement.
+
+Finding
+
+↓
+
+Recommendation
+
+Without Findings, Recommendations become opinion.
+
+---
+
+# Relationship to Executive Decisions
+
+Recommendations are inputs.
+
+Executive Decisions are outcomes.
+
+Executives retain complete authority to:
+
+- Approve
+- Reject
+- Modify
+- Postpone
+- Ignore
+
+Every Recommendation respects the Sovereign Advisory Principle.
+
+---
+
+# Relationship to Revenue Readiness
+
+Recommendations exist for one purpose:
+
+To improve Revenue Readiness.
+
+Every Recommendation should have a clear relationship to one or more dimensions of organizational readiness.
+
+---
+
+# Candidate Characteristics
+
+Every Recommendation is:
+
+- Finding-backed
+- Explainable
+- Traceable
+- Organization-scoped
+- Assessment-scoped
+- Prioritized
+- Action-oriented
+
+---
+
+# Candidate Lifecycle
+
+Finding Produced
+
+↓
+
+Recommendation Generated
+
+↓
+
+Recommendation Reviewed
+
+↓
+
+Recommendation Presented
+
+↓
+
+Executive Decision
+
+↓
+
+Historical Record
+
+Recommendations remain advisory throughout their lifecycle.
+
+---
+
+# Constitutional Invariants
+
+Every Recommendation:
+
+- References one or more Findings.
+- Belongs to one Assessment.
+- Belongs to one Organization.
+- Can be independently justified.
+- Cannot exist without Findings.
+- Cannot execute itself.
+
+---
+
+# Relationship to Trust
+
+Trust increases when Recommendations explain:
+
+- Why the recommendation exists.
+- Which Findings support it.
+- Which Evidence supports those Findings.
+- Which Observations produced the Evidence.
+
+Reality
+
+↓
+
+Observation
+
+↓
+
+Evidence
+
+↓
+
+Finding
+
+↓
+
+Recommendation
+
+Complete traceability creates executive confidence.
+
+---
+
+# Architectural Discovery
+
+Recommendations represent strategic advisory.
+
+They are not workflow automation.
+
+They are not AI decisions.
+
+They are business guidance.
+
+FLUANZ advises.
+
+Executives decide.
+
+---
+
+# Constitutional Laws
+
+## Constitutional Law 08.1
+
+Recommendations are derived from Findings.
+
+---
+
+## Constitutional Law 08.2
+
+Every Recommendation must improve commercial readiness.
+
+---
+
+## Constitutional Law 08.3
+
+Recommendations preserve executive authority.
+
+---
+
+## Constitutional Law 08.4
+
+Recommendations cannot exist without complete traceability.
+
+---
+
+## Constitutional Law 08.5
+
+FLUANZ advises.
+
+The executive decides.
+
+---
+
+# Open Questions
+
+- Can one Recommendation address multiple Findings?
+- Can Recommendations conflict?
+- Should Recommendations carry implementation priority?
+- Can Recommendations expire?
+- Can Recommendations be superseded by later Assessments?
+- Should expected business impact be part of the Recommendation or the Executive Decision?
+
+---
+
+# Workshop Outcome
+
+Recommendations transform business understanding into actionable executive guidance.
+
+They do not automate business.
+
+They empower decision-makers through explainable, evidence-backed advisory.
+
+Recommendations complete the advisory layer of FLUANZ while preserving the Sovereign Advisory Principle established in the Founder Bible.
+
+Reality
+
+↓
+
+Observation
+
+↓
+
+Evidence
+
+↓
+
+Finding
+
+↓
+
+Recommendation
+
+↓
+
+Executive Decision
