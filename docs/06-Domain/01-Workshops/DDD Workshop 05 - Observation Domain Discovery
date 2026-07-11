@@ -1,0 +1,315 @@
+# DDD Workshop 05
+
+# Observation Domain Discovery
+
+Status:
+Discovery Workshop
+
+Purpose:
+Discover the true business meaning of an Observation before defining ingestion pipelines, telemetry, integrations, repositories, events, or implementation models.
+
+This workshop intentionally avoids software design.
+
+The objective is to discover the atomic unit of commercial reality.
+
+---
+
+# Workshop Question
+
+What is the smallest objective fact that can exist about an Organization without requiring interpretation?
+
+---
+
+# Historical Thought Experiment
+
+Imagine FLUANZ never existed.
+
+It is 1992.
+
+An experienced commercial auditor spends several weeks inside an organization.
+
+During the investigation the auditor records observations such as:
+
+- Website has no pricing page.
+- Average sales response time is 4.7 hours.
+- SPF record is missing.
+- CRM completeness is 31%.
+- No follow-up after enterprise demonstrations.
+
+At this stage the auditor has not reached conclusions.
+
+No recommendations exist.
+
+No findings have been written.
+
+Only objective observations have been collected.
+
+---
+
+# Candidate Definition
+
+An Observation is the smallest objective commercial fact that can be recorded without explanation, interpretation, or judgment.
+
+Observations describe reality.
+
+They do not explain reality.
+
+---
+
+# Constitutional Test
+
+An Observation must satisfy all of the following:
+
+- Objective
+- Verifiable
+- Atomic
+- Organization-scoped
+- Timestamped
+- Independent of interpretation
+
+If two competent investigators cannot independently arrive at the same recorded fact, it is not an Observation.
+
+---
+
+# Examples
+
+## Valid Observations
+
+- Average response time = 5h 11m
+- CRM completeness = 42%
+- DMARC policy = None
+- Website missing pricing page
+- Opportunity has no next scheduled activity
+- Win rate declined 8%
+
+These are observable facts.
+
+---
+
+## Invalid Observations
+
+- Sales performance is poor.
+- Marketing is ineffective.
+- Pipeline quality is weak.
+- Customers are losing confidence.
+
+These require interpretation and therefore are not Observations.
+
+---
+
+# First Principles
+
+An Observation:
+
+- Exists independently of FLUANZ.
+- Exists independently of an Assessment.
+- Exists independently of interpretation.
+- Can be verified.
+- Can participate in multiple Assessments.
+- Can contribute to multiple Evidence packages.
+
+An Observation does not:
+
+- Explain
+- Predict
+- Recommend
+- Judge
+- Prioritize
+
+---
+
+# Candidate Characteristics
+
+Every Observation is:
+
+- Atomic
+- Objective
+- Immutable
+- Traceable
+- Timestamped
+- Organization-scoped
+
+---
+
+# Candidate Sources
+
+Observations may originate from:
+
+- CRM
+- Website
+- Email Infrastructure
+- Marketing Platforms
+- Calendar Systems
+- Human Interviews
+- Uploaded Documents
+- Concierge Investigation
+
+The business source matters.
+
+The transport mechanism does not.
+
+---
+
+# Relationship to Organization
+
+Every Observation belongs to exactly one Organization.
+
+Observations cannot cross organizational boundaries.
+
+Organization ownership guarantees commercial accountability.
+
+---
+
+# Relationship to Assessment
+
+Assessments do not create Observations.
+
+Assessments discover, validate, correlate, aggregate, and contextualize Observations.
+
+An Assessment consumes Observations in order to forge Evidence.
+
+---
+
+# Relationship to Evidence
+
+A single Observation is not Evidence.
+
+Evidence emerges only when multiple validated Observations are evaluated together within business context and support or refute a commercial proposition.
+
+Observation
+
+↓
+
+Assessment Investigation
+
+↓
+
+Evidence
+
+---
+
+# Lifecycle
+
+Reality Exists
+
+↓
+
+Observation Occurs
+
+↓
+
+Observation Recorded
+
+↓
+
+Observation Verified
+
+↓
+
+Available for Assessment
+
+↓
+
+Contributes to Evidence
+
+↓
+
+Preserved as Organizational History
+
+Observations remain immutable historical records.
+
+---
+
+# Constitutional Invariants
+
+Every Observation:
+
+- Belongs to one Organization.
+- Exists at one point in time.
+- Is immutable once recorded.
+- Has a discoverable source.
+- Can participate in multiple Assessments.
+- Can support multiple Evidence packages.
+- Cannot directly produce Findings.
+
+---
+
+# Architectural Discovery
+
+The concept of "Signal" was evaluated during this workshop.
+
+Applying the Independent Lifecycle Rule revealed that a Signal possesses:
+
+- No independent identity.
+- No unique lifecycle.
+- No business invariants.
+- No ownership.
+
+A Signal is therefore not promoted to a first-class Domain Entity.
+
+Its responsibilities are absorbed into the Evidence Domain.
+
+Observation
+
+↓
+
+Evidence
+
+↓
+
+Finding
+
+This reduces conceptual complexity while strengthening the domain model.
+
+---
+
+# Open Questions
+
+- Can an Observation ever be corrected?
+- Does a correction replace an Observation or create a new Observation?
+- Can Observations expire?
+- Should confidence exist at the Observation level or only at the Evidence level?
+- Can manually collected Observations and automated Observations coexist equally?
+- What distinguishes Observation from Domain Event?
+
+---
+
+# Workshop Outcome
+
+This workshop establishes Observation as the atomic unit of commercial truth.
+
+All future reasoning within FLUANZ begins with Observations.
+
+Observations are objective.
+
+Evidence is constructed from Observations.
+
+Findings are derived from Evidence.
+
+Recommendations are generated from Findings.
+
+Executive Decisions are informed by Recommendations.
+
+This progression forms the constitutional reasoning pipeline of FLUANZ.
+
+Reality
+
+↓
+
+Observation
+
+↓
+
+Evidence
+
+↓
+
+Finding
+
+↓
+
+Recommendation
+
+↓
+
+Executive Decision
