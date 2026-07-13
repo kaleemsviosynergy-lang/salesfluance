@@ -1,13 +1,12 @@
 from fastapi import FastAPI
 
 from fluanz.api.router import api_router
-from fluanz.config import settings
+from fluanz.config import configure_logging, settings
 
 
 def create_application() -> FastAPI:
-    """
-    Creates and configures the FLUANZ FastAPI application.
-    """
+    # Configure logging FIRST
+    configure_logging()
 
     app = FastAPI(
         title=settings.application_name,

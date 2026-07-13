@@ -1,27 +1,12 @@
-from fastapi import FastAPI
+import logging
 
-from fluanz.config import settings
+from fluanz.app.application import create_application
 
-app = FastAPI(
-    title=settings.application_name,
-    version=settings.version,
-)
+# Create the FastAPI application
+app = create_application()
 
+# Create a logger for this module
+logger = logging.getLogger(__name__)
 
-@app.get("/", tags=["System"])
-async def root() -> dict[str, str]:
-    return {
-        "application": settings.application_name,
-        "version": settings.version,
-        "message": "Welcome to FLUANZ",
-    }
-
-
-@app.get("/health", tags=["System"])
-async def health() -> dict[str, str]:
-    return {
-        "application": settings.application_name,
-        "version": settings.version,
-        "status": "Healthy",
-        "environment": settings.environment,
-    }
+# Log a startup message
+logger.info("FLUANZ application initialized successfully.")
