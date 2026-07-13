@@ -2,6 +2,7 @@ from fastapi import FastAPI
 
 from fluanz.api.router import api_router
 from fluanz.config import configure_logging, settings
+from fluanz.shared.handlers import register_exception_handlers
 
 
 def create_application() -> FastAPI:
