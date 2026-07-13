@@ -5,6 +5,7 @@ from fluanz.shared.exceptions import FluanzException
 
 
 def register_exception_handlers(app: FastAPI) -> None:
+
     @app.exception_handler(FluanzException)
     async def fluanz_exception_handler(
         request: Request,
@@ -14,7 +15,9 @@ def register_exception_handlers(app: FastAPI) -> None:
             status_code=400,
             content={
                 "success": False,
-                "error": exc.__class__.__name__,
-                "message": exc.message,
+                "error": {
+                    "code": exc.error_code,
+                    "message": exc.message,
+                },
             },
         )
