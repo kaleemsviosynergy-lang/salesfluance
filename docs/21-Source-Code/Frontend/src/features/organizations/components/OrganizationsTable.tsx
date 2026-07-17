@@ -19,7 +19,8 @@ import {
 } from "@/components/ui/table";
 import { ReadinessScore } from "./ReadinessScore";
 import { StatusBadge } from "./StatusBadge";
-import type { Organization } from "./types";
+
+import type { Organization } from "../types/types";
 
 interface OrganizationsTableProps {
   organizations: Organization[];

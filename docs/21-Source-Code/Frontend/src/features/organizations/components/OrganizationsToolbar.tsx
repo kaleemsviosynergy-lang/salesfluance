@@ -9,8 +9,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { INDUSTRIES, STATUSES } from "./mock-data";
-import type { OrganizationFilters, OrganizationStatus } from "./types";
+import { INDUSTRIES, STATUSES } from "../data/mock-data";
+
+import type {
+  OrganizationFilters,
+  OrganizationStatus,
+} from "../types/types";
 
 const STATUS_LABELS: Record<OrganizationStatus, string> = {
   active: "Active",
