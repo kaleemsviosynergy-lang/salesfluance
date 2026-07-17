@@ -1,3 +1,3 @@
-export function SettingsPage() {
+export default function SettingsPage() {
   return <h1>Settings</h1>;
 }

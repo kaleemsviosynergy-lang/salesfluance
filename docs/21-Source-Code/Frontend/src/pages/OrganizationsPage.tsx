@@ -1,152 +1,196 @@
-import { useEffect, useMemo, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 
-import { Card, CardContent } from "@/components/ui/card";
-import {
-  MOCK_ORGANIZATIONS,
-  OrganizationsEmptyState,
-  OrganizationsPagination,
-  OrganizationsTable,
-  OrganizationsTableSkeleton,
-  OrganizationsToolbar,
-} from "@/components/organizations";
-import type { Organization, OrganizationFilters } from "@/components/organizations";
+import { ArrowLeft, Building2, Globe, Users } from "lucide-react";
 
-const DEFAULT_FILTERS: OrganizationFilters = {
-  search: "",
-  industry: "all",
-  status: "all",
-};
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 
-const DEFAULT_PAGE_SIZE = 10;
+import { MOCK_ORGANIZATION_DETAILS } from "@/features/organizations/data/organization-details.mock";
 
-// Simulated network latency for the mock data fetch. Replace with a real
-// data-fetching hook (React Query, SWR, etc.) when the API is available.
-const MOCK_FETCH_DELAY_MS = 700;
+export default function OrganizationDetailsPage() {
+  const { organizationId } = useParams();
 
-export default function OrganizationsPage() {
-  const [organizations, setOrganizations] = useState<Organization[] | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [filters, setFilters] = useState<OrganizationFilters>(DEFAULT_FILTERS);
-  const [page, setPage] = useState(1);
-  const [pageSize, setPageSize] = useState(DEFAULT_PAGE_SIZE);
+  const organization = MOCK_ORGANIZATION_DETAILS.find(
+    (org) => org.id === organizationId
+  );
 
-  useEffect(() => {
-    setIsLoading(true);
-    const timer = setTimeout(() => {
-      setOrganizations(MOCK_ORGANIZATIONS);
-      setIsLoading(false);
-    }, MOCK_FETCH_DELAY_MS);
+  if (!organization) {
+    return (
+      <div className="mx-auto flex max-w-5xl flex-col gap-6 px-6 py-8">
+        <Link to="/organizations">
+          <Button variant="outline">
+            <ArrowLeft className="mr-2 h-4 w-4" />
+            Back to Organizations
+          </Button>
+        </Link>
 
-    return () => clearTimeout(timer);
-  }, []);
+        <Card>
+          <CardContent className="flex flex-col items-center justify-center py-20 text-center">
+            <Building2 className="mb-4 h-14 w-14 text-muted-foreground" />
 
-  const filteredOrganizations = useMemo(() => {
-    if (!organizations) return [];
+            <h2 className="text-2xl font-semibold">
+              Organization Not Found
+            </h2>
 
-    const search = filters.search.trim().toLowerCase();
-
-    return organizations.filter((organization) => {
-      const matchesSearch =
-        search.length === 0 ||
-        organization.name.toLowerCase().includes(search) ||
-        organization.domain.toLowerCase().includes(search) ||
-        organization.primaryContact.toLowerCase().includes(search);
-
-      const matchesIndustry =
-        filters.industry === "all" || organization.industry === filters.industry;
-
-      const matchesStatus =
-        filters.status === "all" || organization.status === filters.status;
-
-      return matchesSearch && matchesIndustry && matchesStatus;
-    });
-  }, [organizations, filters]);
-
-  const totalPages = Math.max(1, Math.ceil(filteredOrganizations.length / pageSize));
-  const currentPage = Math.min(page, totalPages);
-
-  const paginatedOrganizations = useMemo(() => {
-    const start = (currentPage - 1) * pageSize;
-    return filteredOrganizations.slice(start, start + pageSize);
-  }, [filteredOrganizations, currentPage, pageSize]);
-
-  const hasActiveFilters =
-    filters.search !== "" || filters.industry !== "all" || filters.status !== "all";
-
-  const handleFiltersChange = (nextFilters: OrganizationFilters) => {
-    setFilters(nextFilters);
-    setPage(1);
-  };
-
-  const handlePageSizeChange = (nextPageSize: number) => {
-    setPageSize(nextPageSize);
-    setPage(1);
-  };
-
-  // Mock action handlers — wire these up to real navigation / mutations
-  // once the backend integration for Organizations is available.
-  const handleAddOrganization = () => {
-    console.log("Add organization clicked");
-  };
-
-  const handleView = (organization: Organization) => {
-    console.log("View organization", organization.id);
-  };
-
-  const handleEdit = (organization: Organization) => {
-    console.log("Edit organization", organization.id);
-  };
-
-  const handleDelete = (organization: Organization) => {
-    console.log("Remove organization", organization.id);
-  };
+            <p className="mt-2 text-muted-foreground">
+              The organization you requested does not exist.
+            </p>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
 
   return (
-    <div className="mx-auto flex w-full max-w-7xl flex-col gap-6 px-4 py-8 sm:px-6 lg:px-8">
-      <div className="flex flex-col gap-1">
-        <h1 className="text-2xl font-semibold tracking-tight text-foreground">
-          Organizations
-        </h1>
-        <p className="text-sm text-muted-foreground">
-          Manage the organizations FLUANZ evaluates for Revenue Readiness.
-        </p>
-      </div>
+    <div className="mx-auto flex max-w-7xl flex-col gap-6 px-6 py-8">
+      {/* Back Button */}
 
-      <OrganizationsToolbar
-        filters={filters}
-        onFiltersChange={handleFiltersChange}
-        onAddOrganization={handleAddOrganization}
-      />
+      <Link to="/organizations">
+        <Button variant="outline">
+          <ArrowLeft className="mr-2 h-4 w-4" />
+          Back to Organizations
+        </Button>
+      </Link>
 
-      <Card className="overflow-hidden py-0">
-        <CardContent className="p-0">
-          {isLoading ? (
-            <OrganizationsTableSkeleton />
-          ) : paginatedOrganizations.length === 0 ? (
-            <OrganizationsEmptyState
-              hasActiveFilters={hasActiveFilters}
-              onAddOrganization={handleAddOrganization}
-              onClearFilters={() => handleFiltersChange(DEFAULT_FILTERS)}
-            />
-          ) : (
-            <>
-              <div className="overflow-x-auto">
-                <OrganizationsTable
-                  organizations={paginatedOrganizations}
-                  onView={handleView}
-                  onEdit={handleEdit}
-                  onDelete={handleDelete}
-                />
-              </div>
-              <OrganizationsPagination
-                page={currentPage}
-                pageSize={pageSize}
-                totalItems={filteredOrganizations.length}
-                onPageChange={setPage}
-                onPageSizeChange={handlePageSizeChange}
-              />
-            </>
-          )}
+      {/* Header */}
+
+      <Card>
+        <CardHeader>
+          <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+            <div>
+              <h1 className="text-3xl font-bold">
+                {organization.name}
+              </h1>
+
+              <p className="mt-1 text-muted-foreground">
+                Revenue Readiness Intelligence Profile
+              </p>
+            </div>
+
+            <div className="rounded-xl bg-primary px-6 py-4 text-center text-primary-foreground">
+              <p className="text-sm opacity-80">
+                Readiness Score
+              </p>
+
+              <p className="text-4xl font-bold">
+                {organization.readinessScore}
+              </p>
+            </div>
+          </div>
+        </CardHeader>
+      </Card>
+
+      {/* Overview */}
+
+      <Card>
+        <CardHeader>
+          <CardTitle>Company Overview</CardTitle>
+        </CardHeader>
+
+        <CardContent className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+          <div>
+            <div className="mb-2 flex items-center gap-2 text-muted-foreground">
+              <Globe className="h-4 w-4" />
+              Domain
+            </div>
+
+            <p className="font-medium">
+              {organization.domain}
+            </p>
+          </div>
+
+          <div>
+            <div className="mb-2 flex items-center gap-2 text-muted-foreground">
+              <Building2 className="h-4 w-4" />
+              Industry
+            </div>
+
+            <p className="font-medium">
+              {organization.industry}
+            </p>
+          </div>
+
+          <div>
+            <div className="mb-2 flex items-center gap-2 text-muted-foreground">
+              <Users className="h-4 w-4" />
+              Employees
+            </div>
+
+            <p className="font-medium">
+              {organization.employees.toLocaleString()}
+            </p>
+          </div>
+
+          <div>
+            <div className="mb-2 text-muted-foreground">
+              Country
+            </div>
+
+            <p className="font-medium">
+              {organization.country}
+            </p>
+          </div>
+
+          <div>
+            <div className="mb-2 text-muted-foreground">
+              Primary Contact
+            </div>
+
+            <p className="font-medium">
+              {organization.primaryContact}
+            </p>
+          </div>
+
+          <div>
+            <div className="mb-2 text-muted-foreground">
+              Status
+            </div>
+
+            <p className="font-medium capitalize">
+              {organization.status}
+            </p>
+          </div>
+
+          <div>
+            <div className="mb-2 text-muted-foreground">
+              Last Assessment
+            </div>
+
+            <p className="font-medium">
+              {organization.lastAssessedAt}
+            </p>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Placeholder */}
+
+      <Card>
+        <CardHeader>
+          <CardTitle>Organization Intelligence Hub</CardTitle>
+        </CardHeader>
+
+        <CardContent className="py-12 text-center">
+          <h3 className="text-xl font-semibold">
+            🚀 Mission F010 Complete
+          </h3>
+
+          <p className="mt-3 text-muted-foreground">
+            This organization detail page is now connected through React Router.
+          </p>
+
+          <p className="mt-2 text-muted-foreground">
+            Next we'll build:
+          </p>
+
+          <div className="mt-6 flex flex-wrap justify-center gap-3">
+            <Button variant="secondary">Overview</Button>
+            <Button variant="secondary">Assessments</Button>
+            <Button variant="secondary">Evidence</Button>
+            <Button variant="secondary">Findings</Button>
+            <Button variant="secondary">AI Recommendations</Button>
+            <Button variant="secondary">Timeline</Button>
+          </div>
         </CardContent>
       </Card>
     </div>

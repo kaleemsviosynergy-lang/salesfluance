@@ -19,10 +19,10 @@ export const navigation: NavigationItem[] = [
     icon: LayoutDashboard,
   },
   {
-    title: "Organizations",
-    href: "/organizations",
-    icon: Building2,
-  },
+  title: "Organizations",
+  href: "/organizations",
+  icon: Building2,
+},
   {
     title: "Assessments",
     href: "/assessments",
