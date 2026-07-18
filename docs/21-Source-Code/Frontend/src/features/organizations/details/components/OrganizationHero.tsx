@@ -2,14 +2,12 @@ import { Building2 } from "lucide-react";
 
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Card, CardContent } from "@/components/ui/card";
-import {
-  ReadinessScore,
-  StatusBadge,
-  type Organization,
-} from "@/components/organizations";
+import { ReadinessScore } from "@/features/organizations/components/ReadinessScore";
+import { StatusBadge } from "@/features/organizations/components/StatusBadge";
+import type { OrganizationDetails } from "@/features/organizations/types/organization-details";
 
 interface OrganizationHeroProps {
-  organization: Organization;
+  organization: OrganizationDetails;
 }
 
 export function OrganizationHero({ organization }: OrganizationHeroProps) {
