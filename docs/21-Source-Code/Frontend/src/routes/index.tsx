@@ -13,6 +13,7 @@ import ReportsPage from "@/pages/ReportsPage";
 import AIStudioPage from "@/pages/AIStudioPage";
 import SettingsPage from "@/pages/SettingsPage";
 import ErrorPage from "@/pages/ErrorPage";
+import NotFoundPage from "@/pages/NotFoundPage";
 
 export const router = createBrowserRouter([
   {
@@ -59,6 +60,12 @@ export const router = createBrowserRouter([
       {
         path: "settings",
         element: <SettingsPage />,
+      },
+
+      // Catch-all route (must always be last)
+      {
+        path: "*",
+        element: <NotFoundPage />,
       },
     ],
   },
