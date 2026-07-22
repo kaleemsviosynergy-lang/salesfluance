@@ -102,7 +102,7 @@ export function OrganizationsTable({
             </TableCell>
             <TableCell className="text-right">
               <DropdownMenu>
-                <DropdownMenuTrigger asChild>
+                <DropdownMenuTrigger>
                   <Button
                     variant="ghost"
                     size="icon"

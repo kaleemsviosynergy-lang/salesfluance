@@ -9,7 +9,8 @@ import {
   TabsTrigger,
 } from "@/components/ui/tabs";
 import { OverviewTab } from "@/features/organizations/details/components/OverviewTab";
-import type { OrganizationDetails } from "@/features/organizations/types";
+import type { OrganizationDetails }
+from "@/features/organizations/types/organization-details";
 
 interface OrganizationTabsProps {
   organization: OrganizationDetails;

@@ -8,7 +8,8 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { ReadinessScore } from "@/features/organizations/components/ReadinessScore";
 import { StatusBadge } from "@/features/organizations/components/StatusBadge";
-import type { OrganizationDetails } from "@/features/organizations/types";
+import type { OrganizationDetails }
+from "@/features/organizations/types/organization-details";
 
 interface OverviewTabProps {
   organization: OrganizationDetails;

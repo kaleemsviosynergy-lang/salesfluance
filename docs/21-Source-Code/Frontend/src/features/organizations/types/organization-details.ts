@@ -1,3 +1,5 @@
+import type { OrganizationStatus } from "./types";
+
 export interface OrganizationDetails {
   id: string;
   name: string;
@@ -6,7 +8,7 @@ export interface OrganizationDetails {
   employees: number;
   country: string;
   readinessScore: number;
-  status: string;
+  status: OrganizationStatus;
   primaryContact: string;
   lastAssessedAt: string;
 }

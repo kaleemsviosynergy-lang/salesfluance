@@ -34,7 +34,7 @@ const organization = MOCK_ORGANIZATION_DETAILS.find(
                 We couldn&apos;t find an organization matching this link.
               </p>
             </div>
-            <Button variant="outline" size="sm" asChild className="gap-1.5">
+            <Button variant="outline" size="sm"  className="gap-1.5">
               <Link to="/organizations">
                 <ArrowLeft className="h-4 w-4" />
                 Back to Organizations

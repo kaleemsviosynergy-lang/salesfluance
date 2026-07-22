@@ -1,5 +1,15 @@
-export type OrganizationStatus = "active" | "onboarding" | "at-risk" | "churned";
+/**
+ * Organization lifecycle status.
+ */
+export type OrganizationStatus =
+  | "active"
+  | "onboarding"
+  | "at-risk"
+  | "churned";
 
+/**
+ * Supported organization industries.
+ */
 export type Industry =
   | "SaaS"
   | "Financial Services"
@@ -9,6 +19,9 @@ export type Industry =
   | "Professional Services"
   | "Logistics";
 
+/**
+ * Organization record shown in the Organizations list.
+ */
 export interface Organization {
   id: string;
   name: string;
@@ -16,12 +29,26 @@ export interface Organization {
   industry: Industry;
   employees: number;
   country: string;
-  readinessScore: number; // 0–100
+
+  /**
+   * Revenue Readiness Score (0–100)
+   */
+  readinessScore: number;
+
   status: OrganizationStatus;
+
   primaryContact: string;
-  lastAssessmentDate: string; // ISO date
+
+  /**
+   * ISO 8601 date
+   * Example: 2026-07-18
+   */
+  lastAssessmentDate: string;
 }
 
+/**
+ * Organization table filters.
+ */
 export interface OrganizationFilters {
   search: string;
   industry: Industry | "all";

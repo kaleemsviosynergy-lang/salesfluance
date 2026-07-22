@@ -1,6 +1,6 @@
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
-import type { OrganizationStatus } from "./types";
+import type { OrganizationStatus } from "@/features/organizations/types/types";
 
 const STATUS_CONFIG: Record<
   OrganizationStatus,

@@ -1,6 +1,6 @@
-import type { OrganizationDetails } from "../types/organization-details";
+import type { OrganizationDetails } from "@/features/organizations/types/organization-details";
 
-export const MOCK_ORGANIZATION_DETAILS = [
+export const MOCK_ORGANIZATION_DETAILS: OrganizationDetails[] = [
   {
     id: "org_001",
     name: "Northwind Analytics",

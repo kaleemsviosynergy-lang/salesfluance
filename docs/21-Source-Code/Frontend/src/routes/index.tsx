@@ -12,11 +12,13 @@ import RecommendationsPage from "@/pages/RecommendationsPage";
 import ReportsPage from "@/pages/ReportsPage";
 import AIStudioPage from "@/pages/AIStudioPage";
 import SettingsPage from "@/pages/SettingsPage";
+import ErrorPage from "@/pages/ErrorPage";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <AppLayout />,
+    errorElement: <ErrorPage />,
     children: [
       {
         index: true,

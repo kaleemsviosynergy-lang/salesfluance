@@ -1,4 +1,8 @@
-import type { Industry, Organization, OrganizationStatus } from "./types";
+import type {
+  Industry,
+  Organization,
+  OrganizationStatus,
+} from "../types/types";
 
 export const INDUSTRIES: Industry[] = [
   "SaaS",
@@ -28,7 +32,7 @@ export const MOCK_ORGANIZATIONS: Organization[] = [
     readinessScore: 82,
     status: "active",
     primaryContact: "Priya Chandran",
-    lastAssessedAt: "2026-07-02",
+    lastAssessmentDate: "2026-07-02",
   },
   {
     id: "org_002",
@@ -40,7 +44,7 @@ export const MOCK_ORGANIZATIONS: Organization[] = [
     readinessScore: 64,
     status: "active",
     primaryContact: "Marcus Ellery",
-    lastAssessedAt: "2026-06-28",
+    lastAssessmentDate: "2026-06-28",
   },
   {
     id: "org_003",
@@ -52,7 +56,7 @@ export const MOCK_ORGANIZATIONS: Organization[] = [
     readinessScore: 41,
     status: "at-risk",
     primaryContact: "Dana Whitfield",
-    lastAssessedAt: "2026-05-19",
+    lastAssessmentDate: "2026-05-19",
   },
   {
     id: "org_004",
@@ -64,7 +68,7 @@ export const MOCK_ORGANIZATIONS: Organization[] = [
     readinessScore: 57,
     status: "active",
     primaryContact: "Lukas Bergmann",
-    lastAssessedAt: "2026-07-09",
+    lastAssessmentDate: "2026-07-09",
   },
   {
     id: "org_005",
@@ -76,7 +80,7 @@ export const MOCK_ORGANIZATIONS: Organization[] = [
     readinessScore: 73,
     status: "onboarding",
     primaryContact: "Jamie Okafor",
-    lastAssessedAt: "2026-07-14",
+    lastAssessmentDate: "2026-07-14",
   },
   {
     id: "org_006",
@@ -88,7 +92,7 @@ export const MOCK_ORGANIZATIONS: Organization[] = [
     readinessScore: 88,
     status: "active",
     primaryContact: "Sienna Cole",
-    lastAssessedAt: "2026-07-11",
+    lastAssessmentDate: "2026-07-11",
   },
   {
     id: "org_007",
@@ -100,7 +104,7 @@ export const MOCK_ORGANIZATIONS: Organization[] = [
     readinessScore: 35,
     status: "at-risk",
     primaryContact: "Tobias Vermeer",
-    lastAssessedAt: "2026-04-30",
+    lastAssessmentDate: "2026-04-30",
   },
   {
     id: "org_008",
@@ -112,7 +116,7 @@ export const MOCK_ORGANIZATIONS: Organization[] = [
     readinessScore: 91,
     status: "active",
     primaryContact: "Alina Kwok",
-    lastAssessedAt: "2026-07-15",
+    lastAssessmentDate: "2026-07-15",
   },
   {
     id: "org_009",
@@ -124,7 +128,7 @@ export const MOCK_ORGANIZATIONS: Organization[] = [
     readinessScore: 22,
     status: "churned",
     primaryContact: "Grace Sumner",
-    lastAssessedAt: "2026-02-11",
+    lastAssessmentDate: "2026-02-11",
   },
   {
     id: "org_010",
@@ -136,7 +140,7 @@ export const MOCK_ORGANIZATIONS: Organization[] = [
     readinessScore: 69,
     status: "active",
     primaryContact: "Naomi Rourke",
-    lastAssessedAt: "2026-07-06",
+    lastAssessmentDate: "2026-07-06",
   },
   {
     id: "org_011",
@@ -148,7 +152,7 @@ export const MOCK_ORGANIZATIONS: Organization[] = [
     readinessScore: 76,
     status: "onboarding",
     primaryContact: "Elias Frei",
-    lastAssessedAt: "2026-07-13",
+    lastAssessmentDate: "2026-07-13",
   },
   {
     id: "org_012",
@@ -160,7 +164,7 @@ export const MOCK_ORGANIZATIONS: Organization[] = [
     readinessScore: 48,
     status: "active",
     primaryContact: "Rohan Deshpande",
-    lastAssessedAt: "2026-06-21",
+    lastAssessmentDate: "2026-06-21",
   },
   {
     id: "org_013",
@@ -172,7 +176,7 @@ export const MOCK_ORGANIZATIONS: Organization[] = [
     readinessScore: 85,
     status: "active",
     primaryContact: "Chloe Bennett",
-    lastAssessedAt: "2026-07-16",
+    lastAssessmentDate: "2026-07-16",
   },
   {
     id: "org_014",
@@ -184,7 +188,7 @@ export const MOCK_ORGANIZATIONS: Organization[] = [
     readinessScore: 53,
     status: "at-risk",
     primaryContact: "Oliver Pratt",
-    lastAssessedAt: "2026-06-02",
+    lastAssessmentDate: "2026-06-02",
   },
   {
     id: "org_015",
@@ -196,6 +200,6 @@ export const MOCK_ORGANIZATIONS: Organization[] = [
     readinessScore: 79,
     status: "active",
     primaryContact: "Bianca Torres",
-    lastAssessedAt: "2026-07-10",
+    lastAssessmentDate: "2026-07-10",
   },
 ];

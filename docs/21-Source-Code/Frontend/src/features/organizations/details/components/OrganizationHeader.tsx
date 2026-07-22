@@ -16,7 +16,7 @@ export function OrganizationHeader({
       <Button
         variant="ghost"
         size="sm"
-        asChild
+        
         className="-ml-2 gap-1.5 text-muted-foreground hover:text-foreground"
       >
         <Link to={backHref}>
