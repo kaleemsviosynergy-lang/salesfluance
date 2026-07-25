@@ -1,3 +1,5 @@
+import type { ReactNode } from "react";
+
 import { Card, CardContent } from "@/components/ui/card";
 import {
   Tabs,
@@ -6,66 +8,151 @@ import {
   TabsTrigger,
 } from "@/components/ui/tabs";
 
-import { OverviewTab } from "./OverviewTab";
 import { ContactsTab } from "./ContactsTab";
+import { OverviewTab } from "./OverviewTab";
 
-import { MOCK_CONTACTS } from "@/features/organizations/data/contacts.mock";
-import type { OrganizationDetails } from "@/features/organizations/types/organization-details";
+import { AssessmentsTab } from "@/features/assessments/components";
+import { EvidenceTab } from "@/features/evidence/components";
+
+import type { Assessment } from "@/features/assessments/types/assessment";
+import type { Evidence } from "@/features/evidence/types/evidence";
+import type { Contact } from "@/features/organizations/types/contact";
+import type { OrganizationDetails } from "@/features/organizations/types";
 
 interface OrganizationTabsProps {
   organization: OrganizationDetails;
+
+  contacts?: Contact[];
+  assessments?: Assessment[];
+  evidence?: Evidence[];
+
+  isContactsLoading?: boolean;
+  isAssessmentsLoading?: boolean;
+  isEvidenceLoading?: boolean;
 }
 
-const PLACEHOLDER_TABS = [
-  { value: "contacts", label: "Contacts" },
-  { value: "assessments", label: "Assessments" },
-  { value: "evidence", label: "Evidence" },
-  { value: "findings", label: "Findings" },
-  { value: "recommendations", label: "Recommendations" },
-  { value: "activity", label: "Activity" },
-] as const;
+/**
+ * Every supported Organization Details tab.
+ * Keeping this as a union gives us autocomplete and compile-time safety.
+ */
+type OrganizationTabKey =
+  | "overview"
+  | "contacts"
+  | "assessments"
+  | "evidence"
+  | "findings"
+  | "recommendations"
+  | "activity";
 
-const ALL_TABS = [
-  { value: "overview", label: "Overview" },
-  ...PLACEHOLDER_TABS,
-];
+interface TabDefinition {
+  value: OrganizationTabKey;
+  label: string;
+  content: ReactNode;
+}
+
+/**
+ * Shared placeholder until a feature is implemented.
+ * Future tabs simply replace this component with their real implementation.
+ */
+function PlaceholderTabContent() {
+  return (
+    <Card>
+      <CardContent className="flex items-center justify-center py-16">
+        <p className="text-sm text-muted-foreground">
+          This feature is coming soon.
+        </p>
+      </CardContent>
+    </Card>
+  );
+}
 
 export function OrganizationTabs({
   organization,
-}: OrganizationTabsProps) {
 
-  // Filter contacts for the selected organization
-  const organizationContacts = MOCK_CONTACTS.filter(
-    (contact) => contact.organizationId === organization.id
-  );
+  contacts = [],
+  assessments = [],
+  evidence = [],
+
+  isContactsLoading = false,
+  isAssessmentsLoading = false,
+  isEvidenceLoading = false,
+}: OrganizationTabsProps) {
+  const tabs: readonly TabDefinition[] = [
+    {
+      value: "overview",
+      label: "Overview",
+      content: <OverviewTab organization={organization} />,
+    },
+    {
+      value: "contacts",
+      label: "Contacts",
+      content: (
+        <ContactsTab
+          contacts={contacts}
+          isLoading={isContactsLoading}
+        />
+      ),
+    },
+    {
+      value: "assessments",
+      label: "Assessments",
+      content: (
+        <AssessmentsTab
+          assessments={assessments}
+          isLoading={isAssessmentsLoading}
+        />
+      ),
+    },
+    {
+      value: "evidence",
+      label: "Evidence",
+      content: (
+        <EvidenceTab
+          evidence={evidence}
+          isLoading={isEvidenceLoading}
+        />
+      ),
+    },
+    {
+      value: "findings",
+      label: "Findings",
+      content: <PlaceholderTabContent />,
+    },
+    {
+      value: "recommendations",
+      label: "Recommendations",
+      content: <PlaceholderTabContent />,
+    },
+    {
+      value: "activity",
+      label: "Activity",
+      content: <PlaceholderTabContent />,
+    },
+  ] as const;
 
   return (
-    <Tabs defaultValue="overview" className="w-full gap-4">
-      <TabsList className="w-full justify-start overflow-x-auto">
-        {ALL_TABS.map((tab) => (
-          <TabsTrigger key={tab.value} value={tab.value}>
+    <Tabs defaultValue="overview" className="w-full">
+      <TabsList
+        variant="line"
+        className="w-full justify-start overflow-x-auto"
+      >
+        {tabs.map((tab) => (
+          <TabsTrigger
+            key={tab.value}
+            value={tab.value}
+          >
             {tab.label}
           </TabsTrigger>
         ))}
       </TabsList>
 
-      <TabsContent value="overview">
-        <OverviewTab organization={organization} />
-      </TabsContent>
-
-      {PLACEHOLDER_TABS.map((tab) => (
-        <TabsContent key={tab.value} value={tab.value}>
-          {tab.value === "contacts" ? (
-            <ContactsTab contacts={organizationContacts} />
-          ) : (
-            <Card>
-              <CardContent className="flex items-center justify-center py-16">
-                <p className="text-sm text-muted-foreground">
-                  {tab.label} module is coming soon.
-                </p>
-              </CardContent>
-            </Card>
-          )}
+      {tabs.map((tab) => (
+        <TabsContent
+          key={tab.value}
+          value={tab.value}
+          className="pt-6"
+        >
+          {tab.content}
         </TabsContent>
       ))}
     </Tabs>
