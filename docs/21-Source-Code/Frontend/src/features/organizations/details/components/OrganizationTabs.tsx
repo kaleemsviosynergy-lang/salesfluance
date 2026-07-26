@@ -1,6 +1,5 @@
 import type { ReactNode } from "react";
 
-import { Card, CardContent } from "@/components/ui/card";
 import {
   Tabs,
   TabsContent,
@@ -13,9 +12,16 @@ import { OverviewTab } from "./OverviewTab";
 
 import { AssessmentsTab } from "@/features/assessments/components";
 import { EvidenceTab } from "@/features/evidence/components";
+import { FindingsTab } from "@/features/findings/components";
+import { RecommendationsTab } from "@/features/recommendations/components";
+import { ActivityTab } from "@/features/activity/components";
 
 import type { Assessment } from "@/features/assessments/types/assessment";
 import type { Evidence } from "@/features/evidence/types/evidence";
+import type { Finding } from "@/features/findings/types/finding";
+import type { Recommendation } from "@/features/recommendations/types/recommendation";
+import type { Activity } from "@/features/activity/types/activity";
+
 import type { Contact } from "@/features/organizations/types/contact";
 import type { OrganizationDetails } from "@/features/organizations/types";
 
@@ -25,16 +31,18 @@ interface OrganizationTabsProps {
   contacts?: Contact[];
   assessments?: Assessment[];
   evidence?: Evidence[];
+  findings?: Finding[];
+  recommendations?: Recommendation[];
+  activities?: Activity[];
 
   isContactsLoading?: boolean;
   isAssessmentsLoading?: boolean;
   isEvidenceLoading?: boolean;
+  isFindingsLoading?: boolean;
+  isRecommendationsLoading?: boolean;
+  isActivitiesLoading?: boolean;
 }
 
-/**
- * Every supported Organization Details tab.
- * Keeping this as a union gives us autocomplete and compile-time safety.
- */
 type OrganizationTabKey =
   | "overview"
   | "contacts"
@@ -50,21 +58,6 @@ interface TabDefinition {
   content: ReactNode;
 }
 
-/**
- * Shared placeholder until a feature is implemented.
- * Future tabs simply replace this component with their real implementation.
- */
-function PlaceholderTabContent() {
-  return (
-    <Card>
-      <CardContent className="flex items-center justify-center py-16">
-        <p className="text-sm text-muted-foreground">
-          This feature is coming soon.
-        </p>
-      </CardContent>
-    </Card>
-  );
-}
 
 export function OrganizationTabs({
   organization,
@@ -72,10 +65,16 @@ export function OrganizationTabs({
   contacts = [],
   assessments = [],
   evidence = [],
+  findings = [],
+  recommendations = [],
+  activities = [],
 
   isContactsLoading = false,
   isAssessmentsLoading = false,
   isEvidenceLoading = false,
+  isFindingsLoading = false,
+  isRecommendationsLoading = false,
+  isActivitiesLoading = false,
 }: OrganizationTabsProps) {
   const tabs: readonly TabDefinition[] = [
     {
@@ -116,17 +115,32 @@ export function OrganizationTabs({
     {
       value: "findings",
       label: "Findings",
-      content: <PlaceholderTabContent />,
+      content: (
+        <FindingsTab
+          findings={findings}
+          isLoading={isFindingsLoading}
+        />
+      ),
     },
     {
       value: "recommendations",
       label: "Recommendations",
-      content: <PlaceholderTabContent />,
+      content: (
+        <RecommendationsTab
+          recommendations={recommendations}
+          isLoading={isRecommendationsLoading}
+        />
+      ),
     },
     {
       value: "activity",
       label: "Activity",
-      content: <PlaceholderTabContent />,
+      content: (
+        <ActivityTab
+          activities={activities}
+          isLoading={isActivitiesLoading}
+        />
+      ),
     },
   ] as const;
 

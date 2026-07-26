@@ -25,4 +25,6 @@ export const MOCK_ORGANIZATION_DETAILS: OrganizationDetails[] = [
     primaryContact: "Marcus Ellery",
     lastAssessedAt: "2026-06-28",
   },
+
+  // ...remaining organizations...
 ];
