@@ -1,7 +1,7 @@
 "use client";
 
 import { ArrowRight, Sparkles } from "lucide-react";
-import Button from "../components/Button";
+import Button from "@/app/components/ui/Button";
 
 export default function ContactHero() {
   return (
