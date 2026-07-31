@@ -29,7 +29,7 @@
 import type { ComponentType } from "react";
 import type { SectionEntryOf } from "../../types/service";
 import type { SectionType } from "../../types/shared";
-import { SectionPlaceholder } from "./sections/SectionPlaceholder";
+import { SectionPlaceholder } from "./SectionPlaceholder";
 
 /** Precise per-type contract for authoring an individual section component. */
 export type SectionComponent<T extends SectionType> = ComponentType<{
