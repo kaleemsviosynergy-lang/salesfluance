@@ -2,12 +2,8 @@ import Container from "@/components/ui/Container";
 import Card from "@/components/ui/Card";
 import FadeIn from "@/components/ui/FadeIn";
 import Badge from "@/components/ui/Badge";
-import Button, { type ButtonVariant } from "@/components/ui/Button";
-import type { BusinessOutcomeSection } from "../../types/service";
-
-export interface BusinessOutcomesProps {
-  data: BusinessOutcomeSection;
-}
+import Button from "@/components/ui/Button";
+import type { SectionComponent } from "@/components/engine/SectionRegistry";
 
 /**
  * Renders the "Business Outcomes" section: a heading, optional subheading,
@@ -15,7 +11,7 @@ export interface BusinessOutcomesProps {
  * only ever rendered when present in `data` — this component never
  * fabricates a figure. No business content is hardcoded.
  */
-export default function BusinessOutcomes({ data }: BusinessOutcomesProps) {
+const BusinessOutcomes: SectionComponent<"businessOutcomes"> = ({ data }) => {
   return (
     <Container>
       <div className="mx-auto flex max-w-2xl flex-col items-center gap-4 text-center">
@@ -46,7 +42,12 @@ export default function BusinessOutcomes({ data }: BusinessOutcomesProps) {
       {data.cta ? (
         <FadeIn delay={0.1 + data.outcomes.length * 0.06 + 0.1}>
           <div className="mt-10 flex justify-center">
-            <Button href={data.cta.href} variant={data.cta.variant as ButtonVariant}>
+            <Button
+              href={data.cta.href}
+              variant={data.cta.variant === "text" ? undefined : data.cta.variant}
+              target={data.cta.external ? "_blank" : undefined}
+              rel={data.cta.external ? "noreferrer noopener" : undefined}
+            >
               {data.cta.label}
             </Button>
           </div>
@@ -54,4 +55,6 @@ export default function BusinessOutcomes({ data }: BusinessOutcomesProps) {
       ) : null}
     </Container>
   );
-}
+};
+
+export default BusinessOutcomes;

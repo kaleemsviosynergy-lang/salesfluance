@@ -9,6 +9,7 @@ export type ButtonVariant =
   | "primary"
   | "secondary"
   | "outline"
+  | "text"
   | "ghost"
   | "destructive";
 
@@ -62,6 +63,8 @@ const variantStyles: Record<ButtonVariant, string> = {
     "bg-indigo-600 text-white hover:bg-indigo-500 active:bg-indigo-700",
   secondary:
     "bg-slate-900 text-white hover:bg-slate-800 active:bg-slate-950",
+  text:
+    "bg-transparent text-slate-900 hover:bg-slate-50 active:bg-slate-100",
   outline:
     "border border-slate-300 bg-transparent text-slate-900 hover:bg-slate-50 active:bg-slate-100",
   ghost:
