@@ -26,10 +26,27 @@
  * surprise — the registry must always be exhaustive.
  */
 
-import type { ComponentType } from "react";
-import type { SectionEntryOf } from "../../types/service";
-import type { SectionType } from "../../types/shared";
 import { SectionPlaceholder } from "./SectionPlaceholder";
+import type { ComponentType } from "react";
+import type { SectionEntryOf } from "@/types/service";
+import type { SectionType } from "@/types/shared";
+
+import Hero from "@/components/service-sections/Hero";
+import BusinessChallenges from "@/components/service-sections/BusinessChallenges";
+import BusinessOutcomes from "@/components/service-sections/BusinessOutcomes";
+import Deliverables from "@/components/service-sections/Deliverables";
+import ServiceOverview from "@/components/service-sections/ServiceOverview";
+import ServiceProcess from "@/components/service-sections/ServiceProcess";
+import TechnologyStack from "@/components/service-sections/TechnologyStack";
+import IndustriesServed from "@/components/service-sections/IndustriesServed";
+import TrustIndicators from "@/components/service-sections/TrustIndicators";
+import SuccessMetrics from "@/components/service-sections/SuccessMetrics";
+import FAQs from "@/components/service-sections/FAQs";
+import RelatedServices from "@/components/service-sections/RelatedServices";
+import FinalCTA from "@/components/service-sections/FinalCTA";
+import WhySalesFluance from "@/components/service-sections/WhySalesFluance";
+import WhoThisIsFor from "@/components/service-sections/WhoThisIsFor";
+import OurSolution from "@/components/service-sections/OurSolution";
 
 /** Precise per-type contract for authoring an individual section component. */
 export type SectionComponent<T extends SectionType> = ComponentType<{
@@ -37,7 +54,7 @@ export type SectionComponent<T extends SectionType> = ComponentType<{
 }>;
 
 /** Common-denominator contract used only by the registry map itself. */
-export type AnySectionComponent = ComponentType<{ data: unknown }>;
+export type AnySectionComponent = ComponentType<{ data: any }>;
 
 export const SECTION_REGISTRY: Record<SectionType, AnySectionComponent> = {
   // Every entry below currently points at the scaffolding placeholder.
@@ -45,20 +62,20 @@ export const SECTION_REGISTRY: Record<SectionType, AnySectionComponent> = {
   // implemented (tracked in the Sprint backlog) — no other engine file
   // needs to change when that happens.
   utilityBar: SectionPlaceholder,
-  hero: SectionPlaceholder,
-  trustIndicators: SectionPlaceholder,
-  businessChallenges: SectionPlaceholder,
-  ourSolution: SectionPlaceholder,
-  serviceOverview: SectionPlaceholder,
-  whySalesFluance: SectionPlaceholder,
-  businessOutcomes: SectionPlaceholder,
-  whoThisIsFor: SectionPlaceholder,
-  serviceProcess: SectionPlaceholder,
-  deliverables: SectionPlaceholder,
-  technologyStack: SectionPlaceholder,
-  industriesServed: SectionPlaceholder,
-  successMetrics: SectionPlaceholder,
-  faqs: SectionPlaceholder,
-  relatedServices: SectionPlaceholder,
-  finalCta: SectionPlaceholder,
+  hero: Hero,
+  trustIndicators: TrustIndicators,
+businessChallenges: BusinessChallenges,
+ourSolution: OurSolution,
+serviceOverview: ServiceOverview,
+whySalesFluance: WhySalesFluance,
+businessOutcomes: BusinessOutcomes,
+whoThisIsFor: SectionPlaceholder,
+serviceProcess: ServiceProcess,
+deliverables: Deliverables,
+technologyStack: TechnologyStack,
+industriesServed: IndustriesServed,
+successMetrics: SuccessMetrics,
+faqs: FAQs,
+relatedServices: RelatedServices,
+finalCta: FinalCTA,
 };
