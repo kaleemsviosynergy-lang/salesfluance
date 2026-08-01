@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import MobileMenu from "./MobileMenu";
-import type { NavigationItem } from "./Navigation";
+import type { NavigationItem } from "@/app/data/navigation";
 import { cn } from "@/lib/utils";
 
 export interface MobileDrawerProps {

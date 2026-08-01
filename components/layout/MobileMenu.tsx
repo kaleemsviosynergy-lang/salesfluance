@@ -2,7 +2,7 @@ import * as React from "react";
 import Logo from "./Logo";
 import NavLink from "./NavLink";
 import CTAButton from "./CTAButton";
-import type { NavigationItem } from "./Navigation";
+import type { NavigationItem } from "@/app/data/navigation";
 import { cn } from "@/lib/utils";
 
 export interface MobileMenuProps {
@@ -96,7 +96,7 @@ export default function MobileMenu({
       <nav aria-label="Mobile" className="flex-1 overflow-y-auto px-6 py-6">
         <ul className="flex flex-col gap-1">
           {navigation.map((item) => (
-            <li key={item.id}>
+            <li key={item.href}>
               {item.megaMenu ? (
                 <details className="group">
                   <summary className="flex cursor-pointer list-none items-center justify-between rounded-md px-2 py-3 text-sm font-medium text-slate-700 transition-colors duration-200 hover:text-blue-600">
@@ -106,13 +106,13 @@ export default function MobileMenu({
 
                   <div className="flex flex-col gap-6 py-3 pl-4">
                     {item.megaMenu.groups.map((group) => (
-                      <div key={group.id}>
+                      <div key={group.title}>
                         <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">
                           {group.title}
                         </p>
                         <ul className="mt-2 flex flex-col gap-2">
                           {group.links.map((link) => (
-                            <li key={link.id}>
+                            <li key={link.href}>
                               <NavLink
                                 href={link.href}
                                 external={link.external}
@@ -131,7 +131,7 @@ export default function MobileMenu({
                     {item.megaMenu.featured && (
                       <div className="rounded-lg bg-slate-50 p-4">
                         <p className="text-sm font-semibold text-slate-900">
-                          {item.megaMenu.featured.label}
+                          {item.megaMenu.featured.title}
                         </p>
                         {item.megaMenu.featured.description && (
                           <p className="mt-1 text-xs text-slate-500">
@@ -139,26 +139,20 @@ export default function MobileMenu({
                           </p>
                         )}
                         <CTAButton
-                          href={item.megaMenu.featured.href}
-                          external={item.megaMenu.featured.external}
+                          href={item.megaMenu.featured.cta.href}
+                          external={item.megaMenu.featured.cta.external}
                           className="mt-3 w-fit"
                         >
-                          {item.megaMenu.featured.ctaLabel}
+                          {item.megaMenu.featured.cta.label}
                         </CTAButton>
                       </div>
                     )}
                   </div>
                 </details>
               ) : (
-                <NavLink
-                  href={item.href}
-                  active={item.active}
-                  external={item.external}
-                  onClick={onNavigate}
-                  className="block rounded-md px-2 py-3"
-                >
-                  {item.label}
-                </NavLink>
+                <NavLink href={item.href}>
+    {item.label}
+</NavLink>
               )}
             </li>
           ))}

@@ -2,54 +2,18 @@ import * as React from "react";
 import NavLink from "./NavLink";
 import CTAButton from "./CTAButton";
 import { cn } from "@/lib/utils";
+import type {
+  NavigationGroup,
+  NavigationFeatured,
+} from "@/app/data/navigation";
 
-/** A single link within a MegaMenu group. */
-export interface MegaMenuLink {
-  /** Stable identifier, e.g. for React keys. */
-  id: string;
-  /** Link label. */
-  label: string;
-  /** Optional one-line supporting copy shown beneath the label. */
-  description?: string;
-  /** Destination URL. */
-  href: string;
-  /** Opens the destination in a new tab when true. Defaults to false. */
-  external?: boolean;
-  /** Optional leading icon. */
-  icon?: React.ReactNode;
-}
 
-/** A titled group of links within the MegaMenu. */
-export interface MegaMenuGroup {
-  /** Stable identifier, e.g. for React keys. */
-  id: string;
-  /** Group heading. */
-  title: string;
-  /** Optional supporting copy shown beneath the group heading. */
-  description?: string;
-  /** Links belonging to this group. */
-  links: MegaMenuLink[];
-}
-
-/** Optional highlighted call-to-action panel shown alongside the groups. */
-export interface MegaMenuFeatured {
-  /** Heading for the featured panel. */
-  label: string;
-  /** Optional supporting copy. */
-  description?: string;
-  /** CTA destination URL. */
-  href: string;
-  /** Opens the CTA destination in a new tab when true. Defaults to false. */
-  external?: boolean;
-  /** Label shown on the CTA button itself. */
-  ctaLabel: string;
-}
 
 export interface MegaMenuProps {
   /** Titled groups of links to render, left to right. */
-  groups: MegaMenuGroup[];
+  groups: NavigationGroup[];
   /** Optional highlighted CTA panel rendered alongside the groups. */
-  featured?: MegaMenuFeatured;
+  featured?: NavigationFeatured;
   /** Additional class names merged onto the root panel element. */
   className?: string;
 }
@@ -97,14 +61,12 @@ export default function MegaMenu({ groups, featured, className }: MegaMenuProps)
       <div className="flex flex-col gap-8 lg:flex-row">
         <div className="grid flex-1 grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {groups.map((group) => (
-            <div key={group.id}>
+            <div key={group.title}>
               <p className="text-sm font-semibold text-slate-900">{group.title}</p>
-              {group.description && (
-                <p className="mt-1 text-sm text-slate-500">{group.description}</p>
-              )}
+              
               <ul className="mt-4 flex flex-col gap-3">
                 {group.links.map((link) => (
-                  <li key={link.id}>
+                  <li key={link.href}>
                     <NavLink href={link.href} external={link.external} icon={link.icon} className="block">
                       {link.label}
                     </NavLink>
@@ -120,12 +82,12 @@ export default function MegaMenu({ groups, featured, className }: MegaMenuProps)
 
         {featured && (
           <div className="flex w-full flex-col gap-3 rounded-xl bg-slate-50 p-6 lg:w-72 lg:shrink-0">
-            <p className="text-sm font-semibold text-slate-900">{featured.label}</p>
+            <p className="text-sm font-semibold text-slate-900">{featured.title}</p>
             {featured.description && (
               <p className="text-sm text-slate-500">{featured.description}</p>
             )}
-            <CTAButton href={featured.href} external={featured.external} className="mt-2 w-fit">
-              {featured.ctaLabel}
+            <CTAButton href={featured.cta.href} external={featured.cta.external} className="mt-2 w-fit">
+              {featured.cta.label}
             </CTAButton>
           </div>
         )}

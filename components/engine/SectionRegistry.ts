@@ -47,6 +47,7 @@ import FinalCTA from "@/components/service-sections/FinalCTA";
 import WhySalesFluance from "@/components/service-sections/WhySalesFluance";
 import WhoThisIsFor from "@/components/service-sections/WhoThisIsFor";
 import OurSolution from "@/components/service-sections/OurSolution";
+import UtilityBar from "@/components/service-sections/UtilityBar";
 
 /** Precise per-type contract for authoring an individual section component. */
 export type SectionComponent<T extends SectionType> = ComponentType<{
@@ -61,21 +62,21 @@ export const SECTION_REGISTRY: Record<SectionType, AnySectionComponent> = {
   // Replace an entry with its real component as that section is
   // implemented (tracked in the Sprint backlog) — no other engine file
   // needs to change when that happens.
-  utilityBar: SectionPlaceholder,
+  utilityBar: UtilityBar,
   hero: Hero,
   trustIndicators: TrustIndicators,
-businessChallenges: BusinessChallenges,
-ourSolution: OurSolution,
-serviceOverview: ServiceOverview,
-whySalesFluance: WhySalesFluance,
-businessOutcomes: BusinessOutcomes,
-whoThisIsFor: SectionPlaceholder,
-serviceProcess: ServiceProcess,
-deliverables: Deliverables,
-technologyStack: TechnologyStack,
-industriesServed: IndustriesServed,
-successMetrics: SuccessMetrics,
-faqs: FAQs,
-relatedServices: RelatedServices,
-finalCta: FinalCTA,
+  businessChallenges: BusinessChallenges,
+  ourSolution: OurSolution,
+  serviceOverview: ServiceOverview,
+  whySalesFluance: WhySalesFluance,
+  businessOutcomes: BusinessOutcomes,
+  whoThisIsFor: WhoThisIsFor,
+  serviceProcess: ServiceProcess,
+  deliverables: Deliverables,
+  technologyStack: TechnologyStack,
+  industriesServed: IndustriesServed,
+  successMetrics: SuccessMetrics,
+  faqs: FAQs,
+  relatedServices: RelatedServices,
+  finalCta: FinalCTA,
 };
