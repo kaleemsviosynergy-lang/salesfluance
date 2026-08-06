@@ -2,12 +2,13 @@ import * as React from "react";
 import Logo from "./Logo";
 import NavLink from "./NavLink";
 import CTAButton from "./CTAButton";
-import MegaMenu from "./MegaMenu";
+import MegaMenu from "@/components/navigation/MegaMenu";
 import { cn } from "@/lib/utils";
 import type {
   NavigationItem,
   PrimaryCTA,
 } from "@/app/data/navigation";
+
 
 export interface NavigationProps {
   items: NavigationItem[];
@@ -43,9 +44,27 @@ const triggerStyles =
  * classes on the parent `<li>`. No JavaScript state is involved.
  */
 const megaMenuVisibility =
-  "invisible absolute left-0 top-full pt-4 opacity-0 pointer-events-none transition duration-200 " +
-  "group-hover:visible group-hover:opacity-100 group-hover:pointer-events-auto " +
-  "group-focus-within:visible group-focus-within:opacity-100 group-focus-within:pointer-events-auto";
+  `
+absolute
+left-1/2
+top-full
+z-50
+mt-4
+-wtranslate-x-1/2
+opacity-0
+invisible
+pointer-events-none
+transition-all
+duration-200
+
+group-hover:visible
+group-hover:opacity-100
+group-hover:pointer-events-auto
+
+group-focus-within:visible
+group-focus-within:opacity-100
+group-focus-within:pointer-events-auto
+`;
 
 /**
  * Navigation

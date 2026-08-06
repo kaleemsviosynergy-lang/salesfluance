@@ -25,7 +25,7 @@ const TechnologyStack: SectionComponent<"technologyStack"> = ({ data }) => {
 
       <div className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
         {data.groups.map((group, groupIndex) => (
-          <FadeIn key={group.category} delay={0.1 + groupIndex * 0.08}>
+          <FadeIn key={`${group.category}-${groupIndex}`}delay={0.1 + groupIndex * 0.08}>
             <div className="flex flex-col gap-3">
               <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-500">{group.category}</h3>
               <div className="flex flex-wrap gap-2">

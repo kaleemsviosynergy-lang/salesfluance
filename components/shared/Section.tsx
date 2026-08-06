@@ -21,8 +21,12 @@ export interface SectionProps {
 
 export function Section({ id, ariaLabel, children }: SectionProps) {
   return (
-    <section id={id} aria-label={ariaLabel} className="w-full py-8 md:py-12">
-      <div className="mx-auto max-w-[1280px] px-4 md:px-8">{children}</div>
-    </section>
+    <section
+    id={id}
+    aria-label={ariaLabel}
+    className="w-full"
+>
+    {children}
+</section>
   );
 }
