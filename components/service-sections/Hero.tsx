@@ -10,6 +10,7 @@ import FadeIn from "@/components/ui/FadeIn";
 import ABMHeroVisual from "@/components/sections/ABMHeroVisual";
 import LeadGenerationHeroVisual from "@/components/sections/LeadGenerationHeroVisual";
 import DemandGenerationHeroVisual from "@/components/sections/DemandGenerationHeroVisual";
+import TrustStrip from "@/components/home/TrustStrip";
 
 import type { HeroSection } from "@/types/service";
 import type {

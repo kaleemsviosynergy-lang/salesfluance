@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import ScrollHeader from "./ScrollHeader";
-import Logo from "./Logo";
+import Logo from "@/components/brand/Logo";
 import Navigation from "./Navigation";
 import CTAButton from "./CTAButton";
 import MobileDrawer from "./MobileDrawer";

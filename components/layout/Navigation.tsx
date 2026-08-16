@@ -1,5 +1,5 @@
 import * as React from "react";
-import Logo from "./Logo";
+import Logo from "@/components/brand/Logo";
 import NavLink from "./NavLink";
 import CTAButton from "./CTAButton";
 import MegaMenu from "@/components/navigation/MegaMenu";

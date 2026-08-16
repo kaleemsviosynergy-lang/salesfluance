@@ -8,7 +8,7 @@ import type { SectionComponent } from "@/components/engine/SectionRegistry";
  *
  * All business content remains data-driven through `data`.
  */
-const OurProcess: SectionComponent<"ourProcess"> = ({ data }) => {
+const OurProcess: SectionComponent<"serviceProcess"> = ({ data }) => {
   return (
     <Container>
       {/* Section introduction */}
@@ -58,7 +58,7 @@ const OurProcess: SectionComponent<"ourProcess"> = ({ data }) => {
                 {/* Step title */}
                 <div className="mt-7">
                   <h3 className="text-sm font-bold uppercase tracking-[0.12em] text-slate-950">
-                    {step.title}
+                    {step.label}
                   </h3>
 
                   <div className="mt-3 h-px w-8 bg-indigo-200 transition-all duration-300 group-hover:w-12 group-hover:bg-indigo-500" />
