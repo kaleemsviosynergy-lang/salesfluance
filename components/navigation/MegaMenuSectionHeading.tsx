@@ -26,7 +26,7 @@ export default function MegaMenuSectionHeading({
   className,
 }: MegaMenuSectionHeadingProps): React.JSX.Element {
   return (
-    <div className={cn("mb-9", className)}>
+    <div className={cn("mb-5", className)}>
       <h3
         className="
           text-xs
@@ -39,7 +39,7 @@ export default function MegaMenuSectionHeading({
         {children}
       </h3>
 
-      <div className="mt-4 h-px w-full bg-slate-200" />
+      <div className="mt-2 h-px w-full bg-slate-200" />
     </div>
   );
 }

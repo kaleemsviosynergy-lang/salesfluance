@@ -13,24 +13,29 @@ import type { SectionComponent } from "@/components/engine/SectionRegistry";
 const OurSolution: SectionComponent<"ourSolution"> = ({ data }) => {
   return (
     <Container>
-      <div className="mx-auto flex max-w-2xl flex-col items-center gap-4 text-center">
+      <div className="mx-auto max-w-3xl text-center">
         <FadeIn delay={0}>
           <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">{data.heading}</h2>
         </FadeIn>
         {data.subheading ? (
           <FadeIn delay={0.06}>
-            <p className="text-lg text-slate-600">{data.subheading}</p>
+            <p className="mt-4 text-base leading-7 text-slate-600 sm:text-lg">{data.subheading}</p>
           </FadeIn>
         ) : null}
       </div>
 
-      <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-10 grid grid-cols-1 gap-3 lg:grid-cols-6">
         {data.pillars.map((pillar, index) => (
           <FadeIn key={pillar.id} delay={0.1 + index * 0.06}>
-            <Card className="flex h-full flex-col gap-3">
-              <Badge>{pillar.title}</Badge>
-              <p className="text-sm text-slate-600">{pillar.description}</p>
-            </Card>
+            <div className="flex h-full items-center gap-3 rounded-2xl border border-slate-200 bg-white p-3 shadow-sm">
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-indigo-50 text-indigo-700">
+                <span aria-hidden="true" className="h-2.5 w-2.5 rounded-full bg-indigo-600" />
+              </span>
+              <div className="min-w-0">
+                <p className="text-xs font-bold uppercase tracking-[.12em] text-slate-500">{pillar.title}</p>
+                <p className="mt-1 text-sm leading-5 text-slate-600">{pillar.description}</p>
+              </div>
+            </div>
           </FadeIn>
         ))}
       </div>

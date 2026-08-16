@@ -7,9 +7,7 @@ import {
   Layers,
   ListChecks,
   Mail,
-  Newspaper,
   Phone,
-  Radar,
   ShieldCheck,
   Target,
   TrendingUp,
@@ -45,19 +43,17 @@ export interface MegaMenuProps {
  * Falls back to ArrowRight (the previous default) for any link that omits
  * an icon or references a key not yet mapped here.
  */
-const NAV_ICON_MAP: Partial<Record<IconName, LucideIcon>> = {
+const NAV_ICON_MAP: Partial<Record<IconName | "crosshair", LucideIcon>> = {
   target: Target,
   "trending-up": TrendingUp,
   crosshair: Crosshair,
-  "calendar-check": CalendarCheck,
+  calendar: CalendarCheck,
   phone: Phone,
-  radar: Radar,
   "list-checks": ListChecks,
   database: Database,
   "shield-check": ShieldCheck,
   layers: Layers,
   mail: Mail,
-  newspaper: Newspaper,
 };
 
 function resolveNavIcon(icon?: IconName): React.ReactNode {
@@ -93,11 +89,11 @@ export default function MegaMenu({
   return (
     <div
       className={cn(
-        "mx-auto w-full max-w-[1200px] rounded-3xl border border-slate-200 bg-white shadow-xl shadow-slate-900/10 ring-1 ring-black/[0.03]",
+        "mx-auto w-full max-w-[1200px] rounded-2xl border border-slate-200 bg-white shadow-xl shadow-slate-900/10 ring-1 ring-black/[0.03]",
         className
       )}
     >
-      <div className="grid grid-cols-1 gap-10 p-8 lg:grid-cols-[1fr_1fr_1fr_270px] lg:gap-10 lg:p-10">
+      <div className="grid grid-cols-1 gap-6 p-6 lg:grid-cols-[1fr_1fr_1fr_260px] lg:gap-6 lg:p-8">
         {/* Navigation Columns */}
         {groups.map((group) => (
           <MegaMenuColumn

@@ -3,22 +3,14 @@ import Button, { type ButtonVariant as UIButtonVariant } from "@/components/ui/B
 import Badge from "@/components/ui/Badge";
 import Container from "@/components/ui/Container";
 import FadeIn from "@/components/ui/FadeIn";
+import ABMHeroVisual from "@/components/sections/ABMHeroVisual";
 import type { HeroSection } from "@/types/service";
 import type { ButtonVariant as CTAVariant, CTALink } from "@/types/shared";
 
-/** Props for Hero — receives only the typed HeroSection data payload. */
 export interface HeroProps {
   data: HeroSection;
 }
 
-/**
- * Maps the content-layer CTA variant (types/shared.ts `ButtonVariant`) to
- * the Design System's Button component variant (components/ui/Button.tsx
- * `ButtonVariant`). The two unions are declared independently and are not
- * identical ("text" has no equivalent on Button, and Button's "ghost" /
- * "destructive" have no equivalent on CTALink), so this table is the single
- * place that reconciles them. No other logic is applied to CTA data.
- */
 const ctaVariantToButtonVariant: Record<CTAVariant, UIButtonVariant> = {
   primary: "primary",
   secondary: "secondary",
@@ -26,7 +18,6 @@ const ctaVariantToButtonVariant: Record<CTAVariant, UIButtonVariant> = {
   text: "ghost",
 };
 
-/** Renders a single CTALink using the existing Button API in link mode. */
 function renderCta(cta: CTALink): React.JSX.Element {
   return (
     <Button
@@ -42,14 +33,55 @@ function renderCta(cta: CTALink): React.JSX.Element {
 
 /**
  * Hero
- * Top-of-page section for flagship service pages. Renders exactly the
- * fields present on HeroSection — no hardcoded copy, no per-service
- * branching. Composed entirely from existing Design System primitives
- * (Container, FadeIn, Badge, Button); intentionally not wrapped in Section
- * so the engine/caller controls outer spacing and background.
+ *
+ * ABM gets a dedicated composition because its visual is a structured revenue
+ * intelligence interface rather than a generic service-page image. All copy
+ * and CTA data still come from HeroSection; other services keep the original
+ * image-based layout.
  */
 export default function Hero({ data }: HeroProps): React.JSX.Element {
   const { eyebrow, headline, subhead, primaryCta, secondaryCta, visual } = data;
+  const isABMHero = eyebrow === "Account-Based Marketing";
+
+  if (isABMHero) {
+    return (
+      <Container>
+        <div className="grid items-center gap-10 lg:grid-cols-[.92fr_1.08fr] lg:gap-8 xl:gap-10">
+          <div className="min-w-0">
+            <FadeIn direction="up">
+              <Badge variant="outline" size="md">
+                {eyebrow}
+              </Badge>
+            </FadeIn>
+
+            <FadeIn direction="up" delay={0.08}>
+              <h1 className="mt-5 max-w-[620px] text-4xl font-bold tracking-[-0.035em] text-slate-900 sm:text-5xl lg:text-[54px] lg:leading-[1.03] xl:text-[58px]">
+                {headline}
+              </h1>
+            </FadeIn>
+
+            <FadeIn direction="up" delay={0.16}>
+              <p className="mt-6 max-w-[590px] text-base leading-7 text-slate-600 sm:text-lg sm:leading-8">
+                {subhead}
+              </p>
+            </FadeIn>
+
+            <FadeIn direction="up" delay={0.24}>
+              <div className="mt-8 flex flex-col items-start gap-4 sm:flex-row">
+                {renderCta(primaryCta)}
+                {secondaryCta && renderCta(secondaryCta)}
+              </div>
+            </FadeIn>
+
+          </div>
+
+          <FadeIn direction="left" delay={0.12} className="w-full min-w-0">
+            <ABMHeroVisual />
+          </FadeIn>
+        </div>
+      </Container>
+    );
+  }
 
   return (
     <Container>
@@ -79,7 +111,7 @@ export default function Hero({ data }: HeroProps): React.JSX.Element {
           </FadeIn>
         </div>
 
-        {visual && (
+        {visual ? (
           <FadeIn direction="left" delay={0.15} className="w-full flex-1">
             <img
               src={visual.src}
@@ -89,7 +121,7 @@ export default function Hero({ data }: HeroProps): React.JSX.Element {
               className="h-auto w-full rounded-2xl"
             />
           </FadeIn>
-        )}
+        ) : null}
       </div>
     </Container>
   );

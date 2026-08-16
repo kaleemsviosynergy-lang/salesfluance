@@ -43,17 +43,17 @@ export default function MegaMenuBrand({
   className,
 }: MegaMenuBrandProps): React.JSX.Element {
   const highlights = [
-    "AI-Assisted Research",
-    "Human Verified Data",
-    "Buying Committee Intelligence",
-    "Qualified Sales Meetings",
-    "Revenue-First Execution",
+    "✓ AI Research",
+    "✓ Verified Data",
+    "✓ Buying Committee",
+    "Sales Meetings",
+    "✓ Revenue Focus",
   ];
 
   return (
     <aside
       className={cn(
-        "rounded-2xl border border-slate-200 bg-gradient-to-br from-slate-50 to-white p-5",
+        "rounded-2xl border border-slate-200 bg-gradient-to-br from-slate-50 to-white p-4",
         className
       )}
     >
@@ -63,21 +63,21 @@ export default function MegaMenuBrand({
           Enterprise Revenue Growth
         </p>
 
-        <h3 className="mt-2.5 text-xl font-bold leading-tight text-slate-900">
+        <h3 className="mt-2 text-lg font-bold leading-tight text-slate-900">
           Revenue Intelligence,
           <br />
           Built for Enterprise.
         </h3>
 
-        <p className="mt-2.5 text-[13px] leading-5 text-slate-600">
+        <p className="mt-2.5 text-[13px] leading-4 text-slate-600">
           Human-verified research, AI-assisted intelligence — built for
           enterprise pipeline.
         </p>
       </div>
 
       {/* Highlights — the visual focal point of this panel */}
-      <div className="mt-5 rounded-xl border border-slate-200/80 bg-white/70 p-3.5">
-        <div className="space-y-2.5">
+      <div className="mt-4 rounded-xl border border-slate-200/80 bg-white/70 p-3">
+        <div className="space-y-1.5">
           {highlights.map((item) => (
             <div key={item} className="flex items-center gap-2.5">
               <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-emerald-50">
@@ -93,7 +93,7 @@ export default function MegaMenuBrand({
       </div>
 
       {/* Divider */}
-      <div className="my-5 h-px bg-slate-200" />
+      <div className="my-3 h-px bg-slate-200" />
 
       {/* Process */}
       <div>
@@ -109,7 +109,7 @@ export default function MegaMenuBrand({
             return (
               <div key={step.label}>
                 <div className="flex items-center gap-2.5 py-0.5">
-                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-md bg-white text-slate-500 ring-1 ring-slate-200">
+                  <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-md bg-white text-slate-500 ring-1 ring-slate-200">
                     <Icon className="h-3 w-3" strokeWidth={2} />
                   </span>
 

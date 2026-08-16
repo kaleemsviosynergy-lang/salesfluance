@@ -68,8 +68,8 @@ export default function MegaMenuColumn({
       <div
         className={cn(
           itemsLayout === "grid"
-            ? "grid grid-cols-2 gap-x-5 gap-y-2"
-            : "space-y-2"
+            ? "grid grid-cols-1 gap-x-4 gap-y-2"
+            : "space-y-1"
         )}
       >
         {items.map((item) => (

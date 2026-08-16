@@ -71,9 +71,9 @@ const hero: HeroSection = {
   eyebrow: "Account-Based Marketing",
   headline: "Enterprise Deals Aren't Won by Campaigns. They're Won by Relationships.",
   subhead:
-    "Most ABM programs fail for a reason nobody puts in the case study: buying a platform that scores accounts and personalizes an email token doesn't create a relationship with a buying committee — it automates the appearance of one. SalesFluance builds ABM the way enterprise deals actually get won: research the account like you're about to sit across from it, map every person who has to say yes, and earn each of those conversations on purpose.",
-  primaryCta: { label: "Build My ABM Strategy", href: "/contact", variant: "primary" },
-  secondaryCta: { label: "Explore Related Services", href: "#related-services", variant: "text" },
+    "Most ABM programs treat accounts like lead lists. We treat them like revenue opportunities. We identify the right accounts, map every decision-maker that matters, and build the relationships that move enterprise deals forward.",
+  primaryCta: { label: "Book a Discovery Call", href: "/contact", variant: "primary" },
+  secondaryCta: { label: "Explore Our Process", href: "#service-process", variant: "text" },
 };
 
 const trustIndicators: TrustIndicatorsSection = {
@@ -95,7 +95,7 @@ const businessChallenges: ChallengeSection = {
     },
     {
       id: "challenge-fragmented-sales-marketing",
-      icon: "git-merge",
+      icon: "workflow",
       label: "Sales and Marketing Chase Different Accounts",
       description:
         "Marketing runs its target list, sales runs its own pipeline priorities, and the two rarely match — so the accounts getting the most nurture aren't the accounts sales is actually trying to close this quarter.",
@@ -138,7 +138,7 @@ const ourSolution: SolutionSection = {
     },
     {
       id: "pillar-executive-personalization",
-      icon: "edit-3",
+      icon: "message-square",
       title: "Executive-Level Personalization",
       description:
         "Messaging is built around each stakeholder's actual priorities and business context, not a template with variables swapped in.",
@@ -258,12 +258,9 @@ const whoThisIsFor: ICPSection = {
   ],
   companySizeRange: "200–10,000 Employees",
   industries: [
-    "technology-saas",
+    "saas",
     "it-services",
-    "cybersecurity",
-    "cloud-infrastructure",
-    "financial-services",
-    "healthcare-technology",
+    "healthcare",
   ],
 };
 
@@ -316,7 +313,7 @@ const deliverables: DeliverablesSection = {
   items: [
     { id: "deliverable-account-segmentation", icon: "layers", label: "Account Segmentation & Tiering Framework" },
     { id: "deliverable-buying-committee-maps", icon: "users", label: "Buying Committee Maps & Intelligence Briefs" },
-    { id: "deliverable-personalized-sequences", icon: "edit-3", label: "Personalized, Multi-Channel Outreach Sequences" },
+    { id: "deliverable-personalized-sequences", icon: "message-square", label: "Personalized, Multi-Channel Outreach Sequences" },
     { id: "deliverable-sales-enablement", icon: "briefcase", label: "Sales Enablement Playbooks" },
     { id: "deliverable-engagement-dashboards", icon: "bar-chart", label: "Engagement & Pipeline Dashboards" },
   ],
@@ -335,28 +332,28 @@ const technologyStack: TechnologySection = {
       ],
     },
     {
-      category: "Sales Engagement",
+      category: "Outreach",
       tools: [
         { name: "Outreach", icon: "message-square" },
-        { name: "Salesloft", icon: "send" },
+        { name: "Salesloft", icon: "message-square" },
       ],
     },
     {
-      category: "Intent Intelligence",
+      category: "Research",
       tools: [
-        { name: "6sense", icon: "activity" },
+        { name: "6sense", icon: "eye" },
         { name: "Demandbase", icon: "target" },
       ],
     },
     {
-      category: "Marketing Automation",
+      category: "Research",
       tools: [
-        { name: "HubSpot Marketing Hub", icon: "send" },
+        { name: "HubSpot Marketing Hub", icon: "mail" },
         { name: "Clearbit", icon: "database" },
       ],
     },
     {
-      category: "Research & Data",
+      category: "Research",
       tools: [
         { name: "ZoomInfo", icon: "globe" },
         { name: "Apollo", icon: "search" },
@@ -364,7 +361,7 @@ const technologyStack: TechnologySection = {
       ],
     },
     {
-      category: "Analytics & Reporting",
+      category: "Reporting",
       tools: [
         { name: "Google Analytics", icon: "bar-chart" },
         { name: "Looker Studio", icon: "pie-chart" },
@@ -377,7 +374,7 @@ const industriesServed: IndustrySection = {
   heading: "Industries We Serve",
   industries: [
     {
-      slug: "technology-saas",
+      slug: "saas",
       name: "Technology & SaaS",
       description: "Buying committee coverage built for recurring-revenue, multi-stakeholder purchase decisions.",
       icon: "cpu",
@@ -389,26 +386,8 @@ const industriesServed: IndustrySection = {
       icon: "building",
     },
     {
-      slug: "cybersecurity",
-      name: "Cybersecurity",
-      description: "Technical and executive stakeholder engagement for security purchase decisions with high scrutiny.",
-      icon: "shield-check",
-    },
-    {
-      slug: "cloud-infrastructure",
-      name: "Cloud & Infrastructure",
-      description: "Enterprise account targeting for complex, technically-evaluated infrastructure decisions.",
-      icon: "globe",
-    },
-    {
-      slug: "financial-services",
-      name: "Financial Services",
-      description: "Committee-based engagement built for compliance-conscious, procurement-heavy buying processes.",
-      icon: "trending-up",
-    },
-    {
-      slug: "healthcare-technology",
-      name: "Healthcare Technology",
+      slug: "healthcare",
+      name: "Healthcare",
       description: "Multi-stakeholder account programs for clinical, technical, and procurement decision-makers.",
       icon: "heart-pulse",
     },
@@ -475,13 +454,13 @@ const relatedServices: RelatedServiceSection = {
       slug: "demand-generation",
       name: "Demand Generation",
       outcomeLine: "Build market awareness before accounts are in-market",
-      icon: "book-open",
+      icon: "file-text",
     },
     {
       slug: "intent-data",
       name: "Intent Data & Account Intelligence",
       outcomeLine: "Prioritize accounts already showing buying signals",
-      icon: "activity",
+      icon: "zap",
     },
   ],
 };
@@ -534,7 +513,6 @@ const sections: SectionEntry[] = [
   { id: "section-faqs", type: "faqs", data: faqs },
   { id: "section-related-services", type: "relatedServices", data: relatedServices },
   { id: "section-final-cta", type: "finalCta", data: finalCta },
-  { id: "section-enterprise-answer", type: "enterpriseAnswer", data: enterpriseAnswer },
 ];
 
 // ---------------------------------------------------------------------------

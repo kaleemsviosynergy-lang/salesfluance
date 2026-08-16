@@ -14,12 +14,12 @@ import type { SectionComponent } from "@/components/engine/SectionRegistry";
 const WhoThisIsFor: SectionComponent<"whoThisIsFor"> = ({ data }) => {
   return (
     <Container>
-      <div className="mx-auto flex max-w-2xl flex-col items-center gap-4 text-center">
+      <div className="mx-auto max-w-3xl text-center">
         <FadeIn delay={0}>
           <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">{data.heading}</h2>
         </FadeIn>
         <FadeIn delay={0.06}>
-          <p className="text-lg text-slate-600">{data.intro}</p>
+          <p className="mt-4 text-base leading-7 text-slate-600 sm:text-lg">{data.intro}</p>
         </FadeIn>
       </div>
 
@@ -32,19 +32,11 @@ const WhoThisIsFor: SectionComponent<"whoThisIsFor"> = ({ data }) => {
       </FadeIn>
 
       <FadeIn delay={0.18}>
-        <Card className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">Company Size</p>
-            <p className="text-sm font-semibold text-slate-900">{data.companySizeRange}</p>
-          </div>
-          <div className="flex flex-wrap gap-2">
-            {data.industries.map((industry) => (
-              <Badge key={industry}>
-                <span className="capitalize">{industry.replace(/-/g, " ")}</span>
-              </Badge>
-            ))}
-          </div>
-        </Card>
+        <div className="mt-8 rounded-[24px] border border-slate-200 bg-slate-50/70 p-5">
+          <p className="text-sm font-medium text-slate-600">
+            Best suited for B2B companies selling complex, high-value solutions with multiple decision-makers.
+          </p>
+        </div>
       </FadeIn>
     </Container>
   );

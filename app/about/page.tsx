@@ -13,16 +13,6 @@ import {
 
 const values = [
   {
-    icon: ShieldCheck,
-    title: "Integrity",
-    description: "We believe in honesty, transparency and long-term business relationships.",
-  },
-  {
-    icon: Target,
-    title: "Results Driven",
-    description: "Everything we do is focused on measurable business growth.",
-  },
-  {
     icon: Lightbulb,
     title: "Innovation",
     description: "Human expertise combined with AI-powered execution.",

@@ -88,8 +88,15 @@ export default async function ServicePage({
   const validation = validateServiceConfig(config);
 
   if (!validation.valid) {
+    console.error(
+      "ABM VALIDATION ISSUES:",
+      JSON.stringify(validation.issues, null, 2)
+    );
+
     throw new Error(
-      `Invalid service configuration for "${slug}".`
+      `Invalid service configuration for "${slug}": ${JSON.stringify(
+        validation.issues
+      )}`
     );
   }
 

@@ -72,34 +72,35 @@ export const navigationItems: NavigationItem[] = [
     megaMenu: {
       groups: [
         {
-          title: "Demand Generation",
-
-          links: [
-            {
-              label: "Lead Generation",
-              href: "/services/lead-generation",
-              description: "Build predictable B2B sales pipelines.",
-            },
-
-            {
-              label: "Demand Generation",
-              href: "/services/demand-generation",
-              description: "Create and capture market demand.",
-            },
-
-            {
-              label: "Appointment Setting",
-              href: "/services/appointment-setting",
-              description: "Book qualified sales meetings.",
-            },
-
-            {
-              label: "Telemarketing",
-              href: "/services/telemarketing",
-              description: "Human-led outbound conversations.",
-            },
-          ],
-        },
+  title: "Demand Generation",
+  links: [
+    {
+      label: "Lead Generation",
+      href: "/services/lead-generation",
+      description: "Build predictable B2B sales pipelines.",
+    },
+    {
+      label: "Demand Generation",
+      href: "/services/demand-generation",
+      description: "Create and capture market demand.",
+    },
+    {
+      label: "Account-Based Marketing",
+      href: "/services/account-based-marketing",
+      description: "Engage high-value accounts with targeted revenue strategies.",
+    },
+    {
+      label: "Appointment Setting",
+      href: "/services/appointment-setting",
+      description: "Book qualified sales meetings.",
+    },
+    {
+      label: "Telemarketing",
+      href: "/services/telemarketing",
+      description: "Human-led outbound conversations.",
+    },
+  ],
+},
 
         {
           title: "Data Solutions",
@@ -182,29 +183,54 @@ export const navigationItems: NavigationItem[] = [
 
           links: [
             {
-              label: "Healthcare",
-              href: "/industries/healthcare",
-            },
+  label: "Healthcare",
+  href: "/industries/healthcare",
+},
 
-            {
-              label: "SaaS",
-              href: "/industries/saas",
-            },
+{
+  label: "SaaS",
+  href: "/industries/saas",
+},
 
-            {
-              label: "IT Services",
-              href: "/industries/it-services",
-            },
+{
+  label: "IT Services",
+  href: "/industries/it-services",
+},
 
-            {
-              label: "Finance",
-              href: "/industries/finance",
-            },
+{
+  label: "Finance",
+  href: "/industries/finance",
+},
 
-            {
-              label: "Manufacturing",
-              href: "/industries/manufacturing",
-            },
+{
+  label: "Manufacturing",
+  href: "/industries/manufacturing",
+},
+
+{
+  label: "Logistics",
+  href: "/industries/logistics",
+},
+
+{
+  label: "Education",
+  href: "/industries/education",
+},
+
+{
+  label: "Real Estate",
+  href: "/industries/real-estate",
+},
+
+{
+  label: "Retail & Ecommerce",
+  href: "/industries/retail-ecommerce",
+},
+
+{
+  label: "Professional Services",
+  href: "/industries/professional-services",
+},
           ],
         },
       ],

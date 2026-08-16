@@ -3,6 +3,7 @@ import Logo from "./Logo";
 import NavLink from "./NavLink";
 import CTAButton from "./CTAButton";
 import MegaMenu from "@/components/navigation/MegaMenu";
+import IndustriesMegaMenu from "@/components/navigation/IndustriesMegaMenu"
 import { cn } from "@/lib/utils";
 import type {
   NavigationItem,
@@ -119,8 +120,15 @@ export default function Navigation({ items, cta, className }: NavigationProps): 
                   <ChevronDownIcon />
                 </button>
                 <div className={megaMenuVisibility}>
-                  <MegaMenu groups={item.megaMenu.groups} featured={item.megaMenu.featured} />
-                </div>
+  {item.label === "Industries" ? (
+    <IndustriesMegaMenu />
+  ) : (
+    <MegaMenu
+      groups={item.megaMenu.groups}
+      featured={item.megaMenu.featured}
+    />
+  )}
+</div>
               </>
             ) : (
               <NavLink href={item.href}>

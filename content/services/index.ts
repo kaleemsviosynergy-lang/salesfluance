@@ -25,6 +25,7 @@ import type { ServicePageConfig, ServiceRegistry } from "../../types/service";
 import { SERVICE_SLUGS, type ServiceSlug } from "../../types/shared";
 import { leadGenerationConfig } from "./lead-generation";
 import { demandGenerationConfig } from "./demand-generation";
+import { accountBasedMarketingConfig } from "./account-based-marketing";
 
 // ---------------------------------------------------------------------------
 // Registry
@@ -39,6 +40,7 @@ import { demandGenerationConfig } from "./demand-generation";
 export const serviceRegistry: Partial<ServiceRegistry> = {
   "lead-generation": leadGenerationConfig,
   "demand-generation": demandGenerationConfig,
+  "account-based-marketing": accountBasedMarketingConfig,
 };
 
 // ---------------------------------------------------------------------------

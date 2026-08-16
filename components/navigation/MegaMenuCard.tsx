@@ -48,22 +48,22 @@ export default function MegaMenuCard({
     <Link
       href={href}
       className={cn(
-        "group flex min-h-[72px] items-start gap-3.5 rounded-xl border border-transparent p-3.5 transition-all duration-200 ease-out",
-        "hover:-translate-y-0.5 hover:border-slate-200 hover:bg-slate-50/80 hover:shadow-[0_8px_20px_-12px_rgba(15,23,42,0.18)]",
+        "group flex [56px] items-start gap-3 rounded-xl border border-transparent px-3 py-2.5 transition-all duration-200 ease-out",
+        "hover:-translate-y-0.5 hover:border-slate-200 hover:bg-slate-50/80 hover:shadow-sm",
         className
       )}
     >
       {/* Icon */}
       <div
         className="
-          flex h-9 w-9 shrink-0 items-center justify-center
+          flex h-7 w-7 shrink-0 items-center justify-center
           rounded-lg
           bg-slate-100
           text-slate-500
           transition-all
           duration-200
           ease-out
-          group-hover:scale-105
+          group-hover:text-blue-600
           group-hover:bg-blue-50
           group-hover:text-blue-600
         "
@@ -82,12 +82,12 @@ export default function MegaMenuCard({
       </div>
 
       {/* Content */}
-      <div className="min-w-0 flex-1 pt-0.5">
+      <div className="min-w-0 flex-1 min-w-0 flex-1">
         <div className="flex items-center gap-2">
           <h4
             className="
               truncate
-              text-[0.9375rem]
+              text-sm
               font-semibold
               text-slate-900
               transition-colors
@@ -103,8 +103,8 @@ export default function MegaMenuCard({
             <span
               className="
                 inline-flex shrink-0 items-center rounded-full border
-                border-blue-100 bg-blue-50 px-2 py-0.5
-                text-[10px] font-semibold uppercase tracking-wide text-blue-600
+                border-blue-100 bg-blue-50 px-1.5 py-0
+                text-[9px] font-semibold uppercase tracking-wide text-blue-600
               "
             >
               Featured
@@ -114,10 +114,10 @@ export default function MegaMenuCard({
 
         <p
           className="
-            mt-1.5
+            mt-0.5
             line-clamp-2
             text-xs
-            leading-5
+            leading-4
             text-slate-500
           "
         >
