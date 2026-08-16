@@ -17,13 +17,13 @@ export function ServicePageEngine({
   config,
 }: ServicePageEngineProps): React.JSX.Element {
   return (
-    <>
+    <div className="[&>section+section]:border-t [&>section+section]:border-slate-200/70">
       {config.sections.map((section) => (
         <SectionRenderer
           key={section.id}
           entry={section}
         />
       ))}
-    </>
+    </div>
   );
 }
