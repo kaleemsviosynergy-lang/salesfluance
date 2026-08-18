@@ -8,6 +8,7 @@ export type CaseStudy = {
 
   industry: string;
   service: string;
+  tags: string[];
 
   challenge: string;
   approach: string;
@@ -38,6 +39,8 @@ export const caseStudies: CaseStudy[] = [
     industry: "[Industry]",
 
     service: "[Service / Engagement]",
+
+    tags: ["[Industry]", "[Service / Engagement]"],
 
     challenge:
       "[Describe the business problem, commercial challenge, or growth constraint the client needed to solve.]",
