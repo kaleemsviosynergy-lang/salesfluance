@@ -119,9 +119,9 @@ export default function Navbar({ className }: NavbarProps): React.JSX.Element {
           <Navigation items={mainNavigation} className="flex-1" />
 
           <div className="hidden lg:flex">
-            <CTAButton href={primaryCta.href}>
-              {primaryCta.label}
-            </CTAButton>
+            <CTAButton href={primaryCta.href} size="sm">
+  {primaryCta.label}
+</CTAButton>
           </div>
 
           <button

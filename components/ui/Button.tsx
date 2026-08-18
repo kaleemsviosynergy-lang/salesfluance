@@ -60,7 +60,7 @@ const baseStyles =
 
 const variantStyles: Record<ButtonVariant, string> = {
   primary:
-    "bg-indigo-600 text-white hover:bg-indigo-500 active:bg-indigo-700",
+    "bg-cyan-400 text-slate-950 hover:bg-cyan-300 active:bg-cyan-400",
   secondary:
     "bg-slate-900 text-white hover:bg-slate-800 active:bg-slate-950",
   text:
