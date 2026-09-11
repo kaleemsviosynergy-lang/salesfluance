@@ -1,7 +1,12 @@
+import type { Metadata } from "next";
+
 import "./globals.css";
 
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import { buildMetadata } from "@/lib/seo/buildMetadata";
+
+export const metadata: Metadata = buildMetadata();
 
 export default function RootLayout({
   children,
@@ -11,7 +16,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-
         <Navbar />
 
         <main className="w-full">
@@ -19,7 +23,6 @@ export default function RootLayout({
         </main>
 
         <Footer />
-
       </body>
     </html>
   );
