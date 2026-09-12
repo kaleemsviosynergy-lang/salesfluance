@@ -1,8 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown } from "lucide-react";
+import OpenBookProcess from "@/components/process/OpenBookProcess";
 
 /**
  * SalesFluance Process — "The SalesFluance Method"
@@ -13,12 +12,15 @@ import { ChevronDown } from "lucide-react";
  *   07 Validate) rather than as a separate QA track — this is the
  *   literal visual proof of "quality isn't the final step, it's built
  *   into every step," not just a headline claim.
- * - Desktop: one shared Ink Black detail panel, content swaps by
- *   activeStep. Not 8 separate cards.
- * - Mobile: vertical accordion, same data, no horizontal layout forced.
- * - No new visual language: reuses the connecting-line/node pattern
- *   from Approach, the rounded-2xl Ink Black panel from Revenue
- *   Readiness, and font-mono labels used throughout the site.
+ * - The eight stages are presented as an interactive open-book spread
+ *   (OpenBookProcess): an editorial two-page layout on tablet/desktop
+ *   and a single readable card on mobile, with Previous/Next, direct
+ *   step navigation, and a page-turn transition. This component owns
+ *   presentation only — STAGES below remains the one source of truth
+ *   for all process copy, exactly as it was for the previous panel.
+ * - No new visual language: font-mono labels, the Ink Black (#0A0E14)
+ *   and cyan brand tokens, and the rounded panel conventions used
+ *   throughout the site are reused, not reinvented.
  */
 
 interface Stage {
@@ -134,9 +136,6 @@ const STAGES: Stage[] = [
 ];
 
 export default function Process(): React.JSX.Element {
-  const [activeStep, setActiveStep] = React.useState<number>(0);
-  const active = STAGES[activeStep];
-
   return (
     <section
       id="process"
@@ -166,204 +165,12 @@ export default function Process(): React.JSX.Element {
           </p>
         </div>
 
-        {/* ============================================================
-            DESKTOP — horizontal line, shared detail panel
-        ============================================================ */}
-        <div className="mt-16 hidden overflow-hidden rounded-2xl border border-cyan-400/20 bg-[#0A0E14] lg:block">
-          <div className="p-10 xl:p-12">
-            {/* Node line */}
-            <div className="relative">
-              <div className="absolute left-0 right-0 top-5 h-px bg-white/10" />
-
-              <motion.div
-                aria-hidden="true"
-                className="absolute left-0 top-5 h-px origin-left bg-cyan-400/50"
-                style={{ width: "100%" }}
-                initial={{ scaleX: 0 }}
-                whileInView={{ scaleX: 1 }}
-                viewport={{ once: true, amount: 0.4 }}
-                transition={{ duration: 1.4, ease: "easeInOut" }}
-              />
-
-              <div className="relative grid grid-cols-8 gap-2">
-                {STAGES.map((stage, index) => {
-                  const isActive = index === activeStep;
-
-                  return (
-                    <button
-                      key={stage.number}
-                      type="button"
-                      onClick={() => setActiveStep(index)}
-                      aria-pressed={isActive}
-                      className="group flex flex-col items-center gap-3 pt-0 text-center"
-                    >
-                      <span
-                        className={[
-                          "relative z-10 flex h-10 w-10 items-center justify-center rounded-full border font-mono text-[10px] font-semibold transition-colors duration-200",
-                          isActive
-                            ? "border-cyan-400 bg-cyan-400/10 text-cyan-400"
-                            : "border-white/15 bg-[#0A0E14] text-slate-500 group-hover:border-cyan-400/40 group-hover:text-cyan-400/70",
-                        ].join(" ")}
-                      >
-                        {stage.number}
-
-                        {stage.isQA && (
-                          <span
-                            aria-hidden="true"
-                            className="absolute -right-0.5 -top-0.5 h-2 w-2 rounded-full border border-[#0A0E14] bg-cyan-400"
-                          />
-                        )}
-                      </span>
-
-                      <span
-                        className={[
-                          "text-xs font-medium transition-colors duration-200",
-                          isActive
-                            ? "text-white"
-                            : "text-slate-500 group-hover:text-slate-300",
-                        ].join(" ")}
-                      >
-                        {stage.title}
-                      </span>
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* Shared detail panel */}
-            <div className="mt-10 border-t border-white/10 pt-8">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={active.number}
-                  initial={{ opacity: 0, y: 6 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -6 }}
-                  transition={{ duration: 0.2, ease: "easeOut" }}
-                >
-                  <div className="flex items-start justify-between gap-6">
-                    <div>
-                      <div className="flex items-center gap-3">
-                        <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-cyan-400">
-                          {active.number} / {active.title}
-                        </span>
-
-                        {active.isQA && (
-                          <span className="inline-flex items-center gap-1.5 border border-cyan-400/25 bg-cyan-400/5 px-2 py-0.5 font-mono text-[9px] font-semibold uppercase tracking-[0.14em] text-cyan-400">
-                            QA checkpoint
-                          </span>
-                        )}
-                      </div>
-
-                      <h3 className="mt-3 text-2xl font-semibold tracking-[-0.02em] text-white">
-                        {active.summary}
-                      </h3>
-                    </div>
-                  </div>
-
-                  <div className="mt-8 grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
-                    <DetailField label="What happens" value={active.detail.whatHappens} />
-                    <DetailField label="What we check" value={active.detail.whatWeCheck} />
-                    <DetailField label="What the client receives" value={active.detail.clientReceives} />
-                    <DetailField label="Why it matters" value={active.detail.whyItMatters} />
-                  </div>
-                </motion.div>
-              </AnimatePresence>
-            </div>
-          </div>
-        </div>
-
-        {/* ============================================================
-            MOBILE — vertical accordion
-        ============================================================ */}
-        <div className="mt-12 overflow-hidden rounded-2xl border border-cyan-400/20 bg-[#0A0E14] lg:hidden">
-          {STAGES.map((stage, index) => {
-            const isOpen = index === activeStep;
-
-            return (
-              <div
-                key={stage.number}
-                className="border-b border-white/10 last:border-b-0"
-              >
-                <button
-                  type="button"
-                  onClick={() => setActiveStep(isOpen ? -1 : index)}
-                  aria-expanded={isOpen}
-                  aria-controls={`stage-panel-${stage.number}`}
-                  className="flex w-full items-center justify-between gap-4 px-5 py-5 text-left"
-                >
-                  <div className="flex items-center gap-4">
-                    <span
-                      className={[
-                        "relative flex h-8 w-8 shrink-0 items-center justify-center rounded-full border font-mono text-[10px] font-semibold",
-                        isOpen
-                          ? "border-cyan-400 bg-cyan-400/10 text-cyan-400"
-                          : "border-white/15 text-slate-500",
-                      ].join(" ")}
-                    >
-                      {stage.number}
-
-                      {stage.isQA && (
-                        <span
-                          aria-hidden="true"
-                          className="absolute -right-0.5 -top-0.5 h-2 w-2 rounded-full border border-[#0A0E14] bg-cyan-400"
-                        />
-                      )}
-                    </span>
-
-                    <span
-                      className={[
-                        "text-sm font-medium",
-                        isOpen ? "text-white" : "text-slate-300",
-                      ].join(" ")}
-                    >
-                      {stage.title}
-                    </span>
-                  </div>
-
-                  <ChevronDown
-                    aria-hidden="true"
-                    className={[
-                      "h-4 w-4 shrink-0 text-slate-500 transition-transform duration-200",
-                      isOpen ? "rotate-180 text-cyan-400" : "",
-                    ].join(" ")}
-                  />
-                </button>
-
-                <AnimatePresence initial={false}>
-                  {isOpen && (
-                    <motion.div
-                      id={`stage-panel-${stage.number}`}
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.2, ease: "easeOut" }}
-                      className="overflow-hidden"
-                    >
-                      <div className="px-5 pb-6">
-                        {stage.isQA && (
-                          <span className="mb-4 inline-flex items-center gap-1.5 border border-cyan-400/25 bg-cyan-400/5 px-2 py-0.5 font-mono text-[9px] font-semibold uppercase tracking-[0.14em] text-cyan-400">
-                            QA checkpoint
-                          </span>
-                        )}
-
-                        <p className="text-sm leading-6 text-slate-300">
-                          {stage.summary}
-                        </p>
-
-                        <div className="mt-5 space-y-4">
-                          <DetailField label="What happens" value={stage.detail.whatHappens} />
-                          <DetailField label="What we check" value={stage.detail.whatWeCheck} />
-                          <DetailField label="What the client receives" value={stage.detail.clientReceives} />
-                          <DetailField label="Why it matters" value={stage.detail.whyItMatters} />
-                        </div>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            );
-          })}
+        {/* Interactive open-book presentation of the eight process stages.
+            Replaces the previous dark desktop detail panel and mobile
+            accordion with one responsive component; STAGES (above) is
+            passed straight through, unmodified and not duplicated. */}
+        <div className="mt-16">
+          <OpenBookProcess stages={STAGES} />
         </div>
 
         {/* Quality principle statement */}
@@ -386,23 +193,5 @@ export default function Process(): React.JSX.Element {
         </div>
       </div>
     </section>
-  );
-}
-
-function DetailField({
-  label,
-  value,
-}: {
-  label: string;
-  value: string;
-}): React.JSX.Element {
-  return (
-    <div>
-      <p className="font-mono text-[9px] font-semibold uppercase tracking-[0.14em] text-slate-500">
-        {label}
-      </p>
-
-      <p className="mt-2 text-sm leading-6 text-slate-300">{value}</p>
-    </div>
   );
 }
