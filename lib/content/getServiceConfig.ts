@@ -15,7 +15,7 @@
 
 import { getServiceConfig as readFromRegistry } from "../../content/services";
 import { validateServiceConfig, type ValidationIssue } from "./validateServiceConfig";
-import type { ServicePageConfig } from "../../types/service";
+import type { ServicePageConfig, SectionEntry } from "../../types/service";
 import { SERVICE_SLUGS, type ServiceSlug } from "../../types/shared";
 
 // ---------------------------------------------------------------------------
@@ -153,4 +153,73 @@ export async function tryGetServiceConfig(
     }
     throw error;
   }
+}
+
+// ---------------------------------------------------------------------------
+// Related-service link gating (SVC-02)
+//
+// `content/services/*.ts` authors each service's "Related Services" section
+// as a small, hand-picked, hardcoded array of `RelatedServiceRef` (slug +
+// display copy) — see `RelatedServiceSection` in types/service.ts. That
+// authored relationship data is never mutated here: a related service that
+// is currently unpublished simply is not *linked to* from a live page
+// today, it does not have its relationship deleted from the content model.
+// If it is later approved for publication, the existing relationship
+// reappears automatically with zero content-file changes.
+//
+// This filtering happens once, at the route/page boundary, rather than
+// inside `RelatedServices.tsx` or the generic `SectionRenderer`/
+// `SECTION_REGISTRY` dispatch: `SectionComponent<T>` is a synchronous
+// `ComponentType`, and that registry's dispatch is deliberately type-erased
+// and exhaustive across all 17 section types specifically so that
+// `ServicePageEngine` and `SectionRenderer` never need to change as
+// sections are implemented. Giving one section type an async data
+// dependency there would either break that synchronous contract or need a
+// special case that undermines the registry's "no other engine file
+// changes" guarantee. The route handler is already async and is already
+// the single place SVC-01's publishing gate is applied to the *current*
+// service, so reusing the same `tryGetServiceConfig` call for each related
+// target here keeps the gate in exactly one place without touching the
+// engine, the registry, or any section component.
+// ---------------------------------------------------------------------------
+
+/**
+ * Returns a copy of `config` whose `relatedServices` section (if present)
+ * has been filtered down to only targets that are currently publicly
+ * visible per the same gate `getServiceConfig`/`tryGetServiceConfig`
+ * enforce above (`status === "published"` — a related-service *link* on a
+ * live page is always held to the strict production gate, independent of
+ * any `allowUnpublished` preview override the current page itself may be
+ * using).
+ *
+ * A missing, invalid, draft, or review target is simply omitted from the
+ * copy — `tryGetServiceConfig` never throws for a content-state error, so
+ * a bad or not-yet-published related-service reference can never break
+ * rendering of the current (published) page. Neither `config` nor the
+ * content file's authored relationship data are mutated; every other
+ * section is passed through unchanged.
+ */
+export async function filterPublishedRelatedServices(
+  config: ServicePageConfig,
+): Promise<ServicePageConfig> {
+  const sections = await Promise.all(
+    config.sections.map(async (section): Promise<SectionEntry> => {
+      if (section.type !== "relatedServices") {
+        return section;
+      }
+
+      const visibility = await Promise.all(
+        section.data.services.map((ref) => tryGetServiceConfig(ref.slug)),
+      );
+
+      const services = section.data.services.filter((_, index) => visibility[index].ok);
+
+      return {
+        ...section,
+        data: { ...section.data, services },
+      };
+    }),
+  );
+
+  return { ...config, sections };
 }

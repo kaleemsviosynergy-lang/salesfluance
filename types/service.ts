@@ -285,6 +285,13 @@ export interface FAQItem {
 
 export interface FAQSection {
   heading: string;
+  /**
+   * Optional page-specific introduction paragraph shown above the FAQ
+   * list. When omitted, FAQs.tsx falls back to its existing shared
+   * default copy, so every service that doesn't set this keeps
+   * displaying exactly what it displayed before this field existed.
+   */
+  intro?: string;
   items: FAQItem[];
 }
 

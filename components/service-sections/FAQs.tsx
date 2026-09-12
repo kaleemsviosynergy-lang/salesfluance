@@ -28,8 +28,7 @@ const FAQs: SectionComponent<"faqs"> = ({ data }) => {
 
           <FadeIn delay={0.06}>
             <p className="max-w-2xl text-base leading-7 text-slate-600 lg:ml-auto">
-              Clear answers to the questions revenue teams typically ask
-              before introducing an account-based growth program.
+              {data.intro ?? "Clear answers to the questions revenue teams typically ask before introducing an account-based growth program."}
             </p>
           </FadeIn>
         </div>

@@ -351,31 +351,33 @@ const successMetrics: MetricsSection = {
 
 const faqs: FAQSection = {
   heading: "Frequently Asked Questions",
+  intro:
+    "Clear answers to common questions about how SalesFluance plans, delivers, measures, and aligns each program with your revenue objectives.",
   items: [
     {
       id: "faq-timeline",
-      question: "How long until we see qualified leads?",
-      answer: "[PLACEHOLDER — Founder review]",
+      question: "How long does it take to see results from lead generation?",
+      answer: "Timelines depend on your target market, sales cycle, audience size, and campaign readiness. SalesFluance begins by defining your ideal customer profile, researching relevant accounts, verifying decision-makers, and preparing the outreach strategy. Early engagement indicators may appear after launch, while qualified opportunities develop as targeting, messaging, and channel performance are continuously refined. We establish realistic expectations and success measures during discovery rather than promising a fixed outcome by a specific date.",
     },
     {
       id: "faq-data-source",
       question: "Where does your contact data come from?",
-      answer: "[PLACEHOLDER — Founder review]",
+      answer: "SalesFluance combines reputable business-data platforms, professional networks, publicly available company information, market research, and client-approved sources. Data is then reviewed and human-verified for relevance, role accuracy, and alignment with the agreed target criteria before it is used in outreach. This approach helps reduce the risks associated with relying on a single static or unverified database.",
     },
     {
       id: "faq-crm-integration",
-      question: "Does this integrate with our existing CRM?",
-      answer: "[PLACEHOLDER — Founder review]",
+      question: "Can SalesFluance work with our existing CRM?",
+      answer: "Yes. SalesFluance is designed to work alongside existing sales and marketing systems rather than requiring clients to replace their established technology. During discovery, we review your CRM structure, lead stages, required fields, ownership rules, and handoff process. The operating model and level of integration are then defined around your existing workflow and technical requirements.",
     },
     {
       id: "faq-contract-length",
-      question: "Is there a minimum engagement length?",
-      answer: "[PLACEHOLDER — Founder review]",
+      question: "How does SalesFluance structure its lead generation engagements?",
+      answer: "Each engagement is structured around the client’s commercial objectives, ideal customer profile, target market, sales process, and preferred operating cadence. The work typically includes discovery, account and decision-maker research, campaign planning, verified data preparation, coordinated outreach, lead qualification, reporting, and ongoing optimization. The final scope is tailored to the opportunity rather than built around a generic lead package.",
     },
     {
       id: "faq-industries",
-      question: "Do you only work with the industries listed here?",
-      answer: "[PLACEHOLDER — Founder review]",
+      question: "Which industries does SalesFluance support?",
+      answer: "SalesFluance supports B2B companies across a range of industries. While the website highlights sectors where our approach is especially relevant, those sectors do not represent a fixed limitation. Engagement fit is assessed based on the target market, buying environment, audience, decision-making complexity, commercial objectives, and SalesFluance’s ability to create credible value.",
     },
   ],
 };

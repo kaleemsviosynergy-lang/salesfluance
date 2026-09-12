@@ -8,6 +8,7 @@ import { getImplementedServiceSlugs } from "@/content/services";
 import {
   getServiceConfig,
   tryGetServiceConfig,
+  filterPublishedRelatedServices,
   ServiceConfigNotFoundError,
   ServiceConfigUnpublishedError,
 } from "@/lib/content/getServiceConfig";
@@ -82,6 +83,9 @@ export async function generateMetadata({
  * Gated Content Service (lib/content/getServiceConfig — validates AND
  * enforces the editorial publishing gate in one place)
  *   ↓
+ * Related-service link gate (filterPublishedRelatedServices — SVC-02;
+ * same abstraction, applied to each Related Services target)
+ *   ↓
  * Service Page Engine
  *
  * `getServiceConfig` (the throwing, gated abstraction — not the raw
@@ -92,6 +96,11 @@ export async function generateMetadata({
  * to propagate as a thrown error rather than being silently mapped to a
  * 404, so validation failures are still loud in build/dev the same way
  * they were before this fix.
+ *
+ * Before rendering, `filterPublishedRelatedServices` re-applies that same
+ * gate to every target in this page's own Related Services section, so a
+ * published page can never link out to a draft/review/invalid service —
+ * see SVC-02 in the Master Audit.
  */
 export default async function ServicePage({
   params,
@@ -113,5 +122,7 @@ export default async function ServicePage({
     throw error;
   }
 
-  return <ServicePageEngine config={config} />;
+  const visibleConfig = await filterPublishedRelatedServices(config);
+
+  return <ServicePageEngine config={visibleConfig} />;
 }

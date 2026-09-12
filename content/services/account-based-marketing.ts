@@ -413,33 +413,33 @@ const faqs: FAQSection = {
   items: [
     {
       id: "faq-abm-vs-lead-generation",
-      question: "How is ABM different from Lead Generation?",
-      answer: "[PLACEHOLDER — Founder review]",
+      question: "How is ABM different from lead generation?",
+      answer: "Lead generation typically identifies and qualifies individual prospects who fit an agreed customer profile. Account-based marketing begins with selected high-value accounts and coordinates research, messaging, content, and outreach across the stakeholders involved in each buying decision. ABM considers the account and its wider buying committee as the opportunity—not only the first person who responds.",
     },
     {
       id: "faq-company-size-fit",
-      question: "What company size is a good fit for ABM?",
-      answer: "[PLACEHOLDER — Founder review]",
+      question: "What types of companies are a good fit for ABM?",
+      answer: "ABM is generally best suited to B2B companies pursuing valuable, complex opportunities involving multiple decision-makers and meaningful account-level research. Fit is determined less by company headcount and more by deal value, sales-cycle complexity, target-market clarity, buying-committee structure, and the commercial importance of each account. SalesFluance assesses these factors before recommending an ABM program.",
     },
     {
       id: "faq-timeline",
-      question: "How long before we see results?",
-      answer: "[PLACEHOLDER — Founder review]",
+      question: "How long does it take to see results from ABM?",
+      answer: "ABM results depend on account complexity, existing brand awareness, buying readiness, stakeholder accessibility, sales-cycle length, and the level of personalization required. Early progress may appear through increased account engagement, stronger buying-committee coverage, new stakeholder conversations, and sales-accepted accounts. Pipeline and revenue outcomes usually require sustained engagement, so SalesFluance establishes account-specific milestones rather than promising a universal timeline.",
     },
     {
       id: "faq-sales-team-involvement",
-      question: "Do you work directly with our sales team?",
-      answer: "[PLACEHOLDER — Founder review]",
+      question: "Does SalesFluance work directly with our sales team?",
+      answer: "Yes. SalesFluance works with sales and marketing stakeholders to align target accounts, account priorities, buying-committee intelligence, messaging, outreach responsibilities, qualification criteria, and opportunity handoffs. Regular reporting and feedback help keep the program connected to live sales priorities and account developments. The specific collaboration model is agreed upon during planning.",
     },
     {
       id: "faq-international-campaigns",
-      question: "Can you support international ABM campaigns?",
-      answer: "[PLACEHOLDER — Founder review]",
+      question: "Can SalesFluance support international ABM campaigns?",
+      answer: "Yes. SalesFluance can support international ABM campaigns by adapting account research, decision-maker mapping, messaging, and engagement planning to the selected markets. The campaign scope is defined around the client’s target regions, audience, commercial objectives, and market requirements. Geographic coverage, languages, channels, and other market-specific needs are confirmed during discovery before execution begins.",
     },
     {
       id: "faq-minimum-account-list",
-      question: "Do we need a large target account list to get started?",
-      answer: "[PLACEHOLDER — Founder review]",
+      question: "Do we need a large target-account list to get started?",
+      answer: "No. ABM is driven by account relevance and commercial potential—not list volume. A focused group of well-selected accounts can provide a stronger starting point when those accounts match the ideal customer profile and justify deeper research and personalization. SalesFluance can help evaluate, prioritize, segment, and tier the available accounts before the program begins.",
     },
   ],
 };

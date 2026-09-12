@@ -359,36 +359,38 @@ const successMetrics: MetricsSection = {
 
 const faqs: FAQSection = {
   heading: "Frequently Asked Questions",
+  intro:
+    "Clear answers to common questions about how SalesFluance plans, delivers, measures, and aligns each program with your revenue objectives.",
   items: [
     {
       id: "faq-what-is-demand-generation",
-      question: "What is Demand Generation?",
-      answer: "[PLACEHOLDER — Founder review]",
+      question: "What is demand generation?",
+      answer: "Demand generation is the process of building awareness, relevance, and buying interest among the audiences most likely to need your solution. It helps potential buyers understand the business problem, recognize its importance, and engage when the timing is appropriate. SalesFluance connects audience research, buyer education, multi-channel engagement, intent signals, and sales alignment to turn market attention into measurable commercial opportunity.",
     },
     {
       id: "faq-demand-vs-lead-generation",
-      question: "How is Demand Generation different from Lead Generation?",
-      answer: "[PLACEHOLDER — Founder review]",
+      question: "How is demand generation different from lead generation?",
+      answer: "Demand generation creates awareness and interest before a buyer is ready for a sales conversation. Lead generation identifies, qualifies, and engages people or accounts that may be ready to move toward an opportunity. Demand generation builds and educates the market; lead generation converts relevant interest into qualified pipeline. The two can operate together as connected parts of the same revenue strategy.",
     },
     {
       id: "faq-timeline",
-      question: "How long before results are visible?",
-      answer: "[PLACEHOLDER — Founder review]",
+      question: "How long does it take to see results from demand generation?",
+      answer: "Demand generation usually develops progressively because awareness, trust, and buying intent are built across multiple interactions. Early indicators may include engagement from relevant accounts, increased content interaction, stronger buying-committee coverage, and emerging intent signals. Pipeline influence generally develops over a longer period and depends on market awareness, sales-cycle length, program scope, and campaign consistency. SalesFluance defines appropriate milestones during planning instead of applying one timeline to every market.",
     },
     {
       id: "faq-abm-support",
-      question: "Do you support ABM campaigns?",
-      answer: "[PLACEHOLDER — Founder review]",
+      question: "Does SalesFluance support account-based demand generation?",
+      answer: "Yes. SalesFluance can build demand generation around selected accounts, account segments, and buying committees. Research, content, messaging, channels, and engagement signals are aligned with the priorities of the targeted organizations and stakeholders. This allows demand generation to create awareness within high-value accounts while supporting a broader account-based marketing strategy.",
     },
     {
       id: "faq-demand-quality",
-      question: "How do you measure demand quality?",
-      answer: "[PLACEHOLDER — Founder review]",
+      question: "How does SalesFluance measure demand quality?",
+      answer: "Demand quality is measured by more than impressions, clicks, or form submissions. SalesFluance evaluates whether engagement is coming from relevant accounts and stakeholders, whether buying-committee coverage is improving, whether intent is becoming stronger, and whether demand is progressing toward sales acceptance and pipeline. The exact metrics are agreed upon during planning and aligned with the client’s revenue objectives.",
     },
     {
       id: "faq-works-with-sdr-team",
       question: "Can Demand Generation work alongside our existing SDR team?",
-      answer: "[PLACEHOLDER — Founder review]",
+      answer: "Yes. SalesFluance can work alongside an internal SDR team by supporting audience research, account intelligence, buyer education, signal qualification, campaign execution, and lead-handoff design. Responsibilities are defined with the client so both teams understand who owns research, outreach, qualification, follow-up, and reporting. The objective is to strengthen the existing sales development motion, not create a competing workflow.",
     },
   ],
 };
