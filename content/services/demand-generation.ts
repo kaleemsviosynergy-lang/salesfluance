@@ -411,6 +411,12 @@ const relatedServices: RelatedServiceSection = {
       outcomeLine: "Improve engagement and conversions",
       icon: "mail",
     },
+    {
+      slug: "content-syndication",
+      name: "Content Syndication",
+      outcomeLine: "Expand content reach to the right buyers",
+      icon: "file-text",
+    },
   ],
 };
 
@@ -459,11 +465,11 @@ export const demandGenerationConfig: ServicePageConfig = {
   category: "Demand Generation",
   status: "published",
   seo: {
-    title: "Demand Generation Services | SalesFluance",
+    title: "B2B Demand Generation Agency | SalesFluance",
     description:
-      "[PLACEHOLDER — Founder review] Build sustained market awareness and qualified buying intent with education-led, multi-channel Demand Generation from SalesFluance.",
+      "[PLACEHOLDER — Founder review] SalesFluance is a B2B demand generation agency building market awareness and genuine buying intent before pipeline capture begins.",
     canonical: "/services/demand-generation",
-    keywords: ["B2B demand generation", "pipeline growth", "buyer education", "ABM nurture"],
+    keywords: ["B2B demand generation agency"],
   },
   sections,
   provenance: {

@@ -57,7 +57,7 @@ const utilityBar: Navigation = {
 };
 
 const hero: HeroSection = {
-  eyebrow: "Demand Generation",
+  eyebrow: "Lead Generation",
   headline: "Build a Predictable Sales Pipeline",
   subhead:
     "SalesFluance identifies, researches, and engages qualified decision-makers so your team spends time closing, not prospecting — because most pipeline problems aren't a sales execution problem, they're a research problem wearing a sales costume.",
@@ -399,6 +399,12 @@ const relatedServices: RelatedServiceSection = {
       outcomeLine: "Improve engagement and conversions",
       icon: "mail",
     },
+    {
+      slug: "demand-generation",
+      name: "Demand Generation",
+      outcomeLine: "Create and capture market demand",
+      icon: "sparkles",
+    },
   ],
 };
 
@@ -447,11 +453,17 @@ export const leadGenerationConfig: ServicePageConfig = {
   category: "Demand Generation",
   status: "published",
   seo: {
-    title: "Lead Generation Services | SalesFluance",
+    title: "B2B Lead Generation Services & Agency | SalesFluance",
     description:
-      "[PLACEHOLDER — Founder review] Build a predictable B2B sales pipeline with verified data, strategic outreach, and qualified opportunities from SalesFluance.",
+      "[PLACEHOLDER — Founder review] SalesFluance is a B2B lead generation agency building predictable, verified sales pipeline through research-led outreach and qualified opportunities.",
     canonical: "/services/lead-generation",
-    keywords: ["B2B lead generation", "sales pipeline", "demand generation"],
+    keywords: [
+      "B2B lead generation services",
+      "B2B lead generation agency",
+      "B2B lead generation company",
+      "enterprise lead generation services",
+      "outsourced lead generation",
+    ],
   },
   sections,
   provenance: {

@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -9,6 +10,38 @@ import {
   Stethoscope,
   CheckCircle2,
 } from "lucide-react";
+
+import { buildMetadata } from "@/lib/seo/buildMetadata";
+
+export const metadata: Metadata = buildMetadata({
+  title: "Healthcare Lead Generation & ABM | SalesFluance",
+  description:
+    "SalesFluance delivers healthcare B2B lead generation and account-based marketing, connecting your team with the right decision-makers across complex health systems.",
+  path: "/industries/healthcare",
+  keywords: [
+    "Healthcare lead generation",
+    "Healthcare B2B lead generation",
+    "healthcare account-based marketing",
+  ],
+});
+
+const relevantServices = [
+  {
+    slug: "lead-generation",
+    name: "Lead Generation",
+    outcomeLine: "Build a predictable pipeline of qualified healthcare opportunities.",
+  },
+  {
+    slug: "appointment-setting",
+    name: "Appointment Setting",
+    outcomeLine: "Calendar-ready meetings with the healthcare decision-makers who can say yes.",
+  },
+  {
+    slug: "account-based-marketing",
+    name: "Account-Based Marketing",
+    outcomeLine: "Coordinated engagement for named health systems and enterprise accounts.",
+  },
+];
 
 export default function HealthcarePage() {
   return (
@@ -213,6 +246,31 @@ export default function HealthcarePage() {
               research, relevant outreach, qualification, and reporting into
               one commercial workflow.
             </p>
+
+            <p className="mt-5 text-base leading-7 text-slate-400">
+              This work draws directly on our{" "}
+              <Link
+                href="/services/lead-generation"
+                className="font-medium text-cyan-400 underline decoration-cyan-400/40 underline-offset-4 transition-colors hover:text-cyan-300"
+              >
+                B2B lead generation
+              </Link>{" "}
+              and{" "}
+              <Link
+                href="/services/appointment-setting"
+                className="font-medium text-cyan-400 underline decoration-cyan-400/40 underline-offset-4 transition-colors hover:text-cyan-300"
+              >
+                appointment setting
+              </Link>{" "}
+              capabilities, coordinated through{" "}
+              <Link
+                href="/services/account-based-marketing"
+                className="font-medium text-cyan-400 underline decoration-cyan-400/40 underline-offset-4 transition-colors hover:text-cyan-300"
+              >
+                account-based marketing
+              </Link>{" "}
+              for named health systems and enterprise accounts.
+            </p>
           </div>
 
           <div className="mt-14 grid gap-px overflow-hidden border border-slate-800 bg-slate-800 md:grid-cols-3">
@@ -250,6 +308,54 @@ export default function HealthcarePage() {
                   {text}
                 </p>
               </div>
+            ))}
+          </div>
+
+        </div>
+      </section>
+
+      {/* RELEVANT SERVICES */}
+      <section className="border-b border-slate-200 bg-white">
+        <div className="mx-auto max-w-7xl px-6 py-20 sm:px-10 lg:px-16 lg:py-28">
+
+          <div className="max-w-2xl">
+            <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-cyan-600">
+              RELEVANT SERVICES
+            </p>
+
+            <h2 className="mt-4 text-3xl font-semibold tracking-[-0.03em] sm:text-4xl">
+              Built around healthcare buying groups.
+            </h2>
+          </div>
+
+          <div className="mt-12 divide-y divide-slate-200 border-y border-slate-200">
+            {relevantServices.map((service, index) => (
+              <Link
+                key={service.slug}
+                href={`/services/${service.slug}`}
+                className="group flex items-center gap-5 py-6 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 sm:gap-8"
+              >
+                <span className="w-8 shrink-0 font-mono text-xs font-semibold tracking-[0.14em] text-slate-300">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+
+                <div className="min-w-0 flex-1">
+                  <h3 className="text-base font-semibold text-slate-950 transition-colors group-hover:text-cyan-600 sm:text-lg">
+                    {service.name}
+                  </h3>
+
+                  <p className="mt-1 max-w-2xl text-sm leading-6 text-slate-600">
+                    {service.outcomeLine}
+                  </p>
+                </div>
+
+                <span
+                  aria-hidden="true"
+                  className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-slate-200 text-slate-400 transition-all duration-300 group-hover:border-cyan-200 group-hover:bg-cyan-50 group-hover:text-cyan-600"
+                >
+                  <ArrowRight className="h-4 w-4" />
+                </span>
+              </Link>
             ))}
           </div>
 

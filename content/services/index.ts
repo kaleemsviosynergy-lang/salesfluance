@@ -26,21 +26,39 @@ import { SERVICE_SLUGS, type ServiceSlug } from "../../types/shared";
 import { leadGenerationConfig } from "./lead-generation";
 import { demandGenerationConfig } from "./demand-generation";
 import { accountBasedMarketingConfig } from "./account-based-marketing";
+import { appointmentSettingConfig } from "./appointment-setting";
+import { contentSyndicationConfig } from "./content-syndication";
+import { intentDataConfig } from "./intent-data";
+import { emailMarketingConfig } from "./email-marketing";
+import { telemarketingConfig } from "./telemarketing";
+import { listBuildingConfig } from "./list-building";
+import { dataCleansingConfig } from "./data-cleansing";
+import { dataAppendingConfig } from "./data-appending";
 
 // ---------------------------------------------------------------------------
 // Registry
 //
 // Typed as `Partial<ServiceRegistry>` rather than `ServiceRegistry` because
-// not all 11 flagship services have a content file yet (Sprint 1 implements
-// Lead Generation only). As each remaining service is authored, add its
-// entry here; once all 11 keys are present this can be tightened to
-// `ServiceRegistry` for full compile-time guarantee of registry completeness.
+// not all 11 flagship services have a content file yet. Data Enrichment is
+// intentionally NOT part of SERVICE_SLUGS and must never be registered here
+// — see the approved 11-service IA scope. As each remaining service is
+// authored, add its entry here; once all 11 keys are present this can be
+// tightened to `ServiceRegistry` for full compile-time guarantee of
+// registry completeness.
 // ---------------------------------------------------------------------------
 
 export const serviceRegistry: Partial<ServiceRegistry> = {
   "lead-generation": leadGenerationConfig,
   "demand-generation": demandGenerationConfig,
   "account-based-marketing": accountBasedMarketingConfig,
+  "appointment-setting": appointmentSettingConfig,
+  "content-syndication": contentSyndicationConfig,
+  "intent-data": intentDataConfig,
+  "email-marketing": emailMarketingConfig,
+  "telemarketing": telemarketingConfig,
+  "list-building": listBuildingConfig,
+  "data-cleansing": dataCleansingConfig,
+  "data-appending": dataAppendingConfig,
 };
 
 // ---------------------------------------------------------------------------

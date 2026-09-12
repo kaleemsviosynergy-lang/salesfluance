@@ -1,5 +1,19 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
+
+import { buildMetadata } from "@/lib/seo/buildMetadata";
+
+export const metadata: Metadata = buildMetadata({
+  title: "IT Services Lead Generation Agency | SalesFluance",
+  description:
+    "SalesFluance is an IT services lead generation agency, helping technology providers turn capability into qualified, commercially relevant conversations.",
+  path: "/industries/it-services",
+  keywords: [
+    "IT services lead generation",
+    "IT services lead generation agency",
+  ],
+});
 
 const capabilities = [
   "Managed IT Services",
@@ -63,6 +77,24 @@ const approach = [
     title: "Convert intelligence into opportunity",
     description:
       "Qualify the strongest signals and create a clearer path from market activity to sales conversations and pipeline.",
+  },
+];
+
+const relevantServices = [
+  {
+    slug: "lead-generation",
+    name: "Lead Generation",
+    outcomeLine: "Build a predictable pipeline of qualified IT services opportunities.",
+  },
+  {
+    slug: "intent-data",
+    name: "Intent Data",
+    outcomeLine: "Know which accounts are actively evaluating technology before you reach out.",
+  },
+  {
+    slug: "account-based-marketing",
+    name: "Account-Based Marketing",
+    outcomeLine: "Coordinated engagement for named enterprise technology accounts.",
   },
 ];
 
@@ -233,6 +265,31 @@ export default function ITServicesPage() {
               commercial action — so your team can focus on opportunities that
               have a stronger reason to exist.
             </p>
+
+            <p className="mt-5 text-base leading-7 text-slate-600 sm:text-lg">
+              This work is delivered through our{" "}
+              <Link
+                href="/services/lead-generation"
+                className="font-medium text-cyan-600 underline decoration-cyan-600/30 underline-offset-4 transition-colors hover:text-cyan-700"
+              >
+                B2B lead generation
+              </Link>{" "}
+              and{" "}
+              <Link
+                href="/services/intent-data"
+                className="font-medium text-cyan-600 underline decoration-cyan-600/30 underline-offset-4 transition-colors hover:text-cyan-700"
+              >
+                intent data
+              </Link>{" "}
+              programs, coordinated through{" "}
+              <Link
+                href="/services/account-based-marketing"
+                className="font-medium text-cyan-600 underline decoration-cyan-600/30 underline-offset-4 transition-colors hover:text-cyan-700"
+              >
+                account-based marketing
+              </Link>{" "}
+              for named enterprise technology accounts.
+            </p>
           </div>
 
           <div className="mt-14 divide-y divide-slate-200 border-y border-slate-200">
@@ -255,6 +312,54 @@ export default function ITServicesPage() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* RELEVANT SERVICES */}
+      <section className="border-b border-slate-200 bg-white">
+        <div className="mx-auto max-w-7xl px-6 py-20 sm:px-10 lg:px-16 lg:py-28">
+
+          <div className="max-w-2xl">
+            <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-cyan-600">
+              RELEVANT SERVICES
+            </p>
+
+            <h2 className="mt-4 text-3xl font-semibold tracking-[-0.03em] sm:text-4xl">
+              Built around the technology buying cycle.
+            </h2>
+          </div>
+
+          <div className="mt-12 divide-y divide-slate-200 border-y border-slate-200">
+            {relevantServices.map((service, index) => (
+              <Link
+                key={service.slug}
+                href={`/services/${service.slug}`}
+                className="group flex items-center gap-5 py-6 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 sm:gap-8"
+              >
+                <span className="w-8 shrink-0 font-mono text-xs font-semibold tracking-[0.14em] text-slate-300">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+
+                <div className="min-w-0 flex-1">
+                  <h3 className="text-base font-semibold text-slate-950 transition-colors group-hover:text-cyan-600 sm:text-lg">
+                    {service.name}
+                  </h3>
+
+                  <p className="mt-1 max-w-2xl text-sm leading-6 text-slate-600">
+                    {service.outcomeLine}
+                  </p>
+                </div>
+
+                <span
+                  aria-hidden="true"
+                  className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-slate-200 text-slate-400 transition-all duration-300 group-hover:border-cyan-200 group-hover:bg-cyan-50 group-hover:text-cyan-600"
+                >
+                  <ArrowRight className="h-4 w-4" />
+                </span>
+              </Link>
+            ))}
+          </div>
+
         </div>
       </section>
 

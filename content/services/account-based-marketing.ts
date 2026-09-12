@@ -523,13 +523,13 @@ export const accountBasedMarketingConfig: ServicePageConfig = {
   schemaVersion: 1,
   slug: "account-based-marketing",
   category: "Demand Generation",
-  status: "draft",
+  status: "published",
   seo: {
-    title: "Account-Based Marketing Services | SalesFluance",
+    title: "Account-Based Marketing Agency | SalesFluance",
     description:
-      "[PLACEHOLDER — Founder review] Turn high-value enterprise accounts into qualified pipeline with buying-committee research, executive personalization, and revenue-first ABM from SalesFluance.",
+      "SalesFluance is an account-based marketing agency turning high-value enterprise accounts into qualified pipeline through buying-committee research and executive personalization.",
     canonical: "/services/account-based-marketing",
-    keywords: ["account-based marketing", "ABM", "enterprise pipeline", "buying committee"],
+    keywords: ["account based marketing agency", "ABM for SaaS", "healthcare account-based marketing"],
   },
   sections,
   provenance: {

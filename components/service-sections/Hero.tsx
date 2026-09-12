@@ -75,7 +75,7 @@ export default function Hero({
     eyebrow === "Account-Based Marketing";
 
   const isLeadGenerationHero =
-    eyebrow === "Demand Generation" &&
+    eyebrow === "Lead Generation" &&
     headline === "Build a Predictable Sales Pipeline";
 
   const isDemandGenerationHero =
