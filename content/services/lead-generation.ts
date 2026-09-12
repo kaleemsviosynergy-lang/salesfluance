@@ -7,12 +7,14 @@
  * future headless CMS could produce this exact same shape as an API
  * response with no change to how the engine consumes it.
  *
- * CONTENT STATUS: All copy below is structured placeholder content authored
- * to match SalesFluance's approved positioning (outcome-first, consultative,
- * enterprise-grade — never feature-led). It is NOT final marketing copy.
- * `status: "draft"` below is what keeps this config out of production
- * builds until Founder review promotes it to "published" — see
- * ContentProvenance / ContentStatus in types/shared.ts.
+ * CONTENT STATUS: `status: "published"` — this service page is live in
+ * production per Founder decision (Sept 2026: all 11 flagship services
+ * approved for publication). The copy below was authored by Product
+ * Engineering to match SalesFluance's approved positioning (outcome-first,
+ * consultative, enterprise-grade — never feature-led). `provenance.status`
+ * below is also "published" — see ContentProvenance / ContentStatus in
+ * types/shared.ts for how this field relates to (but does not itself gate)
+ * production rendering.
  */
 
 import type {
@@ -455,7 +457,7 @@ export const leadGenerationConfig: ServicePageConfig = {
   seo: {
     title: "B2B Lead Generation Services & Agency | SalesFluance",
     description:
-      "[PLACEHOLDER — Founder review] SalesFluance is a B2B lead generation agency building predictable, verified sales pipeline through research-led outreach and qualified opportunities.",
+      "SalesFluance is a B2B lead generation agency building predictable, verified sales pipeline through research-led outreach and qualified opportunities.",
     canonical: "/services/lead-generation",
     keywords: [
       "B2B lead generation services",

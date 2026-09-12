@@ -119,12 +119,6 @@ export const navigationItems: NavigationItem[] = [
             },
 
             {
-              label: "Data Enrichment",
-              href: "/services/data-enrichment",
-              description: "Improve CRM completeness.",
-            },
-
-            {
               label: "Data Cleansing",
               href: "/services/data-cleansing",
               description: "Maintain accurate customer data.",
@@ -205,31 +199,6 @@ export const navigationItems: NavigationItem[] = [
 {
   label: "Manufacturing",
   href: "/industries/manufacturing",
-},
-
-{
-  label: "Logistics",
-  href: "/industries/logistics",
-},
-
-{
-  label: "Education",
-  href: "/industries/education",
-},
-
-{
-  label: "Real Estate",
-  href: "/industries/real-estate",
-},
-
-{
-  label: "Retail & Ecommerce",
-  href: "/industries/retail-ecommerce",
-},
-
-{
-  label: "Professional Services",
-  href: "/industries/professional-services",
 },
           ],
         },

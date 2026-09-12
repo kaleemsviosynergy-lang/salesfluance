@@ -7,12 +7,15 @@
  * future headless CMS could produce this exact same shape as an API
  * response with no change to how the engine consumes it.
  *
- * CONTENT STATUS: AI-generated draft copy authored to match SalesFluance's
- * approved positioning (outcome-first, consultative, enterprise-grade —
- * never feature-led). It is NOT final marketing copy and has not been
- * reviewed by the Founder. `status: "draft"` keeps this config out of
- * production builds — see ContentProvenance / ContentStatus in
- * types/shared.ts.
+ * CONTENT STATUS: `status: "published"` — this service page is live in
+ * production per Founder decision (Sept 2026: all 11 flagship services
+ * approved for publication). The copy below was AI-generated to match
+ * SalesFluance's approved positioning (outcome-first, consultative,
+ * enterprise-grade — never feature-led); it has not been through a
+ * subsequent line-by-line Founder copy review. `provenance.status` below
+ * intentionally still reads "draft" — it tracks copy-review workflow
+ * state, not production visibility, and does not gate rendering. See
+ * ContentProvenance / ContentStatus in types/shared.ts.
  *
  * PAGE STRATEGY: This is a lean service page (10 sections), not a flagship
  * page — see the approved IA scope for the 8 non-flagship services.

@@ -160,7 +160,7 @@ export default function MobileMenu({
       </nav>
 
       <div className="border-t border-slate-200 px-6 py-5">
-        <CTAButton href="/discovery-call" className="w-full justify-center">
+        <CTAButton href="/contact" className="w-full justify-center">
           Book Discovery Call
         </CTAButton>
       </div>

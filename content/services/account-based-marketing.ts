@@ -7,11 +7,14 @@
  * future headless CMS could produce this exact same shape as an API
  * response with no change to how the engine consumes it.
  *
- * CONTENT STATUS: All copy below is structured placeholder content authored
- * to match SalesFluance's approved positioning (outcome-first, consultative,
- * enterprise-grade — never feature-led). It is NOT final marketing copy.
- * `status: "draft"` below is what keeps this config out of production
- * builds until Founder review promotes it to "published" — see
+ * CONTENT STATUS: `status: "published"` — this service page is live in
+ * production per Founder decision (Sept 2026: all 11 flagship services
+ * approved for publication). The copy below was authored by Product
+ * Engineering to match SalesFluance's approved positioning (outcome-first,
+ * consultative, enterprise-grade — never feature-led); it has not been
+ * through a subsequent line-by-line Founder copy review. `provenance.status`
+ * below intentionally still reads "draft" — it tracks copy-review workflow
+ * state, not production visibility, and does not gate rendering. See
  * ContentProvenance / ContentStatus in types/shared.ts.
  *
  * SCHEMA NOTE: This page introduces one section not present in the Lead
