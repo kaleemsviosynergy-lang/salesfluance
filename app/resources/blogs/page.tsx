@@ -6,16 +6,26 @@ import {
   Sparkles,
 } from "lucide-react";
 
-const topics = [
-  "B2B Growth",
-  "Demand Generation",
-  "Sales Intelligence",
-  "Partnerships",
-  "AI & Revenue",
-  "Revenue Strategy",
-];
+import type { Metadata } from "next";
+import { buildMetadata } from "@/lib/seo/buildMetadata";
+import { getPublishedBlogPosts } from "@/lib/content/getBlogPost";
+import { BLOG_PILLARS } from "@/types/blog";
 
-export default function BlogsPage() {
+// Phase 1B: this route previously had no metadata export at all, so it
+// silently inherited the root layout's default canonical (the homepage)
+// instead of pointing at itself — the same class of issue fixed for
+// contact/resources/services in Phase 0. Title/description are left to
+// the sitewide default (no override) since no page-specific SEO copy has
+// been authored for this listing yet — see buildMetadata's own fallback.
+export const metadata: Metadata = buildMetadata({ path: "/resources/blogs" });
+
+export default async function BlogsPage() {
+  // Publication-aware retrieval only — see lib/content/getBlogPost.ts.
+  // While every article in content/blog remains `status: "draft"`, this
+  // resolves to an empty array and the section below renders the
+  // intentional empty-editorial state, never the draft placeholders.
+  const posts = await getPublishedBlogPosts();
+
   return (
     <main className="bg-white">
 
@@ -25,7 +35,7 @@ export default function BlogsPage() {
 
           <Link
             href="/resources"
-            className="group inline-flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-500 transition hover:text-cyan-600"
+            className="group inline-flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-500 transition hover:text-cyan-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2"
           >
             <ArrowLeft className="h-3.5 w-3.5 transition-transform group-hover:-translate-x-1" />
             Resources
@@ -55,7 +65,9 @@ export default function BlogsPage() {
       </section>
 
 
-      {/* Topics */}
+      {/* Pillars — the six approved editorial pillars (types/blog.ts),
+          not an ad-hoc topic list, so this stays in sync with the
+          taxonomy every article is actually classified under. */}
       <section className="border-b border-slate-200">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
 
@@ -65,12 +77,12 @@ export default function BlogsPage() {
               Explore topics
             </span>
 
-            {topics.map((topic) => (
+            {BLOG_PILLARS.map((pillar) => (
               <span
-                key={topic}
+                key={pillar}
                 className="text-sm font-medium text-slate-600"
               >
-                {topic}
+                {pillar}
               </span>
             ))}
 
@@ -80,77 +92,125 @@ export default function BlogsPage() {
       </section>
 
 
-      {/* Featured / Editorial */}
+      {/* Article Listing — published-only. Renders the real, configured
+          title/excerpt/pillar for each post once articles are published;
+          until then, the same intentional empty-editorial state that
+          existed before Phase 1B. Never renders a draft. */}
       <section className="py-24">
 
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
 
-          <div className="mb-12">
-
-            <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-cyan-600">
-              Featured Perspective
-            </p>
-
-            <h2 className="mt-4 text-3xl font-semibold tracking-tight text-slate-950 md:text-4xl">
-              Ideas worth thinking about.
-            </h2>
-
-          </div>
-
-
-          {/* Empty editorial state — intentionally no fabricated article */}
-          <div className="overflow-hidden rounded-3xl border border-slate-200 bg-[#0A0E14]">
-
-            <div className="grid lg:grid-cols-[1.25fr_0.75fr]">
-
-              <div className="p-8 md:p-12 lg:p-16">
-
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-cyan-400 text-slate-950">
-                  <BookOpen className="h-6 w-6" />
-                </div>
-
-                <p className="mt-8 font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-cyan-400">
-                  Editorial Library
+          {posts.length > 0 ? (
+            <>
+              <div className="mb-12">
+                <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-cyan-600">
+                  Latest Articles
                 </p>
 
-                <h3 className="mt-4 max-w-2xl text-3xl font-semibold tracking-tight text-white md:text-4xl">
-                  The library is being built around practical B2B intelligence.
-                </h3>
+                <h2 className="mt-4 text-3xl font-semibold tracking-tight text-slate-950 md:text-4xl">
+                  Ideas worth thinking about.
+                </h2>
+              </div>
 
-                <p className="mt-6 max-w-xl text-base leading-8 text-slate-400">
-                  We are developing perspectives designed to help revenue
-                  teams make better decisions — not simply consume more
-                  content.
+              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                {posts.map((post) => (
+                  <Link
+                    key={post.slug}
+                    href={`/resources/blogs/${post.slug}`}
+                    className="group flex flex-col rounded-2xl border border-slate-200 bg-white p-8 transition-colors duration-200 hover:border-cyan-400/40 hover:bg-cyan-50/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2"
+                  >
+                    <div className="flex items-center justify-between gap-4">
+                      <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-cyan-600">
+                        {post.pillar}
+                      </p>
+
+                      <ArrowUpRight className="h-4 w-4 shrink-0 text-slate-300 transition group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-cyan-500" />
+                    </div>
+
+                    <h3 className="mt-4 text-xl font-semibold text-slate-950">
+                      {post.title}
+                    </h3>
+
+                    <p className="mt-3 flex-1 text-sm leading-6 text-slate-600">
+                      {post.excerpt}
+                    </p>
+                  </Link>
+                ))}
+              </div>
+            </>
+          ) : (
+            <>
+              <div className="mb-12">
+
+                <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-cyan-600">
+                  Featured Perspective
                 </p>
+
+                <h2 className="mt-4 text-3xl font-semibold tracking-tight text-slate-950 md:text-4xl">
+                  Ideas worth thinking about.
+                </h2>
 
               </div>
 
 
-              <div className="relative min-h-[300px] border-t border-white/10 bg-[#0B1B2D] lg:border-l lg:border-t-0">
+              {/* Empty editorial state — intentionally no fabricated article.
+                  All 13 planned articles remain status: "draft" until
+                  editorial review is complete; getPublishedBlogPosts()
+                  correctly returns none, so this state renders instead. */}
+              <div className="overflow-hidden rounded-3xl border border-slate-200 bg-[#0A0E14]">
 
-                <div className="absolute inset-0 flex items-center justify-center">
+                <div className="grid lg:grid-cols-[1.25fr_0.75fr]">
 
-                  <div className="text-center">
+                  <div className="p-8 md:p-12 lg:p-16">
 
-                    <Sparkles className="mx-auto h-9 w-9 text-cyan-400" />
+                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-cyan-400 text-slate-950">
+                      <BookOpen className="h-6 w-6" />
+                    </div>
 
-                    <p className="mt-5 font-mono text-[10px] uppercase tracking-[0.22em] text-slate-500">
-                      Coming next
+                    <p className="mt-8 font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-cyan-400">
+                      Editorial Library
                     </p>
 
-                    <p className="mt-3 text-lg font-medium text-white">
-                      Signal → Insight → Action
+                    <h3 className="mt-4 max-w-2xl text-3xl font-semibold tracking-tight text-white md:text-4xl">
+                      The library is being built around practical B2B intelligence.
+                    </h3>
+
+                    <p className="mt-6 max-w-xl text-base leading-8 text-slate-400">
+                      We are developing perspectives designed to help revenue
+                      teams make better decisions — not simply consume more
+                      content.
                     </p>
+
+                  </div>
+
+
+                  <div className="relative min-h-[300px] border-t border-white/10 bg-[#0B1B2D] lg:border-l lg:border-t-0">
+
+                    <div className="absolute inset-0 flex items-center justify-center">
+
+                      <div className="text-center">
+
+                        <Sparkles className="mx-auto h-9 w-9 text-cyan-400" />
+
+                        <p className="mt-5 font-mono text-[10px] uppercase tracking-[0.22em] text-slate-500">
+                          Coming next
+                        </p>
+
+                        <p className="mt-3 text-lg font-medium text-white">
+                          Signal → Insight → Action
+                        </p>
+
+                      </div>
+
+                    </div>
 
                   </div>
 
                 </div>
 
               </div>
-
-            </div>
-
-          </div>
+            </>
+          )}
 
         </div>
 
@@ -229,7 +289,7 @@ export default function BlogsPage() {
 
               <Link
                 href="/contact"
-                className="group inline-flex items-center justify-center gap-2 rounded-xl bg-cyan-400 px-6 py-3.5 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300"
+                className="group inline-flex items-center justify-center gap-2 rounded-xl bg-cyan-400 px-6 py-3.5 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0A0E14]"
               >
                 Book Discovery Call
                 <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
