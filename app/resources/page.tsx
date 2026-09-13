@@ -11,6 +11,17 @@ import {
 // icon (Sparkles) — see note on the Featured Intelligence panel below.
 import LogoMark from "@/components/brand/LogoMark";
 
+import type { Metadata } from "next";
+import { buildMetadata } from "@/lib/seo/buildMetadata";
+
+// Phase 0 technical SEO fix: this page previously had no metadata export,
+// so it silently inherited the root layout's default canonical
+// (the homepage) instead of pointing at itself. Only the canonical is
+// fixed here — title/description are left exactly as they were
+// (inheriting the sitewide default), since that's a separate,
+// out-of-scope content decision.
+export const metadata: Metadata = buildMetadata({ path: "/resources" });
+
 const resourceTypes = [
   {
     eyebrow: "INSIGHTS",

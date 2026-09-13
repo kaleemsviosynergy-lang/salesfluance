@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
+import { seoConfig } from "@/lib/seo/seoConfig";
 import { ServicePageEngine } from "@/components/engine/ServicePageEngine";
 
 import { getImplementedServiceSlugs } from "@/content/services";
@@ -53,10 +54,21 @@ export async function generateMetadata({
 
   const config = result.config;
 
+  // Phase 0 technical SEO fix: this function previously never set
+  // `alternates.canonical`, so every service page silently inherited the
+  // root layout's default canonical (the homepage) instead of pointing
+  // at itself — confirmed live on /services/lead-generation. Because
+  // this is the single shared route behind every service slug, this fix
+  // applies to all published services, not lead-generation alone.
+  const canonicalUrl = `${seoConfig.siteUrl}/services/${config.slug}`;
+
   return {
     title: config.seo.title,
     description: config.seo.description,
     keywords: config.seo.keywords,
+    alternates: {
+      canonical: canonicalUrl,
+    },
     openGraph: {
       title: config.seo.title,
       description: config.seo.description,
