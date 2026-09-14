@@ -28,10 +28,11 @@ export const crmDataDecayProblemConfig: BlogPostConfig = {
   title: "The CRM Data-Decay Problem Nobody Budgets For",
   excerpt:
     "CRM data doesn't fail all at once — it decays continuously. Here's why that's an operational problem, not a cleanup project.",
-  status: "draft",
+  status: "published",
   role: "supporting",
   pillar: "Data & Signal Quality",
   author: editorialTeam,
+  publishedAt: "2026-09-15",
   seo: {
     title: "The CRM Data-Decay Problem Nobody Budgets For | SalesFluance",
     description:
@@ -60,11 +61,11 @@ export const crmDataDecayProblemConfig: BlogPostConfig = {
     { type: "heading", level: 2, text: "Why CRM Data Decays So Consistently" },
     {
       type: "paragraph",
-      text: "The drivers of decay are structural, not incidental. People change employers more often than most CRM maintenance cycles assume: the U.S. Bureau of Labor Statistics found that the median time a wage and salary worker had been with their current employer was 3.9 years in January 2024, down from 4.1 years in January 2022 — and considerably shorter for workers earlier in their careers. Every one of those transitions can invalidate a contact record: a title changes, an email address stops working, a reporting line moves, and the account owner assigned in the CRM no longer reflects who's actually there.",
+      text: "The drivers of decay are structural, not incidental. People change employers more often than most CRM maintenance cycles assume: the U.S. Bureau of Labor Statistics found that the median time a wage and salary worker had been with their current employer was 3.9 years in January 2024, down from 4.1 years in January 2022 — and considerably shorter for workers earlier in their careers. Every one of those transitions can invalidate a contact record: a title changes, an email address stops working, a reporting line moves, and the account owner assigned in the CRM no longer reflects who's actually there. That tenure figure describes one contributing mechanism, not a measured cause of any specific decay rate — it's evidence that job change happens on a predictable cycle, not a direct input into the percentage discussed later in this article.",
     },
     {
       type: "paragraph",
-      text: "Job changes are only one driver. Companies merge, get acquired, rebrand, or restructure their departments — changes that can affect entire blocks of contacts at once rather than one record at a time. Email systems migrate. Phone systems change. Departments get renamed or reorganized in ways that make old segmentation fields inaccurate even when the person and company haven't changed at all. None of these events show up as an error in the CRM — the record still looks populated and plausible. It's just wrong, in a way that's invisible until someone tries to act on it.",
+      text: "Job changes are only one driver among several, and none of them acts alone. Companies merge, get acquired, rebrand, or restructure their departments — changes that can affect entire blocks of contacts at once rather than one record at a time. Email systems migrate. Phone systems change. Departments get renamed or reorganized in ways that make old segmentation fields inaccurate even when the person and company haven't changed at all. None of these events show up as an error in the CRM — the record still looks populated and plausible. It's just wrong, in a way that's invisible until someone tries to act on it.",
     },
     { type: "heading", level: 2, text: "Why This Is an Operational Problem, Not Just a Database Problem" },
     {
@@ -78,7 +79,7 @@ export const crmDataDecayProblemConfig: BlogPostConfig = {
     { type: "heading", level: 2, text: "What Decay Actually Costs" },
     {
       type: "paragraph",
-      text: "Independent research backs up what most revenue teams experience anecdotally. Validity's 2025 State of CRM Data Management report, based on a survey of 602 CRM users and stakeholders, found that 76% of respondents said less than half of their organization's CRM data was accurate and complete, and 37% reported losing revenue as a direct consequence of poor data quality. Separately, HubSpot publishes a decay-rate estimate of roughly 2.1% per month, or about 22.5% annually, for B2B contact databases — a figure HubSpot itself attributes to MarketingSherpa's research rather than to HubSpot's own data.",
+      text: "Independent research backs up what most revenue teams experience anecdotally. Validity's 2025 State of CRM Data Management report, based on a survey of 602 CRM users and stakeholders, found that 76% of respondents said less than half of their organization's CRM data was accurate and complete, and 37% reported losing revenue as a direct consequence of poor data quality. Separately, HubSpot publishes a decay-rate estimate of roughly 2.1% per month, or about 22.5% annually, for B2B contact databases — a figure HubSpot itself attributes to MarketingSherpa's research, not to HubSpot's own data. That aggregate rate reflects the combined effect of every mechanism discussed above — job changes, company changes, system migrations, restructuring — not employee turnover in isolation, and it comes from a separate body of research from the BLS tenure figure, not a calculation derived from it.",
     },
     {
       type: "paragraph",
@@ -119,8 +120,8 @@ export const crmDataDecayProblemConfig: BlogPostConfig = {
   ],
   provenance: {
     source: "ai-generated",
-    status: "draft",
+    status: "published",
     generationNote:
-      "Phase 2 first editorial batch, revised after human editorial review. Every statistic in this article (BLS median tenure, Validity 2025 survey findings, HubSpot/MarketingSherpa decay rate) was confirmed by fetching the source page directly during research, not taken from secondary aggregation. Revision pass made the HubSpot-to-MarketingSherpa attribution chain explicit in body copy and reframed the 22.5% annual figure as illustrative of scale rather than a universal constant. The relatedArticles link to signal-quality-vs-signal-volume was removed in this revision to keep that relationship one-directional (#2 -> #3 only) for now, per editorial direction. Still pending final human sign-off before publication.",
+      "Phase 2 first editorial batch, revised after human editorial review, then revised again for the Articles #1-#10 publication pass. Every statistic in this article (BLS median tenure, Validity 2025 survey findings, HubSpot/MarketingSherpa decay rate) was confirmed by fetching the source page directly during research, not taken from secondary aggregation. Publication-pass revision made explicit that the BLS tenure figure and the HubSpot/MarketingSherpa decay-rate figure are separate, unrelated bodies of research, and that employee turnover is one contributing mechanism among several rather than a measured cause of the 22.5% aggregate figure. The relatedArticles link to signal-quality-vs-signal-volume remains one-directional (#2 -> #3 only) per prior editorial direction.",
   },
 };

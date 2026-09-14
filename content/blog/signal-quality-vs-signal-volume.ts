@@ -27,10 +27,11 @@ export const signalQualityVsSignalVolumeConfig: BlogPostConfig = {
   title: "Why Signal Quality Beats Signal Volume in B2B Pipelines",
   excerpt:
     "B2B teams have more signal than ever, and often worse prioritization. A practical framework for telling a useful signal from noise.",
-  status: "draft",
+  status: "published",
   role: "cornerstone",
   pillar: "Data & Signal Quality",
   author: editorialTeam,
+  publishedAt: "2026-09-15",
   seo: {
     title: "Why Signal Quality Beats Signal Volume in B2B Pipelines | SalesFluance",
     description:
@@ -153,7 +154,7 @@ export const signalQualityVsSignalVolumeConfig: BlogPostConfig = {
   ],
   provenance: {
     source: "ai-generated",
-    status: "draft",
+    status: "published",
     generationNote:
       "Phase 2 first editorial batch, revised after human editorial review. The Forrester insight (on intent-data collection-methodology diversity and signal decay), confirmed by fetching forrester.com/blogs/how-to-evaluate-intent-data-providers/ directly, is now paraphrased with attribution rather than directly quoted. Revision pass also rewrote unsupported 'consistently outperforms' language as operational reasoning about finite sales capacity. Three other statistics found during initial research (an 80% intent-data false-positive rate; a Forrester '50% of teams' figure; a NetLine '25% of intent surges' figure) could not be verified against any primary source and remain deliberately excluded. No proprietary SalesFluance technology or dataset is claimed. Still pending final human sign-off before publication.",
   },

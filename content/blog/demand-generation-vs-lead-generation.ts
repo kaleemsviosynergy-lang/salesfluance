@@ -21,10 +21,11 @@ export const demandGenerationVsLeadGenerationConfig: BlogPostConfig = {
   title: "Demand Generation vs. Lead Generation: Where the Line Actually Is",
   excerpt:
     "Most teams treat demand generation and lead generation as interchangeable. They aren't — and the gap between them is usually where pipeline problems actually start.",
-  status: "draft",
+  status: "published",
   role: "cornerstone",
   pillar: "Demand & Pipeline Generation",
   author: editorialTeam,
+  publishedAt: "2026-09-15",
   seo: {
     title: "Demand Generation vs. Lead Generation: Where the Line Actually Is | SalesFluance",
     description:
@@ -152,7 +153,7 @@ export const demandGenerationVsLeadGenerationConfig: BlogPostConfig = {
   ],
   provenance: {
     source: "ai-generated",
-    status: "draft",
+    status: "published",
     generationNote:
       "Phase 2 first editorial batch, revised after human editorial review. Drafted from researched definitional sources (HubSpot, Salesforce) rather than statistical claims; no numeric statistic is used in this article because none could be verified against a primary source during research. Revision pass added an explicit three-question decision framework and softened two broad claims into clearly framed analysis rather than stated fact. Still pending final human sign-off before publication.",
   },
