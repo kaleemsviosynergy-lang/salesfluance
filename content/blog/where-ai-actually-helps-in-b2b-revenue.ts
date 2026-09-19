@@ -18,10 +18,11 @@ export const whereAiActuallyHelpsInB2bRevenueConfig: BlogPostConfig = {
   title: "Where AI Actually Helps in B2B Revenue Execution (and Where It Doesn't)",
   excerpt:
     "AI can improve research, prioritization, execution, and consistency in B2B revenue — but it should not replace judgment, context, verification, or accountability.",
-  status: "draft",
+  status: "published",
   role: "cornerstone",
   pillar: "AI & Revenue Systems",
   author: editorialTeam,
+  publishedAt: "2026-09-20",
   seo: {
     title: "Where AI Actually Helps in B2B Revenue Execution (and Where It Doesn't) | SalesFluance",
     description:
@@ -227,7 +228,7 @@ export const whereAiActuallyHelpsInB2bRevenueConfig: BlogPostConfig = {
   ],
   provenance: {
     source: "ai-generated",
-    status: "draft",
+    status: "published",
     generationNote:
       "Article #11 body copy. Argument- and framework-driven; no statistics, performance claims, customer results, or proprietary technology claims are used. Uses the three approved editorial visual blocks. Remains a draft pending human editorial review before publication; publishedAt intentionally not set.",
   },
