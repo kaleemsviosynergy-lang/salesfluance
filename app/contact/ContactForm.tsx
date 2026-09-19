@@ -98,6 +98,9 @@ export default function ContactForm() {
   const [form, setForm] = React.useState<FormData>(initialForm);
   const [errors, setErrors] = React.useState<FormErrors>({});
   const [submitted, setSubmitted] = React.useState(false);
+  const [submitting, setSubmitting] = React.useState(false);
+  const [submitError, setSubmitError] = React.useState<string | null>(null);
+  const [honeypot, setHoneypot] = React.useState("");
 
   function updateField(field: keyof FormData, value: string) {
     setForm((current) => ({
@@ -111,8 +114,12 @@ export default function ContactForm() {
     }));
   }
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+
+    if (submitting) return;
+
+    setSubmitError(null);
 
     const validationErrors = validateForm(form);
 
@@ -121,16 +128,39 @@ export default function ContactForm() {
       return;
     }
 
-    /*
-     * Backend submission will be connected in the next step.
-     *
-     * We intentionally do NOT pretend that the enquiry was delivered.
-     * Once the API/email endpoint is connected, this will become:
-     *
-     * await fetch("/api/contact", ...)
-     */
+    setSubmitting(true);
 
-    setSubmitted(true);
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...form, website_hp: honeypot }),
+      });
+
+      const result = (await response.json().catch(() => null)) as {
+        ok?: boolean;
+        error?: string;
+        errors?: FormErrors;
+      } | null;
+
+      if (response.ok && result?.ok) {
+        setSubmitted(true);
+        return;
+      }
+
+      if (result?.errors) {
+        setErrors(result.errors);
+        return;
+      }
+
+      setSubmitError(
+        result?.error ?? "We couldn't send your enquiry right now.",
+      );
+    } catch {
+      setSubmitError("We couldn't send your enquiry right now.");
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   const inputClasses = (field: keyof FormData) =>
@@ -236,9 +266,9 @@ export default function ContactForm() {
                 </h3>
 
                 <p className="mx-auto mt-4 max-w-md text-sm leading-7 text-slate-500">
-                  Your information has been validated and is ready for
-                  the next step. We will connect the enquiry to our
-                  submission system shortly.
+                  Your enquiry has been sent to the SalesFluance team.
+                  We will review it and get back to you with the
+                  appropriate next step.
                 </p>
               </div>
             ) : (
@@ -385,18 +415,55 @@ export default function ContactForm() {
                   </Field>
                 </div>
 
+                {/* Honeypot — hidden from people and assistive tech; bots fill it */}
+                <div
+                  aria-hidden="true"
+                  className="absolute -left-[9999px] h-0 w-0 overflow-hidden"
+                >
+                  <label>
+                    Leave this field empty
+                    <input
+                      type="text"
+                      name="website_hp"
+                      tabIndex={-1}
+                      autoComplete="off"
+                      value={honeypot}
+                      onChange={(e) => setHoneypot(e.target.value)}
+                    />
+                  </label>
+                </div>
+
                 {/* Divider */}
                 <div className="my-8 border-t border-slate-200" />
+
+                {submitError && (
+                  <p
+                    role="alert"
+                    className="mb-4 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-600"
+                  >
+                    {submitError} Please try again, or email us at{" "}
+                    <a
+                      href="mailto:hello@salesfluance.com"
+                      className="font-medium underline"
+                    >
+                      hello@salesfluance.com
+                    </a>
+                    .
+                  </p>
+                )}
 
                 {/* Submit */}
                 <button
                   type="submit"
-                  className="group flex w-full items-center justify-center gap-2 rounded-xl bg-cyan-400 px-6 py-4 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2"
+                  disabled={submitting}
+                  className="group flex w-full items-center justify-center gap-2 rounded-xl bg-cyan-400 px-6 py-4 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-70"
                 >
-                  Start the conversation
-                  <span className="transition-transform group-hover:translate-x-1">
-                    →
-                  </span>
+                  {submitting ? "Sending…" : "Start the conversation"}
+                  {!submitting && (
+                    <span className="transition-transform group-hover:translate-x-1">
+                      →
+                    </span>
+                  )}
                 </button>
 
                 <p className="mt-4 text-xs leading-5 text-slate-400">
