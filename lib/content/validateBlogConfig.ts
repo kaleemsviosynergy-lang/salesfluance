@@ -21,6 +21,7 @@
 import {
   ARTICLE_ROLES,
   BLOG_PILLARS,
+  BLOG_VISUALS,
   type ArticleRole,
   type BlogPillar,
   type BlogPostConfig,
@@ -118,8 +119,13 @@ function validateContentBlocks(value: unknown, path: string, issues: ValidationI
           issues.push({ path: `${blockPath}.items`, message: "required non-empty string array" });
         }
         break;
+      case "visual":
+        if (!isOneOf(block.visual, BLOG_VISUALS)) {
+          issues.push({ path: `${blockPath}.visual`, message: `must be one of: ${BLOG_VISUALS.join(", ")}` });
+        }
+        break;
       default:
-        issues.push({ path: `${blockPath}.type`, message: "must be one of: paragraph, heading, list" });
+        issues.push({ path: `${blockPath}.type`, message: "must be one of: paragraph, heading, list, visual" });
     }
   });
 }

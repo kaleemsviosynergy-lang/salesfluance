@@ -129,10 +129,25 @@ export interface BlogListBlock {
   items: string[];
 }
 
+/** Identifiers for the editorial visual components in components/blog/. */
+export const BLOG_VISUALS = [
+  "ai-revenue-flow",
+  "ai-vs-human",
+  "revenue-workflow-loop",
+] as const;
+
+export type BlogVisualId = (typeof BLOG_VISUALS)[number];
+
+export interface BlogVisualBlock {
+  type: "visual";
+  visual: BlogVisualId;
+}
+
 export type BlogContentBlock =
   | BlogParagraphBlock
   | BlogHeadingBlock
-  | BlogListBlock;
+  | BlogListBlock
+  | BlogVisualBlock;
 
 // ---------------------------------------------------------------------------
 // BlogPostConfig — the single source of truth for one article, in the

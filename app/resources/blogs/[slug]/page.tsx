@@ -5,6 +5,9 @@ import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import type { Metadata } from "next";
 import { buildMetadata } from "@/lib/seo/buildMetadata";
 import type { BlogContentBlock, BlogPostConfig } from "@/types/blog";
+import AIRevenueFlowHero from "@/components/blog/AIRevenueFlowHero";
+import AIVsHumanGrid from "@/components/blog/AIVsHumanGrid";
+import RevenueWorkflowLoop from "@/components/blog/RevenueWorkflowLoop";
 
 import {
   getBlogPost,
@@ -118,6 +121,17 @@ function ContentBlock({ block, index }: { block: BlogContentBlock; index: number
           ))}
         </ul>
       );
+    case "visual":
+      switch (block.visual) {
+        case "ai-revenue-flow":
+          return <AIRevenueFlowHero key={index} />;
+        case "ai-vs-human":
+          return <AIVsHumanGrid key={index} />;
+        case "revenue-workflow-loop":
+          return <RevenueWorkflowLoop key={index} />;
+        default:
+          return null;
+      }
     default:
       return null;
   }
@@ -226,10 +240,20 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
       {/* Body */}
       <article className="px-6 py-16 lg:px-8 lg:py-20">
-        <div className="mx-auto max-w-2xl space-y-6">
-          {config.content.map((block, index) => (
-            <ContentBlock key={index} block={block} index={index} />
-          ))}
+        {/* Wide (max-w-6xl) column so visuals can use the enterprise layout;
+            prose blocks stay in a readable max-w-2xl measure. */}
+        <div className="mx-auto max-w-6xl space-y-6">
+          {config.content.map((block, index) =>
+            block.type === "visual" ? (
+              <div key={index} className="py-8 lg:py-10">
+                <ContentBlock block={block} index={index} />
+              </div>
+            ) : (
+              <div key={index} className="mx-auto max-w-2xl">
+                <ContentBlock block={block} index={index} />
+              </div>
+            ),
+          )}
         </div>
       </article>
 
