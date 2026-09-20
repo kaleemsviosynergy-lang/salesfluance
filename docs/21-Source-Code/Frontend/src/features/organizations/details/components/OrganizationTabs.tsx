@@ -80,7 +80,17 @@ export function OrganizationTabs({
     {
       value: "overview",
       label: "Overview",
-      content: <OverviewTab organization={organization} />,
+      content: (
+        <OverviewTab
+          organization={organization}
+          counts={{
+            assessments: assessments.length,
+            evidence: evidence.length,
+            findings: findings.length,
+            recommendations: recommendations.length,
+          }}
+        />
+      ),
     },
     {
       value: "contacts",

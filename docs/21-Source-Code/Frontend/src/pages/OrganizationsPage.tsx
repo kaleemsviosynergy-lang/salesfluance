@@ -1,197 +1,138 @@
-import { Link, useParams } from "react-router-dom";
+import { useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-import { ArrowLeft, Building2, Globe, Users } from "lucide-react";
+import { PageHeader } from "@/components/common";
+import { Card } from "@/components/ui/card";
+import {
+  MOCK_ORGANIZATIONS,
+  OrganizationsEmptyState,
+  OrganizationsPagination,
+  OrganizationsTable,
+  OrganizationsToolbar,
+} from "@/features/organizations";
+import type {
+  Organization,
+  OrganizationFilters,
+} from "@/features/organizations";
+import { info } from "@/lib/toast";
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+const DEFAULT_FILTERS: OrganizationFilters = {
+  search: "",
+  industry: "all",
+  status: "all",
+};
 
-import { MOCK_ORGANIZATION_DETAILS } from "@/features/organizations/data/organization-details.mock";
+const DEFAULT_PAGE_SIZE = 10;
 
-export default function OrganizationDetailsPage() {
-  const { organizationId } = useParams();
+function matchesFilters(
+  organization: Organization,
+  filters: OrganizationFilters,
+): boolean {
+  const search = filters.search.trim().toLowerCase();
 
-  const organization = MOCK_ORGANIZATION_DETAILS.find(
-    (org) => org.id === organizationId
+  const matchesSearch =
+    search === "" ||
+    organization.name.toLowerCase().includes(search) ||
+    organization.domain.toLowerCase().includes(search) ||
+    organization.primaryContact.toLowerCase().includes(search);
+
+  const matchesIndustry =
+    filters.industry === "all" || organization.industry === filters.industry;
+
+  const matchesStatus =
+    filters.status === "all" || organization.status === filters.status;
+
+  return matchesSearch && matchesIndustry && matchesStatus;
+}
+
+export default function OrganizationsPage() {
+  const navigate = useNavigate();
+
+  const [filters, setFilters] = useState<OrganizationFilters>(DEFAULT_FILTERS);
+  const [page, setPage] = useState(1);
+  const [pageSize, setPageSize] = useState(DEFAULT_PAGE_SIZE);
+
+  const filteredOrganizations = useMemo(
+    () =>
+      MOCK_ORGANIZATIONS.filter((organization) =>
+        matchesFilters(organization, filters),
+      ),
+    [filters],
   );
 
-  if (!organization) {
-    return (
-      <div className="mx-auto flex max-w-5xl flex-col gap-6 px-6 py-8">
-        <Link to="/organizations">
-          <Button variant="outline">
-            <ArrowLeft className="mr-2 h-4 w-4" />
-            Back to Organizations
-          </Button>
-        </Link>
+  const totalPages = Math.max(
+    1,
+    Math.ceil(filteredOrganizations.length / pageSize),
+  );
+  const currentPage = Math.min(page, totalPages);
 
-        <Card>
-          <CardContent className="flex flex-col items-center justify-center py-20 text-center">
-            <Building2 className="mb-4 h-14 w-14 text-muted-foreground" />
+  const visibleOrganizations = filteredOrganizations.slice(
+    (currentPage - 1) * pageSize,
+    currentPage * pageSize,
+  );
 
-            <h2 className="text-2xl font-semibold">
-              Organization Not Found
-            </h2>
+  const hasActiveFilters =
+    filters.search !== "" ||
+    filters.industry !== "all" ||
+    filters.status !== "all";
 
-            <p className="mt-2 text-muted-foreground">
-              The organization you requested does not exist.
-            </p>
-          </CardContent>
-        </Card>
-      </div>
-    );
-  }
+  const handleFiltersChange = (next: OrganizationFilters) => {
+    setFilters(next);
+    setPage(1);
+  };
+
+  const handlePageSizeChange = (next: number) => {
+    setPageSize(next);
+    setPage(1);
+  };
+
+  const handleView = (organization: Organization) => {
+    navigate(`/organizations/${organization.id}`);
+  };
+
+  // Create / edit / remove flows are not built yet (no dialogs or API layer).
+  const handleAdd = () => info("Adding organizations isn't available yet.");
+  const handleEdit = () => info("Editing organizations isn't available yet.");
+  const handleDelete = () =>
+    info("Removing organizations isn't available yet.");
 
   return (
-    <div className="mx-auto flex max-w-7xl flex-col gap-6 px-6 py-8">
-      {/* Back Button */}
+    <div className="mx-auto flex w-full max-w-7xl flex-col gap-6">
+      <PageHeader
+        title="Organizations"
+        description="Every organization tracked for Revenue Readiness."
+      />
 
-      <Link to="/organizations">
-        <Button variant="outline">
-          <ArrowLeft className="mr-2 h-4 w-4" />
-          Back to Organizations
-        </Button>
-      </Link>
+      <OrganizationsToolbar
+        filters={filters}
+        onFiltersChange={handleFiltersChange}
+        onAddOrganization={handleAdd}
+      />
 
-      {/* Header */}
-
-      <Card>
-        <CardHeader>
-          <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-            <div>
-              <h1 className="text-3xl font-bold">
-                {organization.name}
-              </h1>
-
-              <p className="mt-1 text-muted-foreground">
-                Revenue Readiness Intelligence Profile
-              </p>
-            </div>
-
-            <div className="rounded-xl bg-primary px-6 py-4 text-center text-primary-foreground">
-              <p className="text-sm opacity-80">
-                Readiness Score
-              </p>
-
-              <p className="text-4xl font-bold">
-                {organization.readinessScore}
-              </p>
-            </div>
-          </div>
-        </CardHeader>
-      </Card>
-
-      {/* Overview */}
-
-      <Card>
-        <CardHeader>
-          <CardTitle>Company Overview</CardTitle>
-        </CardHeader>
-
-        <CardContent className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-          <div>
-            <div className="mb-2 flex items-center gap-2 text-muted-foreground">
-              <Globe className="h-4 w-4" />
-              Domain
-            </div>
-
-            <p className="font-medium">
-              {organization.domain}
-            </p>
-          </div>
-
-          <div>
-            <div className="mb-2 flex items-center gap-2 text-muted-foreground">
-              <Building2 className="h-4 w-4" />
-              Industry
-            </div>
-
-            <p className="font-medium">
-              {organization.industry}
-            </p>
-          </div>
-
-          <div>
-            <div className="mb-2 flex items-center gap-2 text-muted-foreground">
-              <Users className="h-4 w-4" />
-              Employees
-            </div>
-
-            <p className="font-medium">
-              {organization.employees.toLocaleString()}
-            </p>
-          </div>
-
-          <div>
-            <div className="mb-2 text-muted-foreground">
-              Country
-            </div>
-
-            <p className="font-medium">
-              {organization.country}
-            </p>
-          </div>
-
-          <div>
-            <div className="mb-2 text-muted-foreground">
-              Primary Contact
-            </div>
-
-            <p className="font-medium">
-              {organization.primaryContact}
-            </p>
-          </div>
-
-          <div>
-            <div className="mb-2 text-muted-foreground">
-              Status
-            </div>
-
-            <p className="font-medium capitalize">
-              {organization.status}
-            </p>
-          </div>
-
-          <div>
-            <div className="mb-2 text-muted-foreground">
-              Last Assessment
-            </div>
-
-            <p className="font-medium">
-              {organization.lastAssessedAt}
-            </p>
-          </div>
-        </CardContent>
-      </Card>
-
-      {/* Placeholder */}
-
-      <Card>
-        <CardHeader>
-          <CardTitle>Organization Intelligence Hub</CardTitle>
-        </CardHeader>
-
-        <CardContent className="py-12 text-center">
-          <h3 className="text-xl font-semibold">
-            🚀 Mission F010 Complete
-          </h3>
-
-          <p className="mt-3 text-muted-foreground">
-            This organization detail page is now connected through React Router.
-          </p>
-
-          <p className="mt-2 text-muted-foreground">
-            Next we'll build:
-          </p>
-
-          <div className="mt-6 flex flex-wrap justify-center gap-3">
-            <Button variant="secondary">Overview</Button>
-            <Button variant="secondary">Assessments</Button>
-            <Button variant="secondary">Evidence</Button>
-            <Button variant="secondary">Findings</Button>
-            <Button variant="secondary">AI Recommendations</Button>
-            <Button variant="secondary">Timeline</Button>
-          </div>
-        </CardContent>
+      <Card className="overflow-hidden p-0">
+        {filteredOrganizations.length === 0 ? (
+          <OrganizationsEmptyState
+            hasActiveFilters={hasActiveFilters}
+            onAddOrganization={handleAdd}
+            onClearFilters={() => handleFiltersChange(DEFAULT_FILTERS)}
+          />
+        ) : (
+          <>
+            <OrganizationsTable
+              organizations={visibleOrganizations}
+              onView={handleView}
+              onEdit={handleEdit}
+              onDelete={handleDelete}
+            />
+            <OrganizationsPagination
+              page={currentPage}
+              pageSize={pageSize}
+              totalItems={filteredOrganizations.length}
+              onPageChange={setPage}
+              onPageSizeChange={handlePageSizeChange}
+            />
+          </>
+        )}
       </Card>
     </div>
   );

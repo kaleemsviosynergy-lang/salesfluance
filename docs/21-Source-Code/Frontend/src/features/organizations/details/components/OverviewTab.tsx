@@ -11,8 +11,17 @@ import { StatusBadge } from "@/features/organizations/components/StatusBadge";
 import type { OrganizationDetails }
 from "@/features/organizations/types/organization-details";
 
+export interface OverviewCounts {
+  assessments: number;
+  evidence: number;
+  findings: number;
+  recommendations: number;
+}
+
 interface OverviewTabProps {
   organization: OrganizationDetails;
+  /** Sizes of the organization-scoped collections shown in the other tabs. */
+  counts: OverviewCounts;
 }
 
 interface SummaryField {
@@ -28,13 +37,6 @@ interface AssessmentMetric {
 const READINESS_SCORE_DESCRIPTION =
   "This score is calculated from assessment findings, evidence quality and organizational maturity.";
 
-const ASSESSMENT_SUMMARY_METRICS: AssessmentMetric[] = [
-  { label: "Assessments Completed", value: 0 },
-  { label: "Evidence Uploaded", value: 0 },
-  { label: "Open Findings", value: 0 },
-  { label: "AI Recommendations", value: 0 },
-];
-
 function formatDate(isoDate: string): string {
   return new Date(isoDate).toLocaleDateString("en-US", {
     year: "numeric",
@@ -43,7 +45,14 @@ function formatDate(isoDate: string): string {
   });
 }
 
-export function OverviewTab({ organization }: OverviewTabProps) {
+export function OverviewTab({ organization, counts }: OverviewTabProps) {
+  const assessmentSummaryMetrics: AssessmentMetric[] = [
+    { label: "Assessments", value: counts.assessments },
+    { label: "Evidence", value: counts.evidence },
+    { label: "Findings", value: counts.findings },
+    { label: "Recommendations", value: counts.recommendations },
+  ];
+
   const organizationSummaryFields: SummaryField[] = [
     { label: "Organization Name", value: organization.name },
     { label: "Domain", value: organization.domain },
@@ -124,7 +133,7 @@ export function OverviewTab({ organization }: OverviewTabProps) {
                 Last Assessment
               </dt>
               <dd className="mt-1 text-sm text-foreground">
-                {formatDate(organization.lastAssessedAt)}
+                {formatDate(organization.lastAssessmentDate)}
               </dd>
             </div>
             <div>
@@ -156,7 +165,7 @@ export function OverviewTab({ organization }: OverviewTabProps) {
         </CardHeader>
         <CardContent>
           <dl className="grid grid-cols-2 gap-4">
-            {ASSESSMENT_SUMMARY_METRICS.map((metric) => (
+            {assessmentSummaryMetrics.map((metric) => (
               <div
                 key={metric.label}
                 className="rounded-lg border bg-muted/30 p-4"

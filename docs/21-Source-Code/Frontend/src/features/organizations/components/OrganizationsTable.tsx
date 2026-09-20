@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Eye, MoreHorizontal, Pencil, Trash2 } from "lucide-react";
 
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
@@ -65,9 +66,8 @@ export function OrganizationsTable({
         {organizations.map((organization) => (
           <TableRow key={organization.id} className="group">
             <TableCell>
-              <button
-                type="button"
-                onClick={() => onView(organization)}
+              <Link
+                to={`/organizations/${organization.id}`}
                 className="flex items-center gap-3 text-left"
               >
                 <Avatar className="h-8 w-8 shrink-0 rounded-full border">
@@ -83,7 +83,7 @@ export function OrganizationsTable({
                     {organization.domain}
                   </p>
                 </div>
-              </button>
+              </Link>
             </TableCell>
             <TableCell className="text-sm text-muted-foreground">
               {organization.industry}

@@ -63,8 +63,12 @@ export function ErrorFallback({
               <RefreshCw className="h-4 w-4" />
               Retry
             </Button>
-            <Button  className="gap-1.5">
-              <Link to={backHref}>{backLabel}</Link>
+            <Button
+              className="gap-1.5"
+              nativeButton={false}
+              render={<Link to={backHref} />}
+            >
+              {backLabel}
             </Button>
           </div>
         </CardContent>

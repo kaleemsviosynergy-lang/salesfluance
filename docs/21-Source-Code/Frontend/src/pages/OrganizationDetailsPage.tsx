@@ -8,7 +8,7 @@ import { OrganizationHeader } from "@/features/organizations/details/components/
 import { OrganizationHero } from "@/features/organizations/details/components/OrganizationHero";
 import { OrganizationTabs } from "@/features/organizations/details/components/OrganizationTabs";
 
-import { MOCK_ORGANIZATION_DETAILS } from "@/features/organizations/data/organization-details.mock";
+import { MOCK_ORGANIZATIONS } from "@/features/organizations/data/mock-data";
 import { MOCK_CONTACTS } from "@/features/organizations/data/contacts.mock";
 import { MOCK_ASSESSMENTS } from "@/features/assessments/data/assessments.mock";
 import { MOCK_EVIDENCE } from "@/features/evidence/data/evidence.mock";
@@ -19,13 +19,13 @@ import { MOCK_ACTIVITIES } from "@/features/activity/data/activity.mock";
 export default function OrganizationDetailsPage() {
   const { organizationId } = useParams<{ organizationId: string }>();
 
-  const organization = MOCK_ORGANIZATION_DETAILS.find(
+  const organization = MOCK_ORGANIZATIONS.find(
     (org) => org.id === organizationId,
   );
 
   if (!organization) {
     return (
-      <div className="mx-auto flex w-full max-w-7xl flex-col gap-6 px-6 py-8">
+      <div className="mx-auto flex w-full max-w-7xl flex-col gap-6">
         <Card>
           <CardContent className="flex flex-col items-center justify-center gap-3 py-16 text-center">
             <div className="flex h-11 w-11 items-center justify-center rounded-full bg-muted">
@@ -42,12 +42,16 @@ export default function OrganizationDetailsPage() {
               </p>
             </div>
 
-            <Link to="/organizations">
-              <Button variant="outline" size="sm" className="gap-2">
-                <ArrowLeft className="h-4 w-4" />
-                Back to Organizations
-              </Button>
-            </Link>
+            <Button
+              variant="outline"
+              size="sm"
+              className="gap-2"
+              nativeButton={false}
+              render={<Link to="/organizations" />}
+            >
+              <ArrowLeft className="h-4 w-4" />
+              Back to Organizations
+            </Button>
           </CardContent>
         </Card>
       </div>
@@ -75,11 +79,11 @@ export default function OrganizationDetailsPage() {
   );
 
   const organizationActivities = MOCK_ACTIVITIES.filter(
-  (activity) => activity.organizationId === organization.id,
-);
+    (activity) => activity.organizationId === organization.id,
+  );
 
   return (
-    <div className="mx-auto flex w-full max-w-7xl flex-col gap-6 px-6 py-8">
+    <div className="mx-auto flex w-full max-w-7xl flex-col gap-6">
       <OrganizationHeader />
 
       <OrganizationHero organization={organization} />

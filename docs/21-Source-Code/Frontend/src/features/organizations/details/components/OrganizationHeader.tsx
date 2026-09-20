@@ -16,13 +16,12 @@ export function OrganizationHeader({
       <Button
         variant="ghost"
         size="sm"
-        
+        nativeButton={false}
+        render={<Link to={backHref} />}
         className="-ml-2 gap-1.5 text-muted-foreground hover:text-foreground"
       >
-        <Link to={backHref}>
-          <ArrowLeft className="h-4 w-4" />
-          Back to Organizations
-        </Link>
+        <ArrowLeft className="h-4 w-4" />
+        Back to Organizations
       </Button>
     </div>
   );

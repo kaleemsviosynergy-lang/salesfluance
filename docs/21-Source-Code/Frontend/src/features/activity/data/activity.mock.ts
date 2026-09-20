@@ -5,7 +5,7 @@ import type { Activity, ActivityActor } from "../types";
  *
  * Audit timeline for the FLUANZ platform. Every entry cross-references
  * IDs that already exist in the other feature mocks:
- * - organizationId    -> src/features/organizations/data/organization-details.mock.ts
+ * - organizationId    -> src/features/organizations/data/mock-data.ts (MOCK_ORGANIZATIONS)
  * - contactId         -> src/features/organizations/data/contacts.mock.ts
  * - assessmentId      -> src/features/assessments/data/assessments.mock.ts
  * - evidenceId        -> src/features/evidence/data/evidence.mock.ts
