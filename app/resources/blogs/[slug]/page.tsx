@@ -4,6 +4,8 @@ import { ArrowLeft, ArrowUpRight } from "lucide-react";
 
 import type { Metadata } from "next";
 import { buildMetadata } from "@/lib/seo/buildMetadata";
+import { seoConfig } from "@/lib/seo/seoConfig";
+import ShareArticle from "@/components/blog/ShareArticle";
 import type { BlogContentBlock, BlogPostConfig } from "@/types/blog";
 import AIRevenueFlowHero from "@/components/blog/AIRevenueFlowHero";
 import AIVsHumanGrid from "@/components/blog/AIVsHumanGrid";
@@ -256,6 +258,11 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           )}
         </div>
       </article>
+
+      <ShareArticle
+        url={`${seoConfig.siteUrl}/resources/blogs/${config.slug}`}
+        title={config.title}
+      />
 
       {/* Related Services — only valid, currently implemented services. */}
       {relatedServices.length > 0 && (
