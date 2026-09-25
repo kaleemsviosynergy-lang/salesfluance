@@ -14,13 +14,17 @@
  * by `status` — it does not validate shape, exactly as the equivalent
  * comment on `content/blog/index.ts` describes for the blog registry.
  *
- * PHASE 1 SCOPE: the registry below is intentionally EMPTY. No hub chapter,
- * framework chapter, service chapter, industry chapter, or use-case record
- * is created in this phase — Phase 1 establishes the content pattern only.
- * Authoring real chapters is later-phase work, approved separately.
+ * PHASE 2 UPDATE: the registry now holds the first real chapter —
+ * `activate` (kind: "framework") — authored as the Phase 2 walking
+ * skeleton's one live chapter. No hub-chapter content record, service
+ * chapter, industry chapter, or use-case record has been added; the Master
+ * Playbook Hub at `/resources/playbooks` is implemented as a page that
+ * reads this registry (via the accessor layer) rather than as a
+ * `PlaybookChapterConfig` of its own — see the Phase 2 final report for
+ * the reasoning.
  *
- * ADDING A NEW CHAPTER (once that later phase is approved) will require
- * exactly two changes, mirroring the blog registry's own convention:
+ * ADDING A NEW CHAPTER requires exactly two changes, mirroring the blog
+ * registry's own convention:
  *   1. Create `content/playbooks/<slug>.ts` exporting a `PlaybookChapterConfig`.
  *   2. Add one line to `playbookRegistry` below, keyed by that same slug.
  *
@@ -40,13 +44,15 @@
 
 import type { PlaybookChapterConfig, PlaybookRegistry } from "../../types/playbook";
 
+import { activateConfig } from "./activate";
+
 // ---------------------------------------------------------------------------
 // Registry
-//
-// Intentionally empty in Phase 1 — see the module-level note above.
 // ---------------------------------------------------------------------------
 
-export const playbookRegistry: PlaybookRegistry = {};
+export const playbookRegistry: PlaybookRegistry = {
+  activate: activateConfig,
+};
 
 // ---------------------------------------------------------------------------
 // Accessors

@@ -1,289 +1,233 @@
 import Link from "next/link";
-import {
-  ArrowLeft,
-  ArrowUpRight,
-  BarChart3,
-  BrainCircuit,
-  Building2,
-  CheckCircle2,
-  Crosshair,
-  Layers3,
-  Target,
-} from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 
-const playbooks = [
-  {
-    number: "01",
-    category: "TARGETING",
-    title: "Build a Revenue-Ready ICP",
-    description:
-      "A practical framework for defining the accounts, buying roles, signals, and conditions that should shape a B2B growth campaign.",
-    icon: Target,
-    status: "Coming soon",
-  },
-  {
-    number: "02",
-    category: "DEMAND GENERATION",
-    title: "Design a Signal-Led Campaign",
-    description:
-      "Move beyond static lists by connecting account intelligence, commercial signals, messaging, and engagement into one campaign system.",
-    icon: Crosshair,
-    status: "Coming soon",
-  },
-  {
-    number: "03",
-    category: "SALES INTELLIGENCE",
-    title: "From Accounts to Opportunities",
-    description:
-      "A framework for turning researched accounts and decision-makers into structured, prioritized opportunities for revenue teams.",
-    icon: Building2,
-    status: "Coming soon",
-  },
-  {
-    number: "04",
-    category: "REVENUE STRATEGY",
-    title: "Build a Revenue Readiness System",
-    description:
-      "Understand the conditions that determine whether an organization is actually ready to convert commercial intelligence into pipeline.",
-    icon: BrainCircuit,
-    status: "Coming soon",
-  },
-  {
-    number: "05",
-    category: "ACCOUNT-BASED MARKETING",
-    title: "Map the Buying Committee",
-    description:
-      "Identify the people, relationships, influence patterns, and engagement signals that shape complex B2B buying decisions.",
-    icon: Layers3,
-    status: "Coming soon",
-  },
-  {
-    number: "06",
-    category: "OPTIMIZATION",
-    title: "Build the Feedback Loop",
-    description:
-      "Create a repeatable system for using campaign performance, qualification, client feedback, and testing to improve the next cycle.",
-    icon: BarChart3,
-    status: "Coming soon",
-  },
-];
+import type { Metadata } from "next";
+import { buildMetadata } from "@/lib/seo/buildMetadata";
 
-export default function PlaybooksPage() {
+import { getPublishedPlaybookChapters } from "@/lib/content/getPlaybookChapter";
+import { FRAMEWORK_STAGE_DETAILS, type FrameworkStage } from "@/types/playbook";
+import type { IndustrySlug } from "@/types/shared";
+import FrameworkStageDiagram from "@/components/playbook/FrameworkStageDiagram";
+import ServiceRelationshipCard from "@/components/playbook/ServiceRelationshipCard";
+import RelatedResourceCard from "@/components/playbook/RelatedResourceCard";
+
+// Route-specific metadata — informational intent, distinct from the
+// commercial service pages the chapters point to. Canonical is derived by
+// `buildMetadata` from `path`, never authored manually.
+export const metadata: Metadata = buildMetadata({
+  path: "/resources/playbooks",
+  title: "SalesFluance Master Playbook — Revenue Execution Framework",
+  description:
+    "A single framework for B2B revenue execution — Define, Discover, Validate, Prioritize, Activate, Engage, Verify, Learn — with in-depth chapters published as they're ready. Start with Activate.",
+  keywords: [
+    "b2b revenue execution framework",
+    "revenue execution playbook",
+    "demand generation and lead generation framework",
+  ],
+});
+
+/**
+ * Master Playbook Hub — an orientation/navigation layer, not the complete
+ * Playbook itself. Every dynamic section below reads from the same
+ * published-only accessor (`getPublishedPlaybookChapters`) the chapter
+ * route uses, so:
+ *   - the framework map only links to stages that actually have a chapter,
+ *   - the "live chapters" list only ever shows what's really published,
+ *   - the capability/industry/reading pathways only surface relationships
+ *     that a real, published chapter has actually authored.
+ * Nothing here is hardcoded to "Activate" specifically — this page will
+ * pick up additional framework chapters automatically as they're added in
+ * a later phase, with zero changes to this file.
+ */
+export default async function PlaybooksHubPage() {
+  const publishedChapters = await getPublishedPlaybookChapters();
+  const frameworkChapters = publishedChapters.filter(
+    (chapter) => chapter.kind === "framework" && chapter.frameworkStages,
+  );
+
+  const linkedStages: FrameworkStage[] = frameworkChapters.map(
+    (chapter) => chapter.frameworkStages!.primary,
+  );
+
+  const relatedServiceSlugs = Array.from(
+    new Set(frameworkChapters.flatMap((chapter) => chapter.relatedServices ?? [])),
+  );
+  const relatedArticleSlugs = Array.from(
+    new Set(frameworkChapters.flatMap((chapter) => chapter.relatedArticles ?? [])),
+  );
+
+  const v1Industries: { slug: IndustrySlug; label: string }[] = [
+    { slug: "healthcare", label: "Healthcare" },
+    { slug: "saas", label: "SaaS" },
+    { slug: "it-services", label: "IT Services" },
+  ];
+
   return (
     <main className="bg-white text-slate-950">
-      {/* HERO */}
+      {/* HERO — the revenue execution problem, framed concisely */}
       <section className="border-b border-slate-200 bg-[#F7FAFE]">
-        <div className="mx-auto max-w-7xl px-6 pb-24 pt-28 lg:px-8">
-          <Link
-            href="/resources"
-            className="inline-flex items-center gap-2 font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-500 transition hover:text-cyan-500"
-          >
-            <ArrowLeft className="h-3 w-3" />
-            Resources
-          </Link>
+        <div className="mx-auto max-w-5xl px-6 pb-24 pt-28 lg:px-8">
+          <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.25em] text-cyan-600">
+            MASTER PLAYBOOK
+          </p>
 
-          <div className="mt-12 max-w-5xl">
-            <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.25em] text-cyan-600">
-              PLAYBOOKS
-            </p>
+          <h1 className="mt-5 max-w-3xl text-5xl font-semibold tracking-[-0.03em] text-slate-950 md:text-6xl">
+            One framework.
+            <br />
+            <span className="text-cyan-500">Multiple chapters.</span> Connected
+            paths to revenue execution.
+          </h1>
 
-            <h1 className="mt-5 text-5xl font-semibold tracking-[-0.045em] text-slate-950 md:text-7xl">
-              Systems you can
-              <br />
-              <span className="text-cyan-500">put to work.</span>
-            </h1>
-
-            <p className="mt-8 max-w-2xl text-lg leading-8 text-slate-600 md:text-xl">
-              Practical frameworks for building stronger B2B targeting,
-              demand generation, sales intelligence, and revenue systems.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* POSITIONING */}
-      <section className="border-b border-slate-200">
-        <div className="mx-auto grid max-w-7xl gap-12 px-6 py-20 lg:grid-cols-[1fr_1.2fr] lg:px-8">
-          <div>
-            <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-cyan-600">
-              PRACTICAL INTELLIGENCE
-            </p>
-
-            <h2 className="mt-5 max-w-xl text-3xl font-semibold tracking-tight md:text-4xl">
-              Less theory.
-              <br />
-              More systems.
-            </h2>
-          </div>
-
-          <div className="max-w-2xl text-base leading-8 text-slate-600">
-            <p>
-              A good playbook should make the next decision easier. These
-              frameworks are designed around the actual work behind B2B growth:
-              identifying the right accounts, understanding buying signals,
-              engaging the right people, and creating a path toward revenue.
-            </p>
-
-            <p className="mt-6">
-              Each playbook will separate the framework from the evidence,
-              assumptions, and execution steps behind it.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* FEATURED */}
-      <section className="mx-auto max-w-7xl px-6 py-24 lg:px-8">
-        <div className="mb-12 flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
-          <div>
-            <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-cyan-600">
-              FEATURED PLAYBOOK
-            </p>
-
-            <h2 className="mt-4 text-3xl font-semibold tracking-tight md:text-4xl">
-              Start with the foundation.
-            </h2>
-          </div>
-
-          <p className="max-w-md text-sm leading-6 text-slate-500 md:text-right">
-            The library is being developed around practical systems that
-            revenue teams can apply, adapt, and improve.
+          <p className="mt-8 max-w-2xl text-lg leading-8 text-slate-600">
+            Most B2B revenue problems are not caused by a lack of activity. They
+            are caused by activity that has no shared framework behind it —
+            data no one validated, leads no one prioritized, engagement
+            mistaken for intent. The SalesFluance Revenue Execution Framework
+            is a single model for how revenue actually gets built, stage by
+            stage.
           </p>
         </div>
+      </section>
 
-        <div className="overflow-hidden rounded-[28px] border border-[#1E2530] bg-[#080D14] text-white shadow-2xl">
-          <div className="grid lg:grid-cols-[1.15fr_0.85fr]">
-            <div className="p-8 md:p-12 lg:p-14">
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-cyan-400 text-slate-950">
-                <Target className="h-6 w-6" />
-              </div>
+      {/* THE FRAMEWORK — the 8-stage map from the single source of truth */}
+      <section className="border-b border-slate-200">
+        <div className="mx-auto max-w-5xl px-6 py-20 lg:px-8">
+          <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-cyan-600">
+            THE FRAMEWORK
+          </p>
+          <h2 className="mt-4 text-3xl font-semibold tracking-tight md:text-4xl">
+            Eight stages. One direction. One shared vocabulary.
+          </h2>
+          <p className="mt-5 max-w-2xl text-base leading-7 text-slate-600">
+            Define, Discover, Validate, Prioritize, Activate, Engage, Verify,
+            Learn — each stage answers a different question, and each chapter
+            goes deeper into one of them. Chapters are published as they are
+            written; the map below reflects what is live today, not what is
+            planned.
+          </p>
 
-              <p className="mt-8 font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-cyan-400">
-                PLAYBOOK 01 · TARGETING
-              </p>
-
-              <h3 className="mt-4 max-w-xl text-3xl font-semibold tracking-tight md:text-4xl">
-                Build a Revenue-Ready ICP.
-              </h3>
-
-              <p className="mt-6 max-w-xl text-base leading-8 text-slate-400">
-                A structured approach to defining who you should target, why
-                they should matter, and which signals indicate that an account
-                is worth engaging.
-              </p>
-
-              <div className="mt-8 inline-flex items-center gap-2 rounded-full border border-white/10 px-4 py-2 font-mono text-[10px] uppercase tracking-[0.16em] text-slate-400">
-                <CheckCircle2 className="h-3.5 w-3.5 text-cyan-400" />
-                Coming soon
-              </div>
-            </div>
-
-            <div className="flex min-h-[320px] items-center justify-center bg-[#0B1B2D] p-10">
-              <div className="text-center">
-                <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full border border-cyan-400/30">
-                  <Target className="h-8 w-8 text-cyan-400" />
-                </div>
-
-                <p className="mt-8 font-mono text-[10px] uppercase tracking-[0.25em] text-slate-500">
-                  SIGNAL → PRIORITY → ACTION
-                </p>
-
-                <p className="mt-3 text-lg font-medium text-white">
-                  Better targeting starts with better definition.
-                </p>
-              </div>
-            </div>
+          <div className="mt-10">
+            <FrameworkStageDiagram linkedStages={linkedStages} />
           </div>
         </div>
       </section>
 
-      {/* PLAYBOOK GRID */}
-      <section className="bg-[#F7FAFE]">
-        <div className="mx-auto max-w-7xl px-6 py-24 lg:px-8">
-          <div className="mb-12">
+      {/* LIVE CHAPTERS — only real, published chapters, never a placeholder */}
+      {frameworkChapters.length > 0 && (
+        <section className="border-b border-slate-200 bg-[#F7FAFE]">
+          <div className="mx-auto max-w-5xl px-6 py-20 lg:px-8">
             <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-cyan-600">
-              THE LIBRARY
+              AVAILABLE NOW
             </p>
-
             <h2 className="mt-4 text-3xl font-semibold tracking-tight md:text-4xl">
-              Frameworks for the work ahead.
+              Start with the live chapter.
             </h2>
+
+            <div className="mt-10 grid gap-5">
+              {frameworkChapters.map((chapter) => {
+                const stageDetail = FRAMEWORK_STAGE_DETAILS[chapter.frameworkStages!.primary];
+                return (
+                  <Link
+                    key={chapter.slug}
+                    href={`/resources/playbooks/${chapter.slug}`}
+                    className="group overflow-hidden rounded-[28px] border border-[#1E2530] bg-[#080D14] p-8 text-white transition hover:border-cyan-400/40 md:p-12"
+                  >
+                    <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-cyan-400">
+                      Stage {stageDetail.order} of 8 · {stageDetail.label}
+                    </p>
+                    <h3 className="mt-4 max-w-2xl text-2xl font-semibold tracking-tight md:text-3xl">
+                      {chapter.title}
+                    </h3>
+                    <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-400 md:text-base">
+                      {chapter.excerpt}
+                    </p>
+                    <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-cyan-400">
+                      Read the chapter
+                      <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    </span>
+                  </Link>
+                );
+              })}
+            </div>
           </div>
+        </section>
+      )}
 
-          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {playbooks.map((playbook) => {
-              const Icon = playbook.icon;
-
-              return (
-                <article
-                  key={playbook.number}
-                  className="group rounded-3xl border border-slate-200 bg-white p-7 transition duration-300 hover:-translate-y-1 hover:border-cyan-300 hover:shadow-xl"
-                >
-                  <div className="flex items-start justify-between">
-                    <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#0B1B2D] text-cyan-400">
-                      <Icon className="h-5 w-5" />
-                    </div>
-
-                    <span className="font-mono text-[10px] text-slate-400">
-                      {playbook.number}
-                    </span>
-                  </div>
-
-                  <p className="mt-8 font-mono text-[9px] font-semibold uppercase tracking-[0.2em] text-cyan-600">
-                    {playbook.category}
-                  </p>
-
-                  <h3 className="mt-3 text-xl font-semibold tracking-tight text-slate-950">
-                    {playbook.title}
-                  </h3>
-
-                  <p className="mt-4 text-sm leading-7 text-slate-600">
-                    {playbook.description}
-                  </p>
-
-                  <div className="mt-7 flex items-center justify-between border-t border-slate-100 pt-5">
-                    <span className="text-xs text-slate-400">
-                      {playbook.status}
-                    </span>
-
-                    <span className="inline-flex items-center gap-1 text-xs font-semibold text-slate-400">
-                      In development
-                      <ArrowUpRight className="h-3.5 w-3.5" />
-                    </span>
-                  </div>
-                </article>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* POINT OF VIEW */}
-      <section className="border-b border-slate-200 bg-white">
-        <div className="mx-auto max-w-7xl px-6 py-24 lg:px-8">
-          <div className="mx-auto max-w-4xl text-center">
+      {/* CAPABILITY PATHWAY — services the live chapter(s) actually reference */}
+      {relatedServiceSlugs.length > 0 && (
+        <section className="border-b border-slate-200">
+          <div className="mx-auto max-w-5xl px-6 py-20 lg:px-8">
             <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-cyan-600">
-              OUR STANDARD
+              CAPABILITY PATHWAY
             </p>
-
-            <h2 className="mt-5 text-3xl font-semibold tracking-tight md:text-5xl">
-              A playbook should change
-              <br />
-              <span className="text-slate-500">what you do next.</span>
+            <h2 className="mt-4 text-3xl font-semibold tracking-tight md:text-4xl">
+              Where the framework connects to SalesFluance today.
             </h2>
 
-            <p className="mx-auto mt-7 max-w-2xl text-base leading-8 text-slate-600">
-              We are not building a library to add more noise to the B2B
-              ecosystem. The goal is simple: useful frameworks, clear
-              reasoning, and practical systems that survive contact with a
-              real revenue team.
-            </p>
+            <div className="mt-10 grid gap-6 sm:grid-cols-2">
+              {relatedServiceSlugs.map((serviceSlug) => (
+                <ServiceRelationshipCard key={serviceSlug} serviceSlug={serviceSlug} />
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* V1 INDUSTRY PATHWAY — the three typed, registry-backed industries only */}
+      <section className="border-b border-slate-200 bg-[#F7FAFE]">
+        <div className="mx-auto max-w-5xl px-6 py-20 lg:px-8">
+          <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-cyan-600">
+            INDUSTRY PATHWAY
+          </p>
+          <h2 className="mt-4 text-3xl font-semibold tracking-tight md:text-4xl">
+            Applied to the markets we cover today.
+          </h2>
+
+          <div className="mt-10 grid gap-5 sm:grid-cols-3">
+            {v1Industries.map((industry) => (
+              <Link
+                key={industry.slug}
+                href={`/industries/${industry.slug}`}
+                className="group flex items-center justify-between gap-3 rounded-2xl border border-slate-200 bg-white p-5 transition-colors hover:border-cyan-400/40 hover:bg-cyan-50/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2"
+              >
+                <span className="text-sm font-semibold text-slate-950">{industry.label}</span>
+                <ArrowUpRight className="h-4 w-4 shrink-0 text-slate-300 transition group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-cyan-500" />
+              </Link>
+            ))}
           </div>
         </div>
       </section>
+
+      {/* RELATED RESOURCES — published articles the live chapter(s) reference */}
+      {relatedArticleSlugs.length > 0 && (
+        <section>
+          <div className="mx-auto max-w-5xl px-6 py-20 lg:px-8">
+            <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-cyan-600">
+              RELATED READING
+            </p>
+            <h2 className="mt-4 text-3xl font-semibold tracking-tight md:text-4xl">
+              From the SalesFluance blog.
+            </h2>
+
+            <div className="mt-10 grid gap-6 sm:grid-cols-2">
+              {relatedArticleSlugs.map((articleSlug) => (
+                <RelatedResourceCard key={articleSlug} resourceType="article" slug={articleSlug} />
+              ))}
+            </div>
+
+            <Link
+              href="/resources/blogs"
+              className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-cyan-600 transition hover:text-cyan-500"
+            >
+              Browse all articles
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+        </section>
+      )}
 
       {/* CTA */}
-      <section className="mx-auto max-w-7xl px-6 py-24 lg:px-8">
+      <section className="mx-auto max-w-5xl px-6 py-24 lg:px-8">
         <div className="overflow-hidden rounded-[28px] bg-[#080D14] px-8 py-12 text-white md:px-12 md:py-14">
           <div className="grid gap-10 lg:grid-cols-[1fr_auto] lg:items-center">
             <div>
@@ -296,8 +240,8 @@ export default function PlaybooksPage() {
               </h2>
 
               <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-400">
-                If the right framework does not exist yet, let’s work through
-                the problem directly.
+                If the chapter you need is not written yet, let&rsquo;s work
+                through the problem directly.
               </p>
             </div>
 
