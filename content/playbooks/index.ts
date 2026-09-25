@@ -14,14 +14,14 @@
  * by `status` — it does not validate shape, exactly as the equivalent
  * comment on `content/blog/index.ts` describes for the blog registry.
  *
- * PHASE 2 UPDATE: the registry now holds the first real chapter —
- * `activate` (kind: "framework") — authored as the Phase 2 walking
- * skeleton's one live chapter. No hub-chapter content record, service
+ * PHASE 3A UPDATE: three additional framework chapters have been
+ * registered — `define`, `discover`, and `validate` — alongside the
+ * Phase 2 `activate` chapter. No hub-chapter content record, service
  * chapter, industry chapter, or use-case record has been added; the Master
- * Playbook Hub at `/resources/playbooks` is implemented as a page that
- * reads this registry (via the accessor layer) rather than as a
- * `PlaybookChapterConfig` of its own — see the Phase 2 final report for
- * the reasoning.
+ * Playbook Hub at `/resources/playbooks` remains a page that reads this
+ * registry (via the accessor layer) rather than a `PlaybookChapterConfig`
+ * of its own — see the Phase 2 final report for the reasoning, reaffirmed
+ * at the Phase 2 checkpoint.
  *
  * ADDING A NEW CHAPTER requires exactly two changes, mirroring the blog
  * registry's own convention:
@@ -45,12 +45,18 @@
 import type { PlaybookChapterConfig, PlaybookRegistry } from "../../types/playbook";
 
 import { activateConfig } from "./activate";
+import { defineConfig } from "./define";
+import { discoverConfig } from "./discover";
+import { validateConfig } from "./validate";
 
 // ---------------------------------------------------------------------------
 // Registry
 // ---------------------------------------------------------------------------
 
 export const playbookRegistry: PlaybookRegistry = {
+  define: defineConfig,
+  discover: discoverConfig,
+  validate: validateConfig,
   activate: activateConfig,
 };
 
