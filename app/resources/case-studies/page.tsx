@@ -9,6 +9,21 @@ import {
 
 import { caseStudies } from "@/app/data/caseStudies";
 
+import type { Metadata } from "next";
+import { buildMetadata } from "@/lib/seo/buildMetadata";
+
+// Technical SEO fix: this page previously had no metadata export, so it
+// silently inherited the root layout's default canonical (the homepage)
+// instead of pointing at itself. Title and description are drawn only
+// from the page's own current hero copy ("Proof from the work" / "Real
+// engagements, documented carefully...").
+export const metadata: Metadata = buildMetadata({
+  path: "/resources/case-studies",
+  title: "B2B Case Studies | SalesFluance",
+  description:
+    "Real engagements, documented carefully. Case studies distinguishing what was done, what was verified, and what changed.",
+});
+
 export default function CaseStudiesPage() {
   const featuredCaseStudy =
     caseStudies.find((caseStudy) => caseStudy.featured) ?? caseStudies[0];
